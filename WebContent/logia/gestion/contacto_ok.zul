@@ -1,0 +1,21 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+
+	<div>
+
+		<h:div class="row">
+			<h:div class="col-sm-0 col-md-3"></h:div>
+			<h:div class="col-sm-12 col-md-6"
+				style="padding:10px;background:#f5f5f5;border-radius:6px">
+				<h:h3>Contacto</h:h3>
+				<h:p>
+					Su solicitud de contacto a sido enviada
+					correctamente.
+				</h:p>
+
+			</h:div>
+			<h:div class="col-sm-0 col-md-3"></h:div>
+
+		</h:div>
+
+	</div>
+</zk>

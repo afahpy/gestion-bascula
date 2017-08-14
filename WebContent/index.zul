@@ -1,0 +1,4 @@
+<?forward uri="sistema.zul"?>
+<window title="Logia" border="normal" width="200px">
+	<label value="Redireccionando a /logia/"></label>
+</window>

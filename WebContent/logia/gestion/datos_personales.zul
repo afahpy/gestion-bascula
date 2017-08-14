@@ -1,0 +1,523 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="datosPersonales" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.logia.gestion.DatosPersonalesVM')"
+		width="100%">
+
+		<div visible="@load(vm.datosUsuarioVisible)">
+			<h:div class="row">
+				<h:div class="col-sm-12 col-md-12 text-center">
+					<h:h3>Datos Usuario</h:h3>
+				</h:div>
+			</h:div>
+
+			<h:div class="row">
+				<h:div class="col-xs-5 col-md-2 form-group text-left">
+					<label value=" Login " width="100%"></label>
+				</h:div>
+				<h:div class="col-xs-7 col-md-2">
+					<textbox readonly="true"
+						value="@bind(vm.mas.usuarioSistema.login)" width="100%">
+					</textbox>
+				</h:div>
+			</h:div>
+
+			<h:div class="row">
+				<h:div class="col-xs-12 col-md-2">
+					<button label="Cambiar Contraseña"
+						zclass="btn btn-info" onClick="@command('cambiarModoPassActi')"
+						width="100%">
+					</button>
+				</h:div>
+			</h:div>
+
+			<div visible="@load(vm.modoCambioPassActi)">
+				<h:div class="row">
+					<h:div
+						class="col-xs-5 col-md-2 form-group text-left">
+						<label value=" Pass Nuevo " width="100%"></label>
+					</h:div>
+					<h:div class="col-xs-7 col-md-2">
+						<textbox type="password"
+							value="@bind(vm.passNuevo)" width="100%">
+						</textbox>
+					</h:div>
+				</h:div>
+				<h:div class="row">
+					<h:div
+						class="col-xs-5 col-md-2 form-group text-left">
+						<label value=" Confirmar Pass " width="100%"></label>
+					</h:div>
+					<h:div class="col-xs-7 col-md-2">
+						<textbox type="password"
+							value="@bind(vm.passNuevo2)" width="100%">
+						</textbox>
+					</h:div>
+				</h:div>
+
+				<h:div class="row">
+					<h:div class="col-xs-12 col-md-2">
+						<button label="Cambiar" zclass="btn btn-info"
+							onClick="@command('cambiarPass')" width="100%">
+						</button>
+					</h:div>
+				</h:div>
+			</div>
+
+		</div>
+		<div zclass="row" style="border-bottom: 1px solid black"
+			height="10px">
+		</div>
+
+		<!-- =============================================== -->
+
+<!-- 		<h:div class="row">
+			<h:div class="col-sm-12 col-md-12 text-center">
+				<h:h3>Datos Personales</h:h3>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Nombres " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.nombres )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Apellidos " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.apellidos)" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Fecha de Nacimiento " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy"
+					readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.fechaNacimiento )" width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Ciudad, País " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.lugarNacimiento )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Nacionalidad " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.nacionalidad )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Estado Civil " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.estadoCivil )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" C.I. Nº " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.ci )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Profesión " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.profesion )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Especialización " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.especializacion )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Dirección particular " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.direccionParticular )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Teléfono particular " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.telefonoParticular )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Celular " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.celular )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Email " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.email )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Lugar de trabajo " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.lugarDeTrabajo )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Cargo que ocupa " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.cargoQueOcupa )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Dirección laboral " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.direccionLaboral )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Teléfono laboral " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.telefonoLaboral )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Email Laboral " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.emailLaboral )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Tipo de Sangre " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.tipoDeSangre )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+
+
+
+		<h:div class="row text-center">
+			<button label="Guardar" zclass="btn btn-info"
+				visible="@load(vm.editable)"
+				onClick="@command('guardarDatosPersonales')">
+			</button>
+		</h:div>
+ -->
+		<!-- =================================================== -->
+
+	<!-- 	<div zclass="row" style="border-bottom: 1px solid black"
+			height="10px">
+		</div>
+		<h:div class="row">
+			<h:div class="col-sm-12 col-md-12 text-center">
+				<h:h3>Datos Familiares</h:h3>
+			</h:div>
+		</h:div>
+
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Nombre y Apellido Cónyuge "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeNombreApellido )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Fecha de nacimiento del Cónyuge "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy"
+					readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeFechaNacimiento )" width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Nacionalidad del Cónyuge "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeNacionalidad )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Profesión del Cónyuge " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeProfesion )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Actividad Laboral del Cónyuge "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeActividadLaboral )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Cargo que ocupa del Cónyuge "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeCargoQueOcupa )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Teléfono laboral del Cónyuge "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeTelefonolaboral )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Tipo de Sangre del Cónyuge "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.conyugeTipoDeSangre )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Datos de los Hijos " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<textbox readonly="@load(!vm.editable)"
+					value="@bind(vm.mas.datosDeHijos )" width="100%">
+				</textbox>
+			</h:div>
+		</h:div>
+
+
+		<h:div class="row text-center">
+			<button label="Guardar" zclass="btn btn-info"
+				visible="@load(vm.editable)"
+				onClick="@command('guardarDatosPersonales')">
+			</button>
+		</h:div> -->
+
+		<!-- =================================================== -->
+<!-- 
+		<div zclass="row" style="border-bottom: 1px solid black"
+			height="10px">
+		</div>
+		<h:div class="row">
+			<h:div class="col-sm-12 col-md-12 text-center">
+				<h:h3>Datos Mas∴</h:h3>
+			</h:div>
+		</h:div>
+
+
+
+		<h:div class="row">
+
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value="Estado:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2 form-group">
+				<combobox model="@load(vm.utilDto.tiposEstadosH)"
+					value="@load(vm.mas.estado.descripcion)" readonly="true"
+					selectedItem="@bind(vm.mas.estado)"
+					disabled="@load(!vm.editableSensible)" width="100%"
+					tooltiptext="Seleccione el estado del H∴">
+					<template name="model">
+						<comboitem label="@load(each.descripcion)" />
+					</template>
+				</combobox>
+			</h:div>
+
+		</h:div>
+
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Iniciación o regularización "
+					width="100%">
+				</label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy" buttonVisible="@load(vm.editableSensible)"
+					readonly="@load(!vm.editableSensible)"
+					value="@bind(vm.mas.fechaIniciacionRegularizacion )"
+					width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Aumento de Salario " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy" buttonVisible="@load(vm.editableSensible)"
+					readonly="@load(!vm.editableSensible)"
+					value="@bind(vm.mas.fechaAumentoSalario )" width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Exaltación " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy" buttonVisible="@load(vm.editableSensible)"
+					readonly="@load(!vm.editableSensible)"
+					value="@bind(vm.mas.fechaExaltacion )" width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Placet y Quite " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy" buttonVisible="@load(vm.editableSensible)"
+					readonly="@load(!vm.editableSensible)"
+					value="@bind(vm.mas.fechaPlacetYQuite )" width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Suspensión " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy" buttonVisible="@load(vm.editableSensible)"
+					readonly="@load(!vm.editableSensible)"
+					value="@bind(vm.mas.fechaFechaSuspension )" width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-2 form-group text-left">
+				<label value=" Expulsión " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-2">
+				<datebox format="dd-MM-yyyy" buttonVisible="@load(vm.editableSensible)"
+					readonly="@load(!vm.editableSensible)"
+					value="@bind(vm.mas.fechaExpulsion )" width="100%">
+				</datebox>
+			</h:div>
+		</h:div>
+
+
+		<h:div class="row text-center">
+			<button label="Guardar" zclass="btn btn-info"
+				visible="@load(vm.editable)" 
+				onClick="@command('guardarDatosPersonales')">
+			</button>
+		</h:div>
+ -->
+		<!-- =================================================== -->
+
+
+	</div>
+</zk>

@@ -1,0 +1,76 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+
+	<style src="/Styles/simple-sidebar.css" />
+
+	<h:div id="wrapper" class="collapse in">
+		<h:div id="sidebar-wrapper">
+
+			<h:ul id="menu" class="sidebar-nav">
+				<zk
+					forEach="${vm.menuLateralItem(self, 'TENIDAS', '', 'Ten∴', '/logia/gestion/taller_tenidas.zul')}" />
+				<zk
+					forEach="${vm.menuLateralItem(self, 'CAMARAS','', 'Cam∴', '/logia/gestion/taller_camaras.zul')}" />
+				<zk
+					forEach="${vm.menuLateralItem(self, 'SECRETARIO','', 'Secr∴', '/logia/gestion/taller_secretario.zul')}" />
+				<zk
+					forEach="${vm.menuLateralItem(self, 'HOSPITALARIO','', 'Hosp∴', '/logia/gestion/taller_hospitalario.zul')}" />
+				<zk
+					forEach="${vm.menuLateralItem(self, 'TESORERO','', 'Tes∴', '/logia/gestion/taller_tesorero.zul')}" />
+				<zk
+					forEach="${vm.menuLateralItem(self, 'DATOSHH','', 'HH∴', '/logia/gestion/taller_datos_hh.zul')}" />
+			</h:ul>
+
+		</h:div>
+		<!-- /#sidebar-wrapper -->
+
+
+
+		<!-- Page Content -->
+		<h:div id="page-content-wrapper2">
+			<h:div class="container-fluid">
+				<h:div class="row">
+					<h:div class="col-lg-12">
+
+						<h:a href="#menu-toggle" 
+							class="glyphicon glyphicon-th-list" title="Mostrar/ocultar menu"
+							style="color:black" id="menu-toggle" />
+
+						<include id="includeLateral" height="100%" width="100%" sclass="col-xs-12"
+							src="/logia/gestion/taller_tenidas.zul" />
+					</h:div>
+				</h:div>
+			</h:div>
+		</h:div>
+		<!-- /#page-content-wrapper -->
+
+	</h:div>
+	<!-- /#wrapper -->
+
+
+
+
+	<h:script>
+		function botonHamburgesaActivo(){
+		  var modoComprimido = document.getElementById("boton-hamburguesa").offsetLeft;
+		  if(modoComprimido > 0){
+		    return true;
+		   }
+		   return false;
+		}
+	
+	
+		$("#menu-toggle").click(function(e) { 
+		   e.preventDefault();
+		   $("#wrapper").toggleClass("toggled");
+		});
+		
+		
+		$("#menu").click(function(e) { e.preventDefault();
+		  if(botonHamburgesaActivo()){
+		    $("#wrapper").toggleClass("toggled");
+		  }		
+		});
+	</h:script>
+	
+	
+</zk>

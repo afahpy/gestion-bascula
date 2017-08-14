@@ -1,0 +1,123 @@
+<div apply="org.zkoss.bind.BindComposer" id="idManejadorArchivos"
+	xmlns:h="http://www.w3.org/1999/xhtml"
+	viewModel="@id('vm') @init('com.coreweb.extras.archivos.ViewModelManejadorArchivos')"
+	height="100%" width="100%">
+
+	<vlayout height="100%" width="100%">
+
+		<!-- ========== iframe, ver documento -->
+		<div visible="@load(vm.modoVerArchivo)" height="100%">
+
+			<hbox>
+
+				<toolbarbutton
+					class="glyphicon glyphicon-circle-arrow-left"
+					style="font-size:2em;" tooltiptext="volver un nivel"
+					onClick="@command('cerrarModoverArchivos')" />
+				<space />
+				<label value="@load(vm.archivoCC)" />
+			</hbox>
+
+
+			<iframe id="idIframeArchivo" src="" width="100%"
+				scrolling="yes" height="500px" />
+		</div>
+
+		<!-- ========== ver el directorio de archivos -->
+
+		<div visible="@load(!vm.modoVerArchivo)" height="100%"
+			width="100%">
+
+			<hbox width="100%" align="center">
+				<toolbarbutton focus="true"
+					disabled="@load(vm.estaEnRaiz)"
+					class="glyphicon glyphicon-circle-arrow-left"
+					style="font-size:2em;" tooltiptext="volver un nivel"
+					onClick="@command('volverNivel')" />
+				<toolbarbutton class="glyphicon glyphicon-folder-open"
+					style="font-size:2em;" visible="@load(vm.modoAdm)"
+					onClick="@command('crearDirectorio')"
+					tooltiptext="crear directorio" />
+
+
+				<toolbarbutton id="uploadArchivo"
+					visible="@load(vm.modoAdm)" tooltiptext="subir un archivo"
+					style="font-size:2em;" class="glyphicon glyphicon-open"
+					upload="true,maxsize=10000"
+					onUpload="@command('agregarFile', evt=event)"
+					tooltip="agregar archivo" />
+
+				<space />
+				<label value="@load(vm.direCCWeb)" />
+			</hbox>
+
+			<div visible="@load(vm.modoCrearDirectorio)"
+				width="250px">
+				<groupbox>
+					Directorio
+					<textbox value="@bind(vm.directorioNuevo)"
+						onOK="@command('grabarCrearDirectorio')" width="130px" />
+
+					<toolbarbutton class="glyphicon glyphicon-plus"
+						style="font-size:2em;" onClick="@command('grabarCrearDirectorio')"
+						tooltiptext="crear el directorio" />
+				</groupbox>
+
+			</div>
+
+
+			<!-- ============== lista de archivos  -->
+
+
+			<div fulfill="self.onCreate" height="100%" width="100%">
+
+				<hlayout
+					style="padding-left:10px; background-color: #E6E6E6" width=""
+					visible="@load(vm.noHayArchivos)">
+					<label value="Sin archivos" />
+
+				</hlayout>
+
+
+				<vlayout id="vlayout" height="100%" width="100%"
+					children="@load(vm.listaArchivos)">
+
+					<template name="children" var="each">
+
+						<h:div class="row" style="background-color: #E6E6E6">
+
+							<h:div
+								class="col-xs-8 col-md-8 form-group text-left">
+								<hlayout>
+									<toolbarbutton
+										onClick="@command('clickFile', file=each)"
+										sclass="@load(each.image)" />
+
+									<a
+										onClick="@command('clickFile', file=each)">
+										<label
+											value="@load(each.nombre)" />
+									</a>
+								</hlayout>
+							</h:div>
+
+							<h:div
+								class="col-xs-4 col-md-4 form-group text-right" >
+								<label value="@load(each.tamanio)" style="font-size:0.7em;" />
+
+								<toolbarbutton
+									visible="@load(vm.modoAdm)" class="glyphicon glyphicon-trash"
+									tooltiptext="eliminar"
+									onClick="@command('eliminarFile', file=each)" />
+							</h:div>
+
+						</h:div>
+					</template>
+				</vlayout>
+			</div>
+
+
+		</div>
+
+	</vlayout>
+</div>

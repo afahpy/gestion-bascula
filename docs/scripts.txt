@@ -1,0 +1,24 @@
+cd /opt
+sudo mkdir logia
+cd logia
+sudo mkdir camara_aprendiz
+sudo mkdir camara_companero
+sudo mkdir camara_maestro
+sudo mkdir secretario
+sudo mkdir secretario/aprendiz/
+sudo mkdir secretario/aprendiz/notas
+sudo mkdir secretario/aprendiz/planchas
+sudo mkdir secretario/aprendiz/balaustres
+sudo mkdir secretario/companero/
+sudo mkdir secretario/companero/notas
+sudo mkdir secretario/companero/planchas
+sudo mkdir secretario/companero/balaustres
+sudo mkdir secretario/maestro/
+sudo mkdir secretario/maestro/notas
+sudo mkdir secretario/maestro/planchas
+sudo mkdir secretario/maestro/balaustres
+sudo mkdir biblioteca_aprendiz
+sudo mkdir biblioteca_companero
+sudo mkdir biblioteca_maestro
+sudo mkdir biblioteca_filosofico
+sudo mkdir tenidas             

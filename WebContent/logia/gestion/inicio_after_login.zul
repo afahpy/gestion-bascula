@@ -1,0 +1,14 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:w='client'>
+	<div id="t" zclass="container theme-showcase"
+		style="text-align: center" height="100%">
+		<div zclass="jumbotron">
+			<h:h2>Bienvenido!</h:h2>
+			<label value="@load(vm.infoUsuario)" style="font-size: 14px"></label>
+		</div>
+	</div>
+
+	<timer delay="0" repeats="false"
+		w:onTimer="jq(this.$f('t')).hide().fadeIn(2000)">
+	</timer>
+</zk>
+

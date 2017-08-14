@@ -1,0 +1,77 @@
+<!-- Su VM es el configurado en /core/inicio/home.zul -->
+
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<h:nav class="navbar-inverse" role="navigation"
+		id="top-navbar-collapse">
+		<h:div class="navbar-header">
+
+			<div class="navbar-brand"
+				style="padding: 2px 5px 2px 5px;">
+
+				<!--<label value="@load(vm.menuHeaderTitle)"
+					style="font-size:17px">
+					</label>  -->
+				<h:img src="/img/solo_logo.png"
+					style="width:45px;height:45px">
+				</h:img>
+			</div>
+
+
+			<!-- En caso de que se quiera usar el header del navbar para redireccionar
+				<h:a href="@load(vm.menuHeaderRef)" class="navbar-brand">
+				<label value="@load(vm.menuHeaderTitle)"
+				style="font-size:17px">
+				</label>
+				</h:a>
+			-->
+			<h:button id="boton-hamburguesa" type="button"
+				class="navbar-toggle" data-toggle="collapse"
+				data-target="#example-navbar-collapse">
+				<h:span class="sr-only">Toggle navigation</h:span>
+				<h:span class="icon-bar"></h:span>
+				<h:span class="icon-bar"></h:span>
+				<h:span class="icon-bar"></h:span>
+			</h:button>
+		</h:div>
+		<h:div class="navbar-collapse collapse"
+			id="example-navbar-collapse">
+			<h:ul id="ul-navbar-collapse" class="nav navbar-nav">
+			<!-- 	<zk
+					forEach="${vm.menuItem(self, 'INICIO', 'Inicio', '/logia/gestion/inicio.zul')}" /> -->
+				<zk
+					forEach="${vm.menuItem(self, 'INICIO_AFTER_LOGIN', 'Inicio', '/logia/gestion/inicio_after_login.zul')}" />
+			<!--	 <zk
+					forEach="${vm.menuItem(self, 'TALLER', 'Tall∴', '/logia/menu_lateral_taller.zul')}" />
+				<zk
+					forEach="${vm.menuItem(self, 'BIBLIOTECA', 'Biblioteca', '/logia/gestion/biblioteca.zul')}" />
+				<zk
+					forEach="${vm.menuItem(self, 'CONTACTO', 'Contacto', '/logia/gestion/contacto.zul')}" />
+				<zk
+					forEach="${vm.menuItem(self, 'ADMINISTRACION', 'Administrar', '/logia/menu_lateral_administracion.zul')}" /> -->
+				<zk
+					forEach="${vm.menuItem(self, 'LOGIN', 'Iniciar Sesion', '/core/inicio/login.zul')}" />
+			</h:ul>
+			<h:ul id="ul-navbar-right"
+				class="nav navbar-nav navbar-right">
+				<zk
+					forEach="${vm.menuItem(self, 'USER_INFO', 'INFO', '/logia/gestion/datos_personales.zul')}" />
+				<zk
+					forEach="${vm.menuItem(self, 'LOGOUT', 'Salir', '/')}" />
+			</h:ul>
+		</h:div>
+	</h:nav>
+	<div height="2px"></div>
+	<include id="includePrincipal" height="100%" width="100%"
+		sclass="col-xs-12" src="@load(vm.urlInicio)"/>
+
+	<h:script>
+		$("#example-navbar-collapse").click(function(e) {
+		e.preventDefault(); var modoComprimido =
+		document.getElementById("boton-hamburguesa").offsetLeft;
+		if(modoComprimido > 0){
+		$("#example-navbar-collapse").collapse('toggle'); } });
+	</h:script>
+	<!-- 
+		$("#example-navbar-collapse").toggleClass("collapse"); 
+	-->
+</zk>

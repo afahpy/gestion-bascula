@@ -1,0 +1,66 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="tallerTenidasViewEdit" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.logia.gestion.TallerTenidasCarRapVM')"
+		width="100%">
+
+		<div>
+			<h:div class="row">
+				<h:div class="col-xs-0 col-md-4"></h:div>
+				<h:div class="col-xs-12 col-md-4 text-center">
+					<h:h3>Asistencia</h:h3>
+				</h:div>
+				<h:div class="col-xs-0 col-md-4"></h:div>
+			</h:div>
+			<div zclass="row" height="10px"></div>
+		</div>
+
+		<div zclass="row" height="10px"></div>
+
+		<h:div class="row"
+			style="padding:5px; background-color: #E6E6E6">
+			<h:div class="col-xs-1 col-md-1"> </h:div>
+			<h:div class="col-xs-6 col-md-6">Q∴H∴</h:div>
+			<h:div class="col-xs-5 col-md-5">Cargo</h:div>
+		</h:div>
+
+		<div height="5px"></div>
+
+		<div fulfill="self.onCreate" zclass="row">
+			<vlayout id="vlayout" children="@load(vm.asistencias)">
+				<template name="children" var="each">
+					<h:div class="row"
+						style="padding:5px; background-color: #E6E6E6">
+						<h:div class="col-xs-1 col-md-1">
+							<checkbox checked="@bind(each.pos1)" />
+						</h:div>
+						<h:div class="col-xs-6 col-md-6">
+							<label value="@load(each.pos2.nombreH)" />
+						</h:div>
+						<h:div class="col-xs-5 col-md-5">
+							<combobox model="@load(vm.utilDto.cargos)"
+								value="@load(each.pos2.cargo.descripcion)" readonly="true"
+								selectedItem="@bind(each.pos2.cargo)"
+								disabled="@load(!vm.editable)" width="100%"
+								tooltiptext="Seleccione el cargo del hermano">
+								<template name="model">
+									<comboitem
+										label="@load(each.descripcion)" />
+								</template>
+							</combobox>
+						</h:div>
+					</h:div>
+				</template>
+			</vlayout>
+		</div>
+
+		<div zclass="row" height="10px"></div>
+
+		<h:div class="row">
+			<h:div class="col-xs-12 col-md-12 text-center">
+				<button label="Guardar" zclass="btn btn-info"
+					visible="@load(vm.editable)"
+					onClick="@command('guardarAsistencia')" />
+			</h:div>
+		</h:div>
+	</div>
+</zk>

@@ -1,0 +1,248 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="tesoreriaCapHH" apply="org.zkoss.bind.BindComposer"
+		width="100%"
+		viewModel="@id('vm') @init('com.logia.gestion.TallerTesoreriaCapHermVM')">
+
+		<h:div class="row">
+			<h:div class="col-sm-12 col-md-12 text-center">
+				<h:h3>Capitación H∴</h:h3>
+			</h:div>
+		</h:div>
+
+		<h:div class="row align-items-center">
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Q∴H∴
+			</h:div>
+
+
+			<h:div class="col-xs-9 col-md-3 form-group">
+				<combobox width="100%" model="@load(vm.masones)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false" selectedItem="@bind(vm.selectedHermano)">
+					<template name="model">
+						<comboitem label="@load(each.nombre)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+
+
+			<!-- 
+				
+				<h:div class="col-xs-9 col-md-3 form-group">
+				<bandbox id="bd" value="@bind(vm.filtroNombreMason)"
+				width="100%" autodrop="true" instant="true"
+				onChanging="@command('actualizarHermanosFiltro')">
+				<bandpopup>
+				<listbox width="300px" mold="paging"
+				model="@load(vm.hermanosFiltro, after='actualizarHermanosFiltro')"
+				selectedItem="@bind(vm.selectedHermano)"
+				onSelect="bd.value=self.selectedItem.label;bd.close();"
+				pageSize="5">
+				<listhead>
+				<listheader label="Nombre" />
+				<listheader label="Grado" />
+				</listhead>
+				<template name="model">
+				<listitem>
+				<listcell
+				label="@load(each.nombre)" />
+				<listcell
+				label="@load(each.grado.descripcion)" />
+				</listitem>
+				</template>
+				</listbox>
+				</bandpopup>
+				</bandbox>
+				</h:div>
+				
+				
+			-->
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				Mes inicio:
+			</h:div>
+
+			<h:div class="col-xs-7 col-md-3 form-group">
+				<combobox model="@load(vm.utilDto.meses)"
+					buttonVisible="true"
+					value="@load(vm.capitacionHermano.mesInicio.descripcion)"
+					readonly="true" autodrop="true"
+					selectedItem="@bind(vm.capitacionHermano.mesInicio)" width="100%"
+					tooltiptext="Seleccione el mes de inicio">
+					<template name="model">
+						<comboitem label="@load(each.descripcion)"
+							width="100%" />
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+		<h:div class="row align-items-center">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				Anual:
+			</h:div>
+			<h:div class="col-xs-7 col-md-2 form-group">
+				<guaranibox onFocus="self.select()"
+					value="@bind(vm.capitacionHermano.montoAnual)" width="100%">
+				</guaranibox>
+			</h:div>
+
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				Pagado:
+			</h:div>
+			<h:div class="col-xs-7 col-md-2 form-group">
+				<guaranibox readonly="true"
+					style="@load(vm.montoPagosCapitaciones lt 0?'color:red;text-align:right':'color:green;text-align:right')"
+					value="@bind(vm.montoPagosCapitaciones)" width="100%">
+				</guaranibox>
+			</h:div>
+
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				Saldo:
+			</h:div>
+			<h:div class="col-xs-7 col-md-2 form-group">
+				<guaranibox readonly="true"
+					style="@load(vm.saldoCapitaciones lt 0?'color:red;text-align:right':'color:green;text-align:right')"
+					value="@bind(vm.saldoCapitaciones)" width="100%">
+				</guaranibox>
+			</h:div>
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				A
+				<label value="@load(vm.mesActual)"
+					style="font-family:
+					Helvetica Neue, Helvetica , Arial , sans-serif ; font-size: 14 px ;
+					line-height: 1.428571429; color: #333;" />
+			</h:div>
+			<h:div class="col-xs-7 col-md-2 form-group">
+				<guaranibox readonly="true"
+					style="@load(vm.montoProyectadoMesActual lt 0?'color:red;text-align:right':'color:green;text-align:right')"
+					value="@load(vm.montoProyectadoMesActual)" width="100%">
+				</guaranibox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row text-center">
+			<button label="Guardar" zclass="btn btn-info"
+				visible="@load(vm.editable)"
+				onClick="@command('guardarCapitacion')">
+			</button>
+		</h:div>
+
+		<div zclass="row" style="border-bottom: 1px solid black"
+			height="10px">
+		</div>
+
+		<h:div class="row">
+			<h:div class="col-xs-12 col-md-12 text-center">
+				<h:h3>Movimientos</h:h3>
+			</h:div>
+		</h:div>
+
+		<h:div class="row align-items-center">
+
+			<h:div class="col-xs-12 col-md-2">
+				<button label="Movimiento" zclass="btn btn-info"
+					visible="@load(vm.editable)"
+					onClick="@command('actualizarModoAgregarMovimiento')" />
+			</h:div>
+
+			<h:div class="col-xs-12 col-md-0" />
+
+			<h:div class="col-xs-6 col-md-1">Otros saldos:</h:div>
+			<h:div class="col-xs-6 col-md-2">
+				<guaranibox readonly="true"
+					tooltiptext="Es la suma de los ingresos y egresos, sin tener en cuenta los pagos de capitaciones."
+					style="@load(vm.saldoOtrosMovimientos lt 0?'color:red;text-align:right':'color:green;text-align:right')"
+					value="@bind(vm.saldoOtrosMovimientos)" width="100%">
+				</guaranibox>
+			</h:div>
+		</h:div>
+
+		<div zclass="row" height="10px"></div>
+
+		<div visible="@load(vm.modoAgregarMovimiento)" zclass="row">
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Fecha:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<datebox value="@bind(vm.movimiento.fecha)"
+					format="dd-MM-yyyy" width="100%">
+				</datebox>
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Descripción:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<textbox value="@bind(vm.movimiento.descripcion)"
+					width="100%">
+				</textbox>
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Tipo:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<combobox model="@load(vm.utilDto.tiposMovimientosHH)"
+					readonly="true" selectedItem="@bind(vm.movimiento.tipoMovimiento)"
+					value="@load(vm.movimiento.tipoMovimiento.descripcion)"
+					onFocus="self.setOpen(true)" width="100%"
+					tooltiptext="Seleccione el tipo de movimiento">
+					<template name="model">
+						<comboitem label="@load(each.descripcion)" />
+					</template>
+				</combobox>
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Importe:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<guaranibox value="@bind(vm.movimiento.importe)"
+					onFocus="self.select()" width="100%" />
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1">
+				<button label="Guardar" zclass="btn btn-info"
+					onClick="@command('agregarMovimiento')" />
+			</h:div>
+		</div>
+
+		<div zclass="row" height="10px"></div>
+
+		<h:div class="row"
+			style="padding:5px; background-color: #E6E6E6">
+			<h:div class="col-xs-4 col-md-4">Fecha</h:div>
+			<h:div class="col-xs-4 col-md-4">Descripción</h:div>
+			<h:div class="col-xs-4 col-md-4">Importe</h:div>
+		</h:div>
+
+		<div height="5px"></div>
+
+		<div fulfill="self.onCreate" zclass="row">
+			<vlayout id="vlayout"
+				children="@load(vm.capitacionHermano.movimientosCapitacion)">
+				<template name="children" var="each">
+					<h:div class="row"
+						style="padding:5px; background-color: #E6E6E6">
+						<h:div class="col-xs-4 col-md-4">
+							<label
+								value="@load(each.fecha) @converter('formatedDate', format='dd-MM-yyyy')" />
+						</h:div>
+						<div width="5px"></div>
+						<h:div class="col-xs-4 col-md-4">
+							<label value="@load(each.descripcion)" />
+						</h:div>
+						<h:div class="col-xs-4 col-md-4">
+							<guaranibox value="@load(each.importe)"
+								style="@load(each.importe lt 0?'color:red;text-align:right':'color:green;text-align:right')"
+								width="100%" inplace="true" readonly="true" />
+						</h:div>
+					</h:div>
+				</template>
+			</vlayout>
+		</div>
+
+	</div>
+</zk>

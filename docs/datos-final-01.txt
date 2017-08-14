@@ -1,0 +1,79 @@
+
+
+
+- Tenida. Agregar la opción de carga rápida de asistencia. 
+Lo que se hace es sugerir todos los nombres y con sus cargos, con un checkbox se puede marcar la ausencia (deshabilita a ese mason). Los que no están deshabilitados, tienen un combobox para cambiarle/asignarle el cargo 
+
+
+- Secretaría
+Enviar el mail de notificación
+
+- Tesorería
+Pago a GL (hay que mostrar el estado, para saber si se quiere o no  pagar).
+Incluir otros pagos (ej, alquiler de templo, Multa Gr.:Tall.:, etc.)
+Una capitación incluye (1) Mensual (60.000gs), (2) Solidaridad (10.000gs), (3) Patrimonio (15.000gs)  
+
+
+
+- Datos de HH.:
+Agregar el estado a cada Mason. (1) Activo, (2) Cotizante, (3) En sueño, (4) Suspendido.
+En ese formulario, mostrar todos los HH con su respectivo estado. 
+Poner una operación para permitir que se pueda modificar o no su estado.
+Poner en cada línea una opción de "Ver", que te muestra todos los datos de es masón (es la misma info que se muestra en "Mi Cuenta") 
+
+Agregar también otros datos personales.
+(son todos campos string o date)
+
+Nombres
+Apellidos
+Fecha de Nacimiento
+Ciudad, País
+Edad
+Nacionalidad
+Estado Civil
+C.I. Nº
+Profesión
+Especialización
+Dirección particular
+Teléfono particular
+Celular
+Email
+Lugar de trabajo
+Cargo que ocupa
+Dirección laboral
+Teléfono laboral
+Email
+Tipo de Sangre
+Nombre y Apellido Cónyuge
+Fecha de nacimiento del Cónyuge
+Nacionalidad del Cónyuge
+Profesión del Cónyuge
+Actividad Laboral del Cónyuge
+Cargo que ocupa del Cónyuge
+Teléfono laboral del Cónyuge
+Tipo de Sangre del Cónyuge
+Datos de los Hijos (campo blob)
+Iniciación o regularización
+Aumento de Salario
+Exaltación
+Placet y Quite
+Suspensión
+Expulsión
+
+
+list=`grep -l -R "\.:" *`
+for i in $list; do sed 's/\.:/∴/g' -i $i; done;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

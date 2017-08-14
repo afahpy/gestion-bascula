@@ -1,0 +1,28 @@
+<window id="loginWindow" xmlns:h="http://www.w3.org/1999/xhtml"
+	border="none" width="100%" height="100%"
+	apply="org.zkoss.bind.BindComposer" 
+	viewModel="@id('login') @init('com.coreweb.inicio.Login')">
+
+	<vbox id="loginContainer" align="center" class="container well">
+		<div align="left" class="col-xs-12 col-md-12">
+			<label value="Usuario:"></label>
+			<textbox id="userTxt" class="form-control"
+				value="@bind(login.user)" onOK="passTxt.focus()"
+				onCreate="self.focus()">
+			</textbox>
+		</div>
+		<div align="left" class="col-xs-12 col-md-12">
+			<label value="Contrasena:"></label>
+			<textbox id="passTxt" class="form-control"
+				value="@bind(login.pass)" onOK="@command('loginOkBootstrap')"
+				type="password">
+			</textbox>
+		</div>
+		<button id="loginBtn" label="Login"
+			onClick="@command('loginOkBootstrap')">
+		</button>
+		<label id="mesg" value="@load(login.msg)"
+			style="color: red;font-style: italic;" />
+	</vbox>
+
+</window>

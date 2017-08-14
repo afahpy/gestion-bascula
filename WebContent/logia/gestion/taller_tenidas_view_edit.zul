@@ -1,0 +1,349 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="tallerTenidasViewEdit" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.logia.gestion.TenidaVM')"
+		width="100%">
+
+		<div visible="@load(!vm.modoVerArchivo)">
+			<h:div class="row">
+				<h:div class="col-xs-0 col-md-4"></h:div>
+				<h:div class="col-xs-12 col-md-4 text-center">
+					<h:h3>Datos de la Ten∴</h:h3>
+				</h:div>
+				<h:div class="col-xs-0 col-md-4"></h:div>
+			</h:div>
+
+			<div zclass="row" height="10px"></div>
+
+			<h:div class="row">
+				<h:div class="col-xs-3 col-md-1 form-group text-left">
+					Fecha:
+				</h:div>
+				<h:div class="col-xs-9 col-md-2 form-group">
+					<datebox value="@bind(vm.tenida.fecha)"
+						readonly="true" format="dd-MM-yyyy" placeholder="dd-MM-yyyy"
+						width="100%" disabled="@load(!vm.editableAfterSave)" />
+				</h:div>
+
+				<h:div class="col-xs-3 col-md-1 form-group text-left">
+					Gr∴
+				</h:div>
+				<h:div class="col-xs-9 col-md-2 form-group">
+					<combobox model="@load(vm.utilDto.gradosMasonTipo)"
+						value="@load(vm.tenida.grado.descripcion)" readonly="true"
+						disabled="@load(!vm.editableAfterSave)"
+						selectedItem="@bind(vm.tenida.grado)" width="100%"
+						tooltiptext="Seleccione el grado de la  tenida">
+						<template name="model">
+							<comboitem label="@load(each.descripcion)" />
+						</template>
+					</combobox>
+				</h:div>
+
+				<h:div class="col-xs-3 col-md-1 form-group text-left">
+					Tipo:
+				</h:div>
+				<h:div class="col-xs-9 col-md-2 form-group">
+					<combobox model="@load(vm.utilDto.tenidasTipo)"
+						value="@load(vm.tenida.tipoTenida.descripcion)" readonly="true"
+						selectedItem="@bind(vm.tenida.tipoTenida)"
+						disabled="@load(!vm.editable)" width="100%"
+						tooltiptext="Seleccione el tipo de tenida">
+						<template name="model">
+							<comboitem label="@load(each.descripcion)" />
+						</template>
+					</combobox>
+				</h:div>
+
+				<h:div class="col-xs-3 col-md-1 form-group text-left">
+					Periodo:
+				</h:div>
+				<h:div class="col-xs-9 col-md-2 form-group">
+					<combobox model="@load(vm.utilDto.periodos)"
+						value="@load(vm.tenida.periodo.descripcion)" readonly="true"
+						selectedItem="@bind(vm.tenida.periodo)"
+						disabled="@load(!vm.editable)" width="100%"
+						tooltiptext="Seleccione el periodo de tenida">
+						<template name="model">
+							<comboitem label="@load(each.descripcion)" />
+						</template>
+					</combobox>
+				</h:div>
+			</h:div>
+
+			<h:div class="row">
+				<h:div class="col-xs-3 col-md-1 form-group text-left">
+					Tronc∴Benef∴
+				</h:div>
+
+				<h:div class="col-xs-7 col-md-2 form-group">
+					<guaranibox value="@bind(vm.tenida.importeSaco)"
+						onFocus="self.select()" disabled="@load(!vm.editable)"
+						width="100%" />
+
+				</h:div>
+				<div visible="@load(!vm.tenidaNueva)">
+					<h:div
+						class="col-xs-3 col-md-1 form-group text-left">
+						Balaus∴
+					</h:div>
+
+					<h:div class="col-xs-7 col-md-2 form-group">
+						<textbox value="@bind(vm.tenida.balaustre)"
+							disabled="@load(!vm.editable)" width="100%" />
+
+					</h:div>
+					<h:div class="col-xs-2 col-md-1 form-group">
+						<toolbarbutton id="uploadArchivo"
+							visible="@load(vm.editable)" tooltiptext="subir un archivo"
+							class="glyphicon glyphicon-open" upload="true,maxsize=10000"
+							onUpload="@command('subirArchivo', evt=event)"
+							tooltip="agregar archivo" />
+					</h:div>
+
+					<h:div class="col-xs-2 col-md-1 form-group">
+						<button label="Ver Bal∴" zclass="btn btn-info"
+							visible="@load(vm.adjuntoVisible)"
+							onClick="@command('clickFile')">
+						</button>
+					</h:div>
+				</div>
+
+			</h:div>
+
+			<h:div class="row">
+				<h:div class="col-xs-12 col-md-12 text-center">
+					<button label="Guardar" zclass="btn btn-info"
+						visible="@load(vm.editable)"
+						onClick="@command('guardarTenida')">
+					</button>
+				</h:div>
+			</h:div>
+
+			<div zclass="row" height="10px"></div>
+
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="10px">
+			</div>
+
+			<h:div class="row">
+				<h:div class="col-xs-0 col-md-4"></h:div>
+				<h:div class="col-xs-12 col-md-4 text-center">
+					<h:h3>Presentes</h:h3>
+				</h:div>
+				<h:div class="col-xs-0 col-md-4"></h:div>
+			</h:div>
+
+			<h:div class="row ">
+				<h:div class="col-xs-12 col-md-2 form-group ">
+					<button label="Asistencia" zclass="btn btn-info"
+						visible="@load(vm.editable)" width="100%"
+						onClick="@command('cambiarModoAgregarAsistencia')" />
+				</h:div>
+				<h:div class="col-xs-12 col-md-2 form-group">
+					<button label="Carga Rápida" zclass="btn btn-info"
+						visible="@load(vm.editable)" width="100%"
+						onClick="@command('cargaRapidaAsistencias')" />
+				</h:div>
+			</h:div>
+
+			<div zclass="row" height="10px"></div>
+
+			<div visible="@load(vm.modoAgregarAsistencia)"
+				zclass="row">
+
+				<h:div class="col-xs-3 col-md-1 form-group text-left">
+					Invitado:
+				</h:div>
+				<h:div class="col-xs-9 col-md-1 form-group text-left">
+					<checkbox value="@bind(vm.asistenteInvitado)"
+						checked="@bind(vm.asistenteInvitado)"
+						onClick="@command('refreshAsistenteInvitado')">
+					</checkbox>
+				</h:div>
+
+				<div visible="@load(!vm.asistenteInvitado)">
+					<h:div
+						class="col-xs-3 col-md-1 form-group text-left">
+						Q∴H∴
+					</h:div>
+
+
+					<h:div class="col-xs-9 col-md-3 form-group">
+						<combobox width="100%" model="@load(vm.masones)"
+							autocomplete="true" buttonVisible="true" autodrop="true"
+							readonly="false" selectedItem="@bind(vm.selectedHermano)">
+							<template name="model">
+								<comboitem label="@load(each.nombre)"
+									width="100%">
+								</comboitem>
+							</template>
+						</combobox>
+					</h:div>
+				</div>
+
+				<div visible="@load(vm.asistenteInvitado)">
+					<h:div
+						class="col-xs-3 col-md-1 form-group text-left">
+						Q∴H∴
+					</h:div>
+
+					<h:div class="col-xs-9 col-md-3 form-group">
+						<textbox value="@bind(vm.nombreAsistente)"
+							width="100%">
+						</textbox>
+					</h:div>
+				</div>
+
+				<!-- 
+					<h:div class="col-xs-9 col-md-3 form-group">
+					<bandbox id="bd" value="@bind(vm.filtroNombreMason)"
+					width="100%" autodrop="true" instant="true"
+					onChanging="@command('actualizarHermanosFiltro')">
+					<bandpopup>
+					<listbox width="300px" mold="paging"
+					model="@load(vm.hermanosFiltro)"
+					selectedItem="@bind(vm.selectedHermano)"
+					onSelect="bd.value=self.selectedItem.label;bd.close();"
+					pageSize="2">
+					<listhead>
+					<listheader label="Nombre" />
+					<listheader label="Grado" />
+					</listhead>
+					<template name="model">
+					<listitem>
+					<listcell
+					label="@load(each.nombre)" />
+					<listcell
+					label="@load(each.grado.descripcion)" />
+					</listitem>
+					</template>
+					</listbox>
+					</bandpopup>
+					</bandbox>
+					</h:div>
+					
+				-->
+
+				<h:div class="col-xs-3 col-md-1 form-group text-left">
+					Cargo:
+				</h:div>
+				<h:div class="col-xs-9 col-md-2 form-group">
+					<combobox model="@load(vm.utilDto.cargos)"
+						value="@load(vm.selectedCargo.descripcion)" readonly="true"
+						selectedItem="@bind(vm.selectedCargo)"
+						disabled="@load(!vm.editable)" width="100%"
+						tooltiptext="Seleccione el cargo del hermano">
+						<template name="model">
+							<comboitem label="@load(each.descripcion)" />
+						</template>
+					</combobox>
+				</h:div>
+				<h:div class="col-xs-3 col-md-1">
+					<button label="Agregar" zclass="btn btn-info"
+						onClick="@command('agregarAsistencia')" />
+				</h:div>
+			</div>
+
+			<div zclass="row" height="10px"></div>
+
+			<h:div class="row"
+				style="padding:5px; background-color: #E6E6E6">
+				<h:div class="col-xs-6 col-md-6">Q∴H∴</h:div>
+				<h:div class="col-xs-6 col-md-6">Cargo</h:div>
+			</h:div>
+
+			<div height="5px"></div>
+			<!-- ================================================= -->
+			<div fulfill="self.onCreate" zclass="row">
+				<vlayout id="vlayout"
+					children="@load(vm.tenida.asistenciasOrdenada)">
+					<template name="children" var="each">
+						<h:div class="row"
+							style="padding:5px; background-color: #E6E6E6">
+							<h:div class="col-xs-6 col-md-6">
+								<label value="@load(each.nombreH)" />
+							</h:div>
+							<h:div class="col-xs-6 col-md-6">
+								<label
+									value="@load(each.cargo.descripcion)" />
+							</h:div>
+						</h:div>
+					</template>
+				</vlayout>
+			</div>
+
+
+
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="10px">
+			</div>
+
+			<h:div class="row">
+				<h:div class="col-xs-0 col-md-4"></h:div>
+				<h:div class="col-xs-12 col-md-4 text-center">
+					<h:h3>Notas entradas por Secretaría</h:h3>
+				</h:div>
+				<h:div class="col-xs-0 col-md-4"></h:div>
+			</h:div>
+
+			<div zclass="row" height="10px"></div>
+
+			<div visible="@load(!vm.notasVisible)"
+				zclass="row col-xs-12 col-md-12">
+				<h:p>
+					Debe guardar la Ten∴ para luego cargar las notas.
+				</h:p>
+			</div>
+
+			<include height="100%" width="100%" mode="defer"
+				direBase="@load(vm.directorioNotas)" modoAdm="@load(vm.editable)"
+				visible="@load(vm.notasVisible)"
+				src="/core/componente/manejadorArchivos.zul" sclass="col-xs-12" />
+
+
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="10px">
+			</div>
+
+			<h:div class="row">
+				<h:div class="col-xs-0 col-md-4"></h:div>
+				<h:div class="col-xs-12 col-md-4 text-center">
+					<h:h3>PPl∴</h:h3>
+				</h:div>
+				<h:div class="col-xs-0 col-md-4"></h:div>
+			</h:div>
+
+			<div zclass="row" height="10px"></div>
+
+			<div visible="@load(!vm.notasVisible)"
+				zclass="row col-xs-12 col-md-12">
+				<h:p>
+					Debe guardar la Ten∴ para luego cargar las PPl∴
+				</h:p>
+			</div>
+
+			<include height="100%" width="100%" mode="defer"
+				visible="@load(vm.planchasVisible)"
+				direBase="@load(vm.directorioPlanchas)" modoAdm="@load(vm.editable)"
+				src="/core/componente/manejadorArchivos.zul" sclass="col-xs-12" />
+
+		</div>
+
+		<div visible="@load(vm.modoVerArchivo)" height="100%">
+
+			<hbox>
+				<toolbarbutton
+					class="glyphicon glyphicon-circle-arrow-left"
+					tooltiptext="volver un nivel"
+					onClick="@command('cerrarModoverArchivos')" />
+				<space />
+				<label value="Archivo" />
+			</hbox>
+
+
+			<iframe id="idIframeArchivo" src="" width="100%"
+				scrolling="yes" height="500px" />
+
+		</div>
+	</div>
+</zk>

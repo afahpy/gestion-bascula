@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//hibernate/hibernate Mapping DTD 3.0//EN"
+        "classpath://org/hibernate/hibernate-mapping-3.0.dtd"
+        [ <!ENTITY hibernate-domain SYSTEM "classpath://com/coreweb/hibernate-domain.hbm.xml"> ]
+        >
+
+<hibernate-mapping>
+
+	<class name="com.logia.domain.TenidaAsistencia" table="TenidaAsistencia">
+
+		&hibernate-domain;
+
+		<many-to-one name="mason" class="com.logia.domain.Mason"
+			column="idMason" lazy="false" />
+
+		<property name="nombreH" />
+
+
+		<many-to-one name="cargo" class="com.coreweb.domain.Tipo"
+			column="idCargo" lazy="false" />
+
+	</class>
+
+</hibernate-mapping>

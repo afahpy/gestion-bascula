@@ -1,0 +1,128 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="hospitalario" apply="org.zkoss.bind.BindComposer"
+		width="100%"
+		viewModel="@id('vm') @init('com.logia.gestion.TallerHospitalarioViewModel')">
+		<h:div class="row">
+			<h:div class="col-sm-12 col-md-12 text-center">
+				<h:h3>Hosp∴</h:h3>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Saldo:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<guaranibox value="@load(vm.sumaSaldo)" readonly="true"
+					style="@load(vm.sumaSaldo lt 0?'color:red;text-align:right':'color:green;text-align:right')"
+					width="100%" />
+			</h:div>
+		</h:div>
+
+		<div zclass="row" style="border-bottom: 1px solid black"
+			height="10px">
+		</div>
+
+		<h:div class="row">
+			<h:div class="col-xs-0 col-md-4"></h:div>
+			<h:div class="col-xs-12 col-md-4 text-center">
+				<h:h3>Movimientos del Hosp∴</h:h3>
+			</h:div>
+			<h:div class="col-xs-0 col-md-4"></h:div>
+		</h:div>
+
+		<h:div class="row">
+
+			<h:div class="col-xs-12 col-md-1">
+				<button label="Movimiento" zclass="btn btn-info"
+					visible="@load(vm.editable)"
+					onClick="@command('actualizarModoAgregarMovimiento')" />
+			</h:div>
+		</h:div>
+
+		<div zclass="row" height="10px"></div>
+
+		<div visible="@load(vm.modoAgregarMovimiento)" zclass="row">
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Fecha:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<datebox value="@bind(vm.movimiento.fecha)"
+					format="dd-MM-yyyy" width="100%">
+				</datebox>
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Detalle:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<textbox value="@bind(vm.movimiento.descripcion)"
+					width="100%">
+				</textbox>
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Tipo:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<combobox model="@load(vm.utilDto.tiposMovimientos)"
+					readonly="true" selectedItem="@bind(vm.movimiento.tipoMovimiento)" value="@load(vm.movimiento.tipoMovimiento.descripcion)"
+					onFocus="self.setOpen(true)" width="100%"
+					tooltiptext="Seleccione el tipo de movimiento">
+					<template name="model">
+						<comboitem label="@load(each.descripcion)" />
+					</template>
+				</combobox>
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1 form-group text-left">
+				Importe:
+			</h:div>
+			<h:div class="col-xs-9 col-md-2 form-group">
+				<guaranibox value="@bind(vm.movimiento.importe)" onFocus="self.select()"
+					width="100%" />
+			</h:div>
+
+			<h:div class="col-xs-3 col-md-1">
+				<button label="Guardar" zclass="btn btn-info"
+					onClick="@command('agregarMovimiento')" />
+			</h:div>
+		</div>
+
+		<div zclass="row" height="10px"></div>
+
+		<h:div class="row"
+			style="padding:5px; background-color: #E6E6E6">
+			<h:div class="col-xs-4 col-md-4">Fecha</h:div>
+			<h:div class="col-xs-4 col-md-4">Descripción</h:div>
+			<h:div class="col-xs-4 col-md-4">Importe</h:div>
+		</h:div>
+
+		<div height="5px"></div>
+
+		<div fulfill="self.onCreate" zclass="row">
+			<vlayout id="vlayout"
+				children="@load(vm.movimientoHospitalario)">
+				<template name="children" var="each">
+					<h:div class="row"
+						style="padding:5px; background-color: #E6E6E6">
+						<h:div class="col-xs-4 col-md-4">
+							<label
+								value="@load(each.fecha) @converter('formatedDate', format='dd-MM-yyyy')" />
+						</h:div>
+						<div width="5px"></div>
+						<h:div class="col-xs-4 col-md-4">
+							<label value="@load(each.descripcion)" />
+						</h:div>
+						<h:div class="col-xs-4 col-md-4">
+							<guaranibox value="@load(each.importe)"
+								style="@load(each.importe lt 0?'color:red;text-align:right':'color:green;text-align:right')"
+								width="100%" inplace="true" readonly="true" />
+						</h:div>
+					</h:div>
+				</template>
+			</vlayout>
+		</div>
+	</div>
+</zk>

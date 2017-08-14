@@ -1,0 +1,19 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml" xmlns:w='client'>
+	<div id="t" zclass="container theme-showcase"
+		style="text-align: center" height="100%" >
+		<div zclass="jumbotron">
+			<vlayout>
+				<image src="/core/img/trabajando.png" width="100px" />
+				<label value="En breve esta sección estará disponible"
+					style="font-size: 14px" />
+					
+					
+		<h:a href="http://www.afah.com.py/" target="_blank">
+			<image src="/core/img/afah2.png" height="40px" />
+		</h:a>
+					
+			</vlayout>
+		</div>
+	</div>
+
+</zk>
