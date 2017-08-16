@@ -1,6 +1,6 @@
-<?forward uri="/core/inicio/home.zul?title=Logia&menu=/logia/menu.zul&prefix=logia&css=/core/css/yhaguy.css" if="${true}"?>
+<?forward uri="/core/inicio/home.zul?title=Gestion-Bascula&menu=/logia/menu.zul&prefix=logia&css=/core/css/yhaguy.css" if="${true}"?>
 
-<window title="Logia" border="none" width="200px">
+<window title="Gestion-Bascula" border="none" width="200px">
 Bienvenidos!
 </window>
 
