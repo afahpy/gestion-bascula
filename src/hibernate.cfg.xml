@@ -23,9 +23,10 @@
 
 
 		<!-- **************Hibernate Domain Bascula***************** -->
-		
+
 		<mapping resource="com/bascula/domain/MyObject.hbm.xml" />
 		<mapping resource="com/bascula/domain/MovimientoEntradaSalida.hbm.xml" />
+		<mapping resource="com/bascula/domain/MovimientoDetalle.hbm.xml" />
 
 		<!-- ********************************************* -->
 

@@ -22,6 +22,15 @@
 		<property name="origen" />
 		<property name="diferencia" />
 
+		<many-to-one name="origenLugar" class="com.bascula.domain.MyObject"
+			column="idOrigenLugar" lazy="false" />
+
+		<many-to-one name="destinoLugar" class="com.bascula.domain.MyObject"
+			column="idDestinoLugar" lazy="false" />
+
+		<property name="remito" />
+		<property name="remision" />
+
 		<many-to-one name="chapa" class="com.bascula.domain.MyObject"
 			column="idChapa" lazy="false" />
 
@@ -38,6 +47,14 @@
 
 		<many-to-one name="despachante" class="com.bascula.domain.MyObject"
 			column="idDespachante" lazy="false" />
+
+		<set name="detalles" table="MovimientoDetalle" inverse="false"
+			lazy="false" fetch="select" cascade="all">
+			<key>
+				<column name="idMovimiento" not-null="false" />
+			</key>
+			<one-to-many entity-name="com.bascula.domain.MovimientoDetalle"></one-to-many>
+		</set>
 
 	</class>
 
