@@ -9,7 +9,7 @@ public class Config {
 	
 	//New Core Values
 	public static String MENU_HEADER_TEXT_PARAM = "MENU_HEADER_TEXT_PARAM";
-	public static String MENU_HEADER_TEXT_PARAM_DEFAULT_VALUE = "Logia";
+	public static String MENU_HEADER_TEXT_PARAM_DEFAULT_VALUE = "bascula";
 	public static String MENU_HEADER_REF_PARAM = "MENU_HEADER_REF_PARAM";
 	public static String MENU_HEADER_REF_PARAM_DEFAULT_VALUE = "/index.zul";
 	public static String ZKOSS_PATH_A_INCLUDE_PRINCIPAL = "/homeWindow/includeMenu";

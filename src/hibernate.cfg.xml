@@ -10,44 +10,21 @@
 		<!-- Postgres PROPERTIES -->
 		
 		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://localhost:5432/logiadb</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5432/basculadb</property>
 
 		<property name="connection.username">postgres</property>
 		<property name="connection.password">postgres</property>
  		
 		<!-- Fin Postgres -->
 
-
-		<!-- AMAZON  -->
-		<!--   
-		<property name="connection.driver_class">org.postgresql.Driver</property>
-		<property name="connection.url">jdbc:postgresql://danielromero.caesc4kptniv.us-west-2.rds.amazonaws.com:5432/logiadb</property>
-
-		<property name="connection.username">danielromero</property>
-		<property name="connection.password">qwertyui</property>
-		  -->
-
-
-
-
-
 		<!-- ===== Hibernate Core ==================== -->
 		
 		&hibernate-core;
 
 
-		<!-- **************Hibernate Domain Logia******************* -->
-
-		<mapping resource="com/logia/domain/Mason.hbm.xml" />
-		<mapping resource="com/logia/domain/Tenida.hbm.xml" />
-		<mapping resource="com/logia/domain/TenidaAsistencia.hbm.xml" />
-		<mapping resource="com/logia/domain/MovimientoTesoreria.hbm.xml" />
-		<mapping resource="com/logia/domain/MovimientoHospitalario.hbm.xml" />
-		<mapping resource="com/logia/domain/CapitacionHH.hbm.xml" />
-		<mapping resource="com/logia/domain/CapitacionGL.hbm.xml" />
+		<!-- **************Hibernate Domain Bascula***************** -->
 
 
-		<!-- ********************************************* -->
 		<!-- ********************************************* -->
 
 	</session-factory>

@@ -1,0 +1,71 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="datosPersonales" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.bascula.gestion.DatosPersonalesVM')"
+		width="100%">
+
+		<div visible="@load(vm.datosUsuarioVisible)">
+			<h:div class="row">
+				<h:div class="col-sm-12 col-md-12 text-center">
+					<h:h3>Datos Usuario</h:h3>
+				</h:div>
+			</h:div>
+
+			<h:div class="row">
+				<h:div class="col-xs-5 col-md-2 form-group text-left">
+					<label value=" Login " width="100%"></label>
+				</h:div>
+				<h:div class="col-xs-7 col-md-2">
+					<textbox readonly="true"
+						value="@bind(vm.user.login)" width="100%">
+					</textbox>
+				</h:div>
+			</h:div>
+
+			<h:div class="row">
+				<h:div class="col-xs-12 col-md-2">
+					<button label="Cambiar Contraseña"
+						zclass="btn btn-info" onClick="@command('cambiarModoPassActi')"
+						width="100%">
+					</button>
+				</h:div>
+			</h:div>
+
+			<div visible="@load(vm.modoCambioPassActi)">
+				<h:div class="row">
+					<h:div
+						class="col-xs-5 col-md-2 form-group text-left">
+						<label value=" Pass Nuevo " width="100%"></label>
+					</h:div>
+					<h:div class="col-xs-7 col-md-2">
+						<textbox type="password"
+							value="@bind(vm.passNuevo)" width="100%">
+						</textbox>
+					</h:div>
+				</h:div>
+				<h:div class="row">
+					<h:div
+						class="col-xs-5 col-md-2 form-group text-left">
+						<label value=" Confirmar Pass " width="100%"></label>
+					</h:div>
+					<h:div class="col-xs-7 col-md-2">
+						<textbox type="password"
+							value="@bind(vm.passNuevo2)" width="100%">
+						</textbox>
+					</h:div>
+				</h:div>
+
+				<h:div class="row">
+					<h:div class="col-xs-12 col-md-2">
+						<button label="Cambiar" zclass="btn btn-info"
+							onClick="@command('cambiarPass')" width="100%">
+						</button>
+					</h:div>
+				</h:div>
+			</div>
+
+		</div>
+		<div zclass="row" style="border-bottom: 1px solid black"
+			height="10px">
+		</div>
+	</div>
+</zk>

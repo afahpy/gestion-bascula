@@ -1,0 +1,39 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+
+	<h:div class="row">
+		<h:div class="col-sm-0 col-md-1"></h:div>
+		<h:div class="col-sm-12 col-md-10">
+			<h:h3>Inicio antes del login</h:h3>
+			<h:h4>Prueba de inicio antes del login</h:h4>
+			<h:p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Pellentesque venenatis nec enim sit amet imperdiet. Sed
+				venenatis odio eget ligula pulvinar, quis sagittis lacus
+				feugiat. Etiam eu dignissim dui. Quisque ac venenatis
+				nisl. In semper pellentesque consequat. Vivamus dictum
+				gravida enim, eu placerat diam ultricies non. Sed vitae
+				orci lobortis, eleifend sapien sit amet, rhoncus nisl.
+				Etiam interdum eleifend massa quis laoreet. Sed
+				porttitor mi facilisis eros sodales, condimentum
+				facilisis nisi molestie.
+			</h:p>
+		</h:div>
+		<h:div class="col-sm-0 col-md-1"></h:div>
+
+	</h:div>
+
+	<div zclass="row" style="border-bottom: 1px solid black"
+		height="10px">
+	</div>
+	<div zclass="row" height="10px"></div>
+
+	<div id="t" zclass="container " style="text-align: center"
+		height="100%">
+		<h:a href="http://www.afah.com.py/" target="_blank">
+			<image src="/core/img/afah2.png" height="40px" />
+		</h:a>
+
+	</div>
+
+
+</zk>
