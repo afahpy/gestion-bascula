@@ -1,0 +1,10 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="Prueba" apply="org.zkoss.bind.BindComposer"
+		width="100%">
+		
+		
+		Así se usa
+		<include src="/bascula/leerPeso/leerPeso.zul" />
+		
+	</div>
+</zk>

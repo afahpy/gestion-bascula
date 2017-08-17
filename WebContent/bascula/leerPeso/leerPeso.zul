@@ -1,0 +1,36 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="datosPersonales" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.bascula.leerPeso.BasculaPesoVM')"
+		width="100%">
+
+		<!-- ============== timer ========== -->
+		<timer id="timer" delay="1000" repeats="true"
+			onTimer="@command('onTimer')" />
+
+		<!-- ========= border exterior ======= -->
+		<vbox align="center" pack="center" height="110px" width="210px"
+			style="background-color: red; ">
+
+			<!-- ========= border interior ======= -->
+
+			<vbox align="center" pack="center" height="100px"
+				width="200px" style="background-color: black;">
+
+				<hlayout>
+
+					<label value="@load(vm.basculaPesoLeido)"
+						style="color:white;font-size:50px; font-weight: bold; " />
+					<label value="@load(vm.basculaMensaje)"
+						style="color:white;font-size:20px; font-weight: bold; " />
+				</hlayout>
+				<label value="@load(vm.basculaActualizado)"
+					style="color:white;font-size:20px; font-weight: bold; " />
+
+
+			</vbox>
+
+
+
+		</vbox>
+	</div>
+</zk>
