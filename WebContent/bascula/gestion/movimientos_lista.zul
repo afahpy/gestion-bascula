@@ -11,6 +11,33 @@
 			</h:div>
 		</div>
 
+		<div zclass="row" style="border-bottom: 1px solid black"
+			height="10px">
+		</div>
+		
+		<div zclass="row" height="10px"></div>
+
+		<div zclass="row">
+			<h:div class="col-xs-12 col-md-12">
+				<hlayout>
+					<hlayout width="100%">
+						<button label="Nuevo" zclass="btn btn-info"
+							width="100%" onClick="@command('crearMovimiento')">
+						</button>
+						<button label="Eliminar" zclass="btn btn-danger"
+							width="100%" onClick="@command('eliminarMovimientos')">
+						</button>
+					</hlayout>
+
+					<button label="Buscar" zclass="btn btn-info"
+						onClick="@command('filtrar')" />
+
+					<button label="Limpiar" zclass="btn btn-info"
+						onClick="@command('limpiarFiltros')" />
+				</hlayout>
+			</h:div>
+		</div>
+
 		<div zclass="row" height="10px"></div>
 
 		<h:div class="row">
@@ -54,10 +81,6 @@
 						<listheader label="Diferencia" width="65px"
 							style="text-align: center" align="right" />
 
-						<listheader label="Tipo Doc." width="70px"
-							style="text-align: center" sort="auto(tipoDocumento)"
-							align="center" />
-
 
 						<listheader label="Origen"
 							style="text-align: center" sort="auto(origenLugar.strCampo1)" />
@@ -67,9 +90,6 @@
 
 						<listheader label="Remito"
 							style="text-align: center" sort="auto(remito)" />
-
-						<listheader label="Remisión"
-							style="text-align: center" sort="auto(remision)" />
 
 						<listheader label="Remisión"
 							style="text-align: center" sort="auto(remision)" />
@@ -89,7 +109,7 @@
 						<listheader label="Despacho"
 							style="text-align: center" sort="auto(despachio)" />
 
-						<listheader label="Transportadora"
+						<listheader label="Despachante"
 							style="text-align: center" sort="auto(despachante.strCampo1)" />
 
 						<listheader label="" width="60px"
