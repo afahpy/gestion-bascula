@@ -14,6 +14,9 @@ public class Configuracion extends Config {
 
 	public static String ACCESO = "AccesoDTO";
 	public static String PATH_SESSION = ".";
+	
+	public static final String MODO_FORMULARIO_VISTA = "MODO_FORMULARIO_VISTA";
+	public static final String MODO_FORMULARIO_EDICION = "MODO_FORMULARIO_EDICION";
 
 	/************************* TIPO TIPOS *****************************/
 
@@ -59,5 +62,5 @@ public class Configuracion extends Config {
 	public static final String MENSAJE_GENERICO_GUARDAR_ERROR = "Error al guardar.";
 
 	/******************************* URL ********************************/
-
+	public static final String URL_MOVIMIENTO_EDIT = "/bascula/gestion/movimientos_edit.zul";
 }

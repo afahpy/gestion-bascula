@@ -41,7 +41,16 @@ public class RegisterDomain extends Register {
 
 	/************************************************************
 	 * Metodos especificos de las clases del dominio
+	 * 
+	 * @throws Exception
 	 ************************************************************/
+
+	public List<MovimientoEntradaSalida> getMovimientos() throws Exception {
+		String query = "SELECT m FROM MovimientoEntradaSalida m";
+		List<MovimientoEntradaSalida> movimientos = new ArrayList<MovimientoEntradaSalida>();
+		movimientos = this.hql(query);
+		return movimientos;
+	}
 
 	public static void main(String[] args) {
 		try {

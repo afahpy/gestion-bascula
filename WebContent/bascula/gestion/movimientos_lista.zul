@@ -10,5 +10,231 @@
 				</h:div>
 			</h:div>
 		</div>
+
+		<div zclass="row" height="10px"></div>
+
+		<h:div class="row">
+			<h:div class="col-sm-12 col-md-12">
+				<listbox id="movimientos" sclass="small-list"
+					mold="paging" selectedItems="@bind(vm.selectedMovimientos)"
+					checkmark="true" multiple="true" pageSize="10"
+					model="@load(vm.movimientos)" vflex="true"
+					emptyMessage="Sin movimientos.">
+					<custom-attributes
+						org.zkoss.zul.listbox.autoSort="true" />
+					<listhead menupopup="auto" sizable="true">
+
+						<listheader width="40px" align="center" />
+
+						<listheader label="Tipo Mov."
+							style="text-align: center"
+							sort="auto(tipoMovimiento.descripcion)"
+							onCreate="self.sort(true);" />
+
+						<listheader label="Fecha Llegada" width="120px"
+							sort="auto(fechaLlegada)" style="text-align: center"
+							align="center" />
+
+						<listheader label="Fecha Salida" width="120px"
+							sort="auto(fechaSalida)" style="text-align: center"
+							align="center" />
+
+						<listheader label="Bruto" width="65px"
+							style="text-align: center" align="right" />
+
+						<listheader label="Tara" width="65px"
+							style="text-align: center" align="right" />
+
+						<listheader label="Neto" width="65px"
+							style="text-align: center" align="right" />
+
+						<listheader label="Origen" width="65px"
+							style="text-align: center" align="right" />
+
+						<listheader label="Diferencia" width="65px"
+							style="text-align: center" align="right" />
+
+						<listheader label="Tipo Doc." width="70px"
+							style="text-align: center" sort="auto(tipoDocumento)"
+							align="center" />
+
+
+						<listheader label="Origen"
+							style="text-align: center" sort="auto(origenLugar.strCampo1)" />
+
+						<listheader label="Destino"
+							style="text-align: center" sort="auto(destinoLugar.strCampo1)" />
+
+						<listheader label="Remito"
+							style="text-align: center" sort="auto(remito)" />
+
+						<listheader label="Remisión"
+							style="text-align: center" sort="auto(remision)" />
+
+						<listheader label="Remisión"
+							style="text-align: center" sort="auto(remision)" />
+
+						<listheader label="Chapa"
+							style="text-align: center" sort="auto(chapa.strCampo1)" />
+
+						<listheader label="Chapa Carreta"
+							style="text-align: center" sort="auto(chapaCarreta.strCampo1)" />
+
+						<listheader label="Chofer"
+							style="text-align: center" sort="auto(chofer.strCampo1)" />
+
+						<listheader label="Transportadora"
+							style="text-align: center" sort="auto(transportadora.strCampo1)" />
+
+						<listheader label="Despacho"
+							style="text-align: center" sort="auto(despachio)" />
+
+						<listheader label="Transportadora"
+							style="text-align: center" sort="auto(despachante.strCampo1)" />
+
+						<listheader label="" width="60px"
+							style="text-align: center" align="center" />
+
+
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell />
+							<listcell>
+								<label
+									value="@load(each.tipoMovimiento.descripcion)" maxlength="50"
+									tooltiptext="@load(each.tipoMovimiento.descripcion)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<datebox format="dd-MM-yyyy"
+									readonly="true" buttonVisible="false"
+									value="@load(each.fechaLlegada)" />
+							</listcell>
+
+							<listcell>
+								<datebox format="dd-MM-yyyy"
+									readonly="true" buttonVisible="false"
+									value="@load(each.fechaSalida)" />
+							</listcell>
+
+							<listcell>
+								<intbox readonly="true" inplace="true"
+									width="100%" value="@load(each.bruto)"
+									tooltiptext="@load(each.bruto)" />
+							</listcell>
+
+							<listcell>
+								<intbox readonly="true" inplace="true"
+									width="100%" value="@load(each.tara)"
+									tooltiptext="@load(each.tara)" />
+							</listcell>
+
+							<listcell>
+								<intbox readonly="true" inplace="true"
+									width="100%" value="@load(each.neto)"
+									tooltiptext="@load(each.neto)" />
+							</listcell>
+
+							<listcell>
+								<intbox readonly="true" inplace="true"
+									width="100%" value="@load(each.origen)"
+									tooltiptext="@load(each.origen)" />
+							</listcell>
+
+							<listcell>
+								<intbox readonly="true" inplace="true"
+									width="100%" value="@load(each.diferencia)"
+									tooltiptext="@load(each.diferencia)" />
+							</listcell>
+
+
+							<listcell>
+								<label
+									value="@load(each.origenLugar.strCampo1)" maxlength="50"
+									tooltiptext="@load(each.origenLugar.strCampo1)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label
+									value="@load(each.destinoLugar.strCampo1)" maxlength="50"
+									tooltiptext="@load(each.destinoLugar.strCampo1)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label value="@load(each.remito)"
+									maxlength="50" tooltiptext="@load(each.remito)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label value="@load(each.remision)"
+									maxlength="50" tooltiptext="@load(each.remision)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label
+									value="@load(each.chapa.strCampo1)" maxlength="50"
+									tooltiptext="@load(each.chapa.strCampo1)" sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label
+									value="@load(each.chapaCarreta.strCampo1)" maxlength="50"
+									tooltiptext="@load(each.chapaCarreta.strCampo1)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label
+									value="@load(each.chofer.strCampo1)" maxlength="50"
+									tooltiptext="@load(each.chofer.strCampo1)" sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label
+									value="@load(each.transportadora.strCampo1)" maxlength="50"
+									tooltiptext="@load(each.transportadora.strCampo1)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label value="@load(each.despacho)"
+									maxlength="50" tooltiptext="@load(each.despacho)"
+									sclass="label-list" />
+							</listcell>
+
+							<listcell>
+								<label
+									value="@load(each.despachante.strCampo1)" maxlength="50"
+									tooltiptext="@load(each.despachante.strCampo1)"
+									sclass="label-list" />
+							</listcell>
+
+
+							<listcell>
+								<hlayout width="100%">
+									<toolbarbutton
+										class="glyphicon glyphicon-zoom-in" style="font-size:1em;"
+										tooltiptext="Ver detalles"
+										onClick="@command('verMovimiento', movimiento=each)" />
+
+									<toolbarbutton
+										class="glyphicon glyphicon-pencil" style="font-size:1em;"
+										tooltiptext="Editar"
+										onClick="@command('editarMovimiento', movimiento=each)" />
+								</hlayout>
+							</listcell>
+						</listitem>
+					</template>
+				</listbox>
+
+			</h:div>
+		</h:div>
+
 	</div>
 </zk>

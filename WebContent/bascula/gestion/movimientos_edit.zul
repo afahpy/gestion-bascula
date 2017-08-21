@@ -1,0 +1,17 @@
+<zk xmlns:h="http://www.w3.org/1999/xhtml">
+	<div id="movimientoEdit" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('com.bascula.gestion.MovimientoViewModel')"
+		width="100%">
+
+		<div>
+			<h:div class="row">
+				<h:div class="col-sm-12 col-md-12 text-center">
+					<h:h3>Movimiento</h:h3>
+				</h:div>
+			</h:div>
+		</div>
+
+		<div zclass="row" height="10px"></div>
+
+	</div>
+</zk>
