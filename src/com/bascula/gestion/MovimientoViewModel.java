@@ -23,19 +23,19 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 	@Init(superclass = true)
 	public void initMovimientosViewModel(@ExecutionArgParam("movimiento") MovimientoEntradaSalida movimiento,
-		@ExecutionArgParam("modoFormulario") String modoFormulario) throws Exception {
+			@ExecutionArgParam("modoFormulario") String modoFormulario) throws Exception {
 
-	if (movimiento != null && movimiento.esNuevo() == false) {
-		this.movimiento = movimiento;
-	} else {
-		this.movimiento = new MovimientoEntradaSalida();
+		if (movimiento != null && movimiento.esNuevo() == false) {
+			this.movimiento = movimiento;
+		} else {
+			this.movimiento = new MovimientoEntradaSalida();
+		}
+
+		if (modoFormulario != null) {
+			this.modoFormulario = modoFormulario;
+		}
+
 	}
-
-	if (modoFormulario != null) {
-		this.modoFormulario = modoFormulario;
-	}
-
-}
 
 	@AfterCompose(superclass = true)
 	public void afterComposeMovimientosViewModel() {
@@ -44,6 +44,14 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	@Command
 	public void cambiarPantalla(@BindingParam("url") String url) {
 		this.saltoDePagina(url);
+	}
+
+	public MovimientoEntradaSalida getMovimiento() {
+		return movimiento;
+	}
+
+	public void setMovimiento(MovimientoEntradaSalida movimiento) {
+		this.movimiento = movimiento;
 	}
 
 }

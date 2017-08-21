@@ -13,5 +13,100 @@
 
 		<div zclass="row" height="10px"></div>
 
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Tipo Mov.: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%"
+					model="@load(vm.utilDto.tiposMovimientos)"
+					value="@load(vm.movimiento.tipoMovimiento.descripcion)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false"
+					selectedItem="@bind(vm.movimiento.tipoMovimiento)">
+					<template name="model">
+						<comboitem label="@load(each.descripcion)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+			<label value="(*)" style="color:red"></label>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Fecha Llegada: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<datebox value="@bind(vm.movimiento.fechaLlegada)"
+					format="dd-MM-yyyy">
+				</datebox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Fecha Salida: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<datebox value="@bind(vm.movimiento.fechaSalida)"
+					format="dd-MM-yyyy">
+				</datebox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Bruto: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<doublebox value="@bind(vm.movimiento.bruto)">
+				</doublebox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Tara: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<doublebox value="@bind(vm.movimiento.tara)">
+				</doublebox>
+			</h:div>
+		</h:div>
+
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Neto: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<doublebox value="@bind(vm.movimiento.neto)">
+				</doublebox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Origen: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<doublebox value="@bind(vm.movimiento.origen)">
+				</doublebox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Diferencia: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<doublebox value="@bind(vm.movimiento.diferencia)">
+				</doublebox>
+			</h:div>
+		</h:div>
+
 	</div>
 </zk>
