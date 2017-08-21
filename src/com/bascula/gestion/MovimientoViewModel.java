@@ -14,12 +14,14 @@ import com.bascula.Configuracion;
 import com.bascula.GenericViewModelApp;
 import com.bascula.domain.MovimientoEntradaSalida;
 import com.bascula.domain.RegisterDomain;
+import com.bascula.leerPeso.BasculaPeso;
 
 public class MovimientoViewModel extends GenericViewModelApp {
 
 	private MovimientoEntradaSalida movimiento = new MovimientoEntradaSalida();
 	private String mensajeError = "";
 	private String modoFormulario = Configuracion.MODO_FORMULARIO_VISTA;
+	private BasculaPeso peso = new BasculaPeso();
 
 	@Init(superclass = true)
 	public void initMovimientosViewModel(@ExecutionArgParam("movimiento") MovimientoEntradaSalida movimiento,
@@ -76,6 +78,14 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		this.mensajeError = "No se puede realizar la operación debido a:";
 
 		return out;
+	}
+
+	public BasculaPeso getPeso() {
+		return peso;
+	}
+
+	public void setPeso(BasculaPeso peso) {
+		this.peso = peso;
 	}
 
 }

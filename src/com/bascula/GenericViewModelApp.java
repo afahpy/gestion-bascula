@@ -27,4 +27,12 @@ public class GenericViewModelApp extends GenericViewModel {
 		return false;
 	}
 
+	public RegisterDomain getRr() {
+		return rr;
+	}
+
+	public void setRr(RegisterDomain rr) {
+		this.rr = rr;
+	}
+
 }

@@ -52,6 +52,48 @@ public class RegisterDomain extends Register {
 		return movimientos;
 	}
 
+	public List<MyObject> getObjetosByTipoObjeto(IiD tipoObjeto) throws Exception {
+		String query = "SELECT o FROM MyObject o where o.tipoObjeto.id = " + tipoObjeto.getId();
+		List<MyObject> objetos = new ArrayList<MyObject>();
+		objetos = this.hql(query);
+		return objetos;
+	}
+
+	public List<MyObject> getOrigenLugares() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_ORIGEN_LUGAR);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
+	public List<MyObject> getDestinoLugares() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_DESTINO_LUGAR);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
+	public List<MyObject> getChapas() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_CHAPA);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
+	public List<MyObject> getChapasCarretas() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_CHAPA_CARRETA);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
+	public List<MyObject> getChoferes() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_CHOFER);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
+	public List<MyObject> getTransportadoras() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_TRANSPORTADORA);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
+	public List<MyObject> getDespachantes() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_DESPACHANTE);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
 	public static void main(String[] args) {
 		try {
 

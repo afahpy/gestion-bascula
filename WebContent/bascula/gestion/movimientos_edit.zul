@@ -13,6 +13,8 @@
 
 		<div zclass="row" height="10px"></div>
 
+		<include src="/bascula/leerPeso/leerPeso.zul" />
+
 		<h:div class="row">
 			<h:div class="col-xs-5 col-md-1 form-group text-left">
 				<label value=" Tipo Mov.: " width="100%"></label>
@@ -110,6 +112,47 @@
 
 		<h:div class="row">
 			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" L. Origen:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%"
+					model="@load(vm.rr.origenLugares)"
+					value="@load(vm.movimiento.origenLugar.strCampo1)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false" selectedItem="@bind(vm.movimiento.origenLugar)">
+					<template name="model">
+						<comboitem label="@load(each.strCampo1)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" L. Destino:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%"
+					model="@load(vm.rr.destinoLugares)"
+					value="@load(vm.movimiento.destinoLugar.strCampo1)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false"
+					selectedItem="@bind(vm.movimiento.destinoLugar)">
+					<template name="model">
+						<comboitem label="@load(each.strCampo1)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
 				<label value=" Remito: " width="100%"></label>
 			</h:div>
 			<h:div class="col-xs-7 col-md-4">
@@ -128,16 +171,125 @@
 		</h:div>
 
 		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Chapa:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%" model="@load(vm.rr.chapas)"
+					value="@load(vm.movimiento.chapa.strCampo1)" autocomplete="true"
+					buttonVisible="true" autodrop="true" readonly="false"
+					selectedItem="@bind(vm.movimiento.chapa)">
+					<template name="model">
+						<comboitem label="@load(each.strCampo1)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Chapa Carreta:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%"
+					model="@load(vm.rr.chapasCarretas)"
+					value="@load(vm.movimiento.chapaCarreta.strCampo1)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false"
+					selectedItem="@bind(vm.movimiento.chapaCarreta)">
+					<template name="model">
+						<comboitem label="@load(each.strCampo1)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Chofer:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%" model="@load(vm.rr.choferes)"
+					value="@load(vm.movimiento.chofer.strCampo1)" autocomplete="true"
+					buttonVisible="true" autodrop="true" readonly="false"
+					selectedItem="@bind(vm.movimiento.chofer)">
+					<template name="model">
+						<comboitem label="@load(each.strCampo1)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Transportadora:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%"
+					model="@load(vm.rr.transportadoras)"
+					value="@load(vm.movimiento.transportadora.strCampo1)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false"
+					selectedItem="@bind(vm.movimiento.transportadora)">
+					<template name="model">
+						<comboitem label="@load(each.strCampo1)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Despacho: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<textbox value="@bind(vm.movimiento.despacho)">
+				</textbox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Despachante:" width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+
+				<combobox width="100%" model="@load(vm.rr.despachantes)"
+					value="@load(vm.movimiento.despachante.strCampo1)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false" selectedItem="@bind(vm.movimiento.despachante)">
+					<template name="model">
+						<comboitem label="@load(each.strCampo1)"
+							width="100%">
+						</comboitem>
+					</template>
+				</combobox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
 			<h:div class="col-xs-12 col-md-12 text-center">
 				<hlayout>
 					<button label="Guardar" zclass="btn btn-info"
 						onClick="@command('guardarMovimiento')">
 					</button>
-					
+
 					<button label="Cancelar" zclass="btn btn-info"
 						onClick="@command('cancelar')">
 					</button>
-					
+
 					<button label="Volver" zclass="btn btn-info"
 						onClick="@command('cancelar')">
 					</button>
