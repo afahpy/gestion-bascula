@@ -39,7 +39,7 @@ public class DBPopulation {
 		/******************************** Cargar Tipos *********************************/
 		System.out.println("Cargando tipos....");
 		DBPopulationTipos tt = new DBPopulationTipos();
-		tt.cargaTipos();
+		tt.main(null);
 		System.out.println("Carga de tipos completa.");
 		
 		/******************************** Cargar Permisos *********************************/

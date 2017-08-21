@@ -79,6 +79,100 @@ public class UtilDTO extends UtilCoreDTO {
 
 	/******************************** Tipos ************************************/
 
+	// Tipos de movimiento
+	List<Tipo> tiposMovimientos = new ArrayList<Tipo>();
+	Tipo tipoMovimientoEntrada = new Tipo();
+	Tipo tipoMovmientoSalida = new Tipo();
+
+	// Tipos objeto
+	Tipo tipoObjetoOrigenLugar = new Tipo();
+	Tipo tipoObjetoDestinoLugar = new Tipo();
+	Tipo tipoObjetoChapa = new Tipo();
+	Tipo tipoObjetoChapaCarreta = new Tipo();
+	Tipo tipoObjetoChofer = new Tipo();
+	Tipo tipoObjetoTransportadora = new Tipo();
+	Tipo tipoObjetoDespachante = new Tipo();
+
 	/***************************** Get y Set **********************************/
+
+	public List<Tipo> getTiposMovimientos() {
+		return tiposMovimientos;
+	}
+
+	public void setTiposMovimientos(List<Tipo> tiposMovimientos) {
+		this.tiposMovimientos = tiposMovimientos;
+	}
+
+	public Tipo getTipoMovimientoEntrada() {
+		return tipoMovimientoEntrada;
+	}
+
+	public void setTipoMovimientoEntrada(Tipo tipoMovimientoEntrada) {
+		this.tipoMovimientoEntrada = tipoMovimientoEntrada;
+	}
+
+	public Tipo getTipoMovmientoSalida() {
+		return tipoMovmientoSalida;
+	}
+
+	public void setTipoMovmientoSalida(Tipo tipoMovmientoSalida) {
+		this.tipoMovmientoSalida = tipoMovmientoSalida;
+	}
+
+	public Tipo getTipoObjetoOrigenLugar() {
+		return tipoObjetoOrigenLugar;
+	}
+
+	public void setTipoObjetoOrigenLugar(Tipo tipoObjetoOrigenLugar) {
+		this.tipoObjetoOrigenLugar = tipoObjetoOrigenLugar;
+	}
+
+	public Tipo getTipoObjetoDestinoLugar() {
+		return tipoObjetoDestinoLugar;
+	}
+
+	public void setTipoObjetoDestinoLugar(Tipo tipoObjetoDestinoLugar) {
+		this.tipoObjetoDestinoLugar = tipoObjetoDestinoLugar;
+	}
+
+	public Tipo getTipoObjetoChapa() {
+		return tipoObjetoChapa;
+	}
+
+	public void setTipoObjetoChapa(Tipo tipoObjetoChapa) {
+		this.tipoObjetoChapa = tipoObjetoChapa;
+	}
+
+	public Tipo getTipoObjetoChapaCarreta() {
+		return tipoObjetoChapaCarreta;
+	}
+
+	public void setTipoObjetoChapaCarreta(Tipo tipoObjetoChapaCarreta) {
+		this.tipoObjetoChapaCarreta = tipoObjetoChapaCarreta;
+	}
+
+	public Tipo getTipoObjetoChofer() {
+		return tipoObjetoChofer;
+	}
+
+	public void setTipoObjetoChofer(Tipo tipoObjetoChofer) {
+		this.tipoObjetoChofer = tipoObjetoChofer;
+	}
+
+	public Tipo getTipoObjetoTransportadora() {
+		return tipoObjetoTransportadora;
+	}
+
+	public void setTipoObjetoTransportadora(Tipo tipoObjetoTransportadora) {
+		this.tipoObjetoTransportadora = tipoObjetoTransportadora;
+	}
+
+	public Tipo getTipoObjetoDespachante() {
+		return tipoObjetoDespachante;
+	}
+
+	public void setTipoObjetoDespachante(Tipo tipoObjetoDespachante) {
+		this.tipoObjetoDespachante = tipoObjetoDespachante;
+	}
 
 }
