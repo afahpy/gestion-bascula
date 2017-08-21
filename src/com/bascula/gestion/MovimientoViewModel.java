@@ -13,7 +13,7 @@ import org.zkoss.bind.annotation.Init;
 import com.bascula.Configuracion;
 import com.bascula.GenericViewModelApp;
 import com.bascula.domain.MovimientoEntradaSalida;
-import com.logia.domain.RegisterDomain;
+import com.bascula.domain.RegisterDomain;
 
 public class MovimientoViewModel extends GenericViewModelApp {
 
@@ -37,6 +37,23 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 	}
 
+	@Command
+	public void guardarMovimiento() throws Exception {
+
+		if (this.validarFormulario() == false) {
+			this.mensajeError(this.mensajeError);
+			return;
+		}
+
+		rr.saveObject(this.movimiento, this.getUs().getLogin());
+		this.mensajePopupTemporal("Movimiento guardado correctamente");
+	}
+
+	@Command
+	public void cancelar() throws Exception {
+		this.saltoDePagina("/bascula/gestion/movimientos_lista.zul");
+	}
+
 	@AfterCompose(superclass = true)
 	public void afterComposeMovimientosViewModel() {
 	}
@@ -52,6 +69,13 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 	public void setMovimiento(MovimientoEntradaSalida movimiento) {
 		this.movimiento = movimiento;
+	}
+
+	public boolean validarFormulario() {
+		boolean out = true;
+		this.mensajeError = "No se puede realizar la operación debido a:";
+
+		return out;
 	}
 
 }
