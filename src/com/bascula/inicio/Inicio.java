@@ -42,6 +42,7 @@ public class Inicio {
 			utilDto.getMenusVisibilidadSinLogin().put(ID.F_ALIAS_CONTACTO, true);
 			utilDto.getMenusVisibilidadSinLogin().put(ID.F_ALIAS_LOGIN, true);
 			utilDto.getMenusVisibilidadSinLogin().put(ID.F_ALIAS_INICIO_AFTER_LOGIN, false);
+			utilDto.getMenusVisibilidadSinLogin().put(ID.F_ALIAS_MOVIMIENTOS, false);
 			utilDto.getMenusVisibilidadSinLogin().put(ID.F_ALIAS_ADMINISTRACION, false);
 			utilDto.getMenusVisibilidadSinLogin().put(ID.F_ALIAS_USER_INFO, false);
 			utilDto.getMenusVisibilidadSinLogin().put(ID.F_ALIAS_LOGOUT, false);
@@ -51,6 +52,7 @@ public class Inicio {
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_CONTACTO, false);
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_LOGIN, false);
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_INICIO_AFTER_LOGIN, true);
+			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_MOVIMIENTOS, true);
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_ADMINISTRACION, true);
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_USER_INFO, true);
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_LOGOUT, true);

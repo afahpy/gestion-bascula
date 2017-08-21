@@ -10,5 +10,8 @@ public class ID extends IDCore{
 	public static final String F_ALIAS_USER_INFO = "USER_INFO";
 
 	
+	public static final String F_ALIAS_MOVIMIENTOS = "MOVIMIENTOS";
+
+	
 	
 }

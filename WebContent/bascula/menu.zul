@@ -37,13 +37,15 @@
 			id="example-navbar-collapse">
 			<h:ul id="ul-navbar-collapse" class="nav navbar-nav">
 				<zk
-					forEach="${vm.menuItem(self, 'INICIO', 'Inicio', '/bascula/gestion/inicio.zul')}" /> 
+					forEach="${vm.menuItem(self, 'INICIO', 'Inicio', '/bascula/gestion/inicio.zul')}" />
 				<zk
 					forEach="${vm.menuItem(self, 'INICIO_AFTER_LOGIN', 'Inicio', '/bascula/gestion/inicio_after_login.zul')}" />
 				<zk
 					forEach="${vm.menuItem(self, 'CONTACTO', 'Contacto', '/bascula/gestion/contacto.zul')}" />
 				<zk
-					forEach="${vm.menuItem(self, 'ADMINISTRACION', 'Administrar', '/bascula/menu_lateral_administracion.zul')}" /> 
+					forEach="${vm.menuItem(self, 'MOVIMIENTOS', 'Movimientos', '/bascula/gestion/movimientos_lista.zul')}" />
+				<zk
+					forEach="${vm.menuItem(self, 'ADMINISTRACION', 'Administrar', '/bascula/menu_lateral_administracion.zul')}" />
 				<zk
 					forEach="${vm.menuItem(self, 'LOGIN', 'Iniciar Sesion', '/core/inicio/login.zul')}" />
 			</h:ul>
@@ -58,7 +60,7 @@
 	</h:nav>
 	<div height="2px"></div>
 	<include id="includePrincipal" height="100%" width="100%"
-		sclass="col-xs-12" src="@load(vm.urlInicio)"/>
+		sclass="col-xs-12" src="@load(vm.urlInicio)" />
 
 	<h:script>
 		$("#example-navbar-collapse").click(function(e) {
