@@ -108,5 +108,43 @@
 			</h:div>
 		</h:div>
 
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Remito: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<textbox value="@bind(vm.movimiento.remito)"></textbox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-5 col-md-1 form-group text-left">
+				<label value=" Remision: " width="100%"></label>
+			</h:div>
+			<h:div class="col-xs-7 col-md-4">
+				<textbox value="@bind(vm.movimiento.remision)">
+				</textbox>
+			</h:div>
+		</h:div>
+
+		<h:div class="row">
+			<h:div class="col-xs-12 col-md-12 text-center">
+				<hlayout>
+					<button label="Guardar" zclass="btn btn-info"
+						onClick="@command('guardarMovimiento')">
+					</button>
+					
+					<button label="Cancelar" zclass="btn btn-info"
+						onClick="@command('cancelar')">
+					</button>
+					
+					<button label="Volver" zclass="btn btn-info"
+						onClick="@command('cancelar')">
+					</button>
+				</hlayout>
+			</h:div>
+
+		</h:div>
+
 	</div>
 </zk>
