@@ -46,10 +46,47 @@ public class DBPopulation {
 	}
 
 	public static void cargarDatosPrueba() throws Exception {
-		String[][] origenLugares = { { "JUJUY", "nombre", "", "" }, { "Prueba", "nombre", "", "" },
-				{ "Prueba 2", "nombre", "", "" }, { "Prueba 3", "nombre", "", "" } };
+
+		// LUGARES DE ORIGEN
+		String[][] origenLugares = { { "JUJUY", "nombre", "", "" }, { "CLORINDA", "nombre", "", "" } };
 		Tipo toOrigenLugar = rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_ORIGEN_LUGAR);
 		cargarMyObjects(toOrigenLugar, origenLugares);
+
+		// LUGARES DE DESTINO
+		String[][] destinoLugares = { { "Oleaginosa Raatz S.A", "nombre", "", "" }, { "CDE", "nombre", "", "" },
+				{ "Limpio", "nombre", "", "" }, { "COPALSA", "nombre", "", "" },
+				{ "Comercial Paola", "nombre", "", "" }, { "Compañía de Nutricion Animal S.A", "nombre", "", "" },
+				{ "Unisal MRA", "nombre", "", "" }, { "Curuguaty", "nombre", "", "" },
+				{ "FERNHEIM LTDA", "nombre", "", "" }, { "Yuty", "nombre", "", "" },
+				{ "Edelira S.A", "nombre", "", "" }, { "FRIGOMERC S.A", "nombre", "", "" }, };
+		Tipo toDestinoLugar = rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_DESTINO_LUGAR);
+		cargarMyObjects(toDestinoLugar, destinoLugares);
+
+		// CHAPA
+		String[][] chapas = { { "AET 708", "numero", "", "" }, { "CBA 908", "numero", "", "" },
+				{ "AFO 983", "numero", "", "" }, { "OBN 358", "numero", "", "" }, { "AKT 148", "numero", "", "" },
+				{ "BGA 824", "numero", "", "" }, { "XAF 003", "numero", "", "" }, { "ALL 635", "numero", "", "" },
+				{ "BDE 438", "numero", "", "" }, { "BBY 485", "numero", "", "" }, };
+		Tipo toChapa = rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_CHAPA);
+		cargarMyObjects(toChapa, chapas);
+
+		// CHOFER
+		String[][] choferes = { { "Ruben Esneider", "nombre", "", "" }, { "Jorge Reyes", "nombre", "", "" },
+				{ "Edgar De La Cruz", "nombre", "", "" }, { "Pablo Centurion", "nombre", "", "" },
+				{ "Oscar Gauto", "nombre", "", "" }, { "Diego Valenzuela", "nombre", "", "" },
+				{ "Victor Sarabia", "nombre", "", "" }, { "Marcelo Yegros", "nombre", "", "" },
+				{ "Miguel Gerhard", "nombre", "", "" } };
+		Tipo toChofer = rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_CHOFER);
+		cargarMyObjects(toChofer, choferes);
+
+		// Transportadora
+		String[][] transportadoras = { { "ALMADA", "nombre", "", "" }, { "ALTO PARAGUAY", "nombre", "", "" },
+				{ "CELCAR", "nombre", "", "" }, { "EL PROGRESO", "nombre", "", "" }, { "MARCELO", "nombre", "", "" },
+				{ "NILMORI", "nombre", "", "" }, { "SAILO TRANS", "nombre", "", "" }, { "SALINAS", "nombre", "", "" },
+				{ "SEGA S.R.L", "nombre", "", "" } };
+		Tipo toTransportadora = rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_TRANSPORTADORA);
+		cargarMyObjects(toTransportadora, transportadoras);
+
 	}
 
 	@SuppressWarnings("static-access")
