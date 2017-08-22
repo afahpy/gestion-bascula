@@ -53,7 +53,8 @@ public class RegisterDomain extends Register {
 	}
 
 	public List<MyObject> getObjetosByTipoObjeto(IiD tipoObjeto) throws Exception {
-		String query = "SELECT o FROM MyObject o where o.tipoObjeto.id = " + tipoObjeto.getId();
+		String query = "SELECT o FROM MyObject o where o.tipoObjeto.id = " + tipoObjeto.getId()
+				+ " order by strCampo1 asc ";
 		List<MyObject> objetos = new ArrayList<MyObject>();
 		objetos = this.hql(query);
 		return objetos;
