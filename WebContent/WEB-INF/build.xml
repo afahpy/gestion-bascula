@@ -1,0 +1,151 @@
+<project name="gestion-bascula" default="" basedir=".">
+
+
+	<target name="jar">
+		<jar basedir="classes" destfile="./bascula.jar" includes="**">
+			<manifest>
+				<attribute name="Main-Class" value="com.bascula.leerPeso.BasculaParser" />
+			</manifest>
+
+			<zipfileset src="lib/activation.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/antlr-2.7.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/asm-all-3.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/asm-attrs.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/avalon-framework-impl-4.2.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/barbecue-1.5-beta1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/barcode4j-2.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-anim-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-awt-util-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-bridge-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-css-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-dom-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-ext-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-gvt-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-parser-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-script-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-svg-dom-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-util-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/batik-xml-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/bcprov-jdk14-138.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/binding-1.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/bsh.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/c3p0-0.9.5-pre6.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/calendar.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/cglib-2.1.3.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/ckez.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.annotations.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.core.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.csv.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.databind.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.jaxb.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.smile.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.xml.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.fasterxml.jackson.yaml.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.sun.jersey.jersey-core-1.4.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/com.sun.jersey.jersey-server-1.4.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-beanutils-1.8.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-codec.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-collections.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-collections-3.2.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-digester-2.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-fileupload.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-io.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-javaflow-20060411.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-lang3-3.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-lang-2.5.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-logging.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/commons-logging-1.1.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/core.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/cos.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/dom4j-1.6.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/DynamicJasper-4.0.3.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/dynamicreports-core-3.1.2.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/Filters.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/flashchart.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/gmapsz.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/groovy-all-1.7.5.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/hibernate-commons-annotations-4.0.1.Final.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/hibernate-core-4.0.1.Final.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/hibernate-entitymanager-4.0.1.Final.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/hibernate-jpa-2.0-api-1.0.1.Final.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/hk2-api-2.1.46.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/hsqldb.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/itext.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/iText-2.1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jackson-core-asl-1.9.4.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jackson-mapper-asl-1.9.4.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jasperreports.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jasperreports-4.7.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jasperreports-fonts.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jasperreports-htmlcomponent-4.1.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jasperreports-javaflow-4.6.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/javacsv.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/javassist-3.15.0-GA.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/javax.ws.rs-api-2.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jboss-logging-3.1.0.CR2.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jcalendar.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jcommon.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jdom.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jdtcore-3.1.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jersey-client.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jersey-client-1.9.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jersey-common.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jersey-container-servlet.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jersey-container-servlet-core.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jersey-guava-2.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jersey-server.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jfreechart.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jgoodies-binding-2.5.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jgoodies-common-1.2.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jgoodies-forms-1.4.2.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jgoodies-looks-2.4.2.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jmonto-escrito-1.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/json-20080701.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jstl.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jta.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/junit-4.10.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/jxl.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/log4j-1.2.16.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/mail.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/png-encoder-1.5.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/poi.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/poi-3.7-20101029.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/postgresql-9.1-902.jdbc4.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/RXTXcomm.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/sapphire.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/serializer-2.7.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/servlet-api.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/silvertail.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/slf4j-api.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/slf4j-jdk14.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/smtp.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/spring-beans-2.5.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/spring-core-2.5.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/sqlite-jdbc-3.20.0.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/timelinez.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/timeplotz.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/velocity-1.7.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/xalan-2.7.1.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/xml-apis-1.3.04.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/xml-apis-ext-1.3.04.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zcommon.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zel.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zhtml.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zk.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zkbind.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zk-bootstrap.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zkex.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zkmax.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zkplus.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zml.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zul.jar" excludes="META-INF/*" />
+			<zipfileset src="lib/zweb.jar" excludes="META-INF/*" />
+
+		</jar>
+	</target>
+
+	<target name="build-jar">
+		<antcall target="jar" />
+	</target>
+</project>

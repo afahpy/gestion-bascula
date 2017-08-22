@@ -1,0 +1,19 @@
+## Para tener diferentes configuraciones según como 
+## se quiera iniciar session.
+## Este archivo es un ejemplo, el nombre que usa el HbernateUtil 
+## es "data_source.properties".
+## Para evitar que se pisen cuando se tienen varias BD, 
+## el archio "data_source.properties" no se debe agregar al SVN
+
+
+## hibernate.connection.driver_class = org.postgresql.Driver
+## hibernate.connection.url = jdbc:postgresql://localhost:5432/logiadb
+## hibernate.connection.username = postgres
+## hibernate.connection.password = postgres
+
+
+hibernate.connection.driver_class = org.sqlite.JDBC
+hibernate.connection.url = jdbc:sqlite:/home/daniel/datos/afah/proyectos/bascula/gestion-bascula/WebContent/WEB-INF/bd/basculadb.sqlite
+hibernate.connection.username = 
+hibernate.connection.password = 
+hibernate.dialect = org.hibernate.dialect.SQLiteDialect

@@ -8,7 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 public class BasculaPesoWSCliente {
 
-	private static String REST_URI = "http://localhost:8090/wsrest/rest/bascula/peso/";
+	public static String REST_URI = "xxhttp://localhost:8090/wsrest/rest/bascula/peso/";
 
 	public void enviarPeso(long valor) {
 		try {
