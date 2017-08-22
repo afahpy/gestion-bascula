@@ -15,6 +15,9 @@
 
 		<include src="/bascula/leerPeso/leerPeso.zul" />
 
+		<div zclass="row" height="10px"></div>
+
+
 		<h:div class="row">
 			<h:div class="col-xs-5 col-md-1 form-group text-left">
 				<label value=" Tipo Mov.: " width="100%"></label>
