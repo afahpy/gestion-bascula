@@ -10,7 +10,7 @@ public class BasculaPesoWSCliente {
 
 	private static String REST_URI = "http://localhost:8090/wsrest/rest/bascula/peso/";
 
-	private void enviarPeso(String valor) {
+	public void enviarPeso(long valor) {
 		try {
  
 			Client client = Client.create();
@@ -31,7 +31,7 @@ public class BasculaPesoWSCliente {
 	
 	public static void main(String[] args) {
 		BasculaPesoWSCliente bb = new BasculaPesoWSCliente();
-		bb.enviarPeso("3243");
+		bb.enviarPeso(3243);
 	}
 
 }
