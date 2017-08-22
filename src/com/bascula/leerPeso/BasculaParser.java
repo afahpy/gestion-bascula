@@ -27,7 +27,7 @@ public class BasculaParser implements Runnable {
 
 	public static String NOMBRE_APP = "SimpleReadApp";
 	
-	public static boolean LOG = false;
+	public static boolean LOG = true;
 	
 	
 	BasculaPesoWSCliente ws;
@@ -79,6 +79,33 @@ public class BasculaParser implements Runnable {
 	
 	protected long getValue(String line) {
 		long out = NO;
+		line = line.trim();
+		
+		String valor = "";
+		boolean leer = true;
+		
+		while(leer == true){
+			try {
+				int l = line.length();
+				String s = line.substring(l-1);
+				int dig = Integer.valueOf(s);
+				valor = s + valor;
+				line = line.substring(0, l-1);
+			} catch (Exception e) {
+				leer = false;
+			}
+		}// while
+		try {
+			out = Long.valueOf(valor);
+		} catch (Exception e) {
+			out = NO;
+		}
+		
+		return out;
+	}
+
+	protected long getValue2(String line) {
+		long out = NO;
 		int p = line.indexOf('?');
 		if (p >= 0) {
 			String str = line.substring(p + 1).trim();
@@ -91,6 +118,7 @@ public class BasculaParser implements Runnable {
 		return out;
 	}
 
+	
 	public void testDB() throws Exception {
 		RegisterDomain rr = RegisterDomain.getInstance();
 		MovimientoDetalle m = new MovimientoDetalle();
@@ -105,15 +133,27 @@ public class BasculaParser implements Runnable {
 
 	private static void runLectorBascula() throws Exception {
 		BasculaParser bp = new BasculaParser();
+		bp.print("--leyendo configuración..");
 		bp.cargarConnfiguracion();
+		bp.print("--inicializar puerto..");
 		bp.initcializar();
+		bp.print("--lanza thread..");
 		Thread th = new Thread(bp);
 		th.start();
+		bp.print("--listo..");
 	}
 
+	
+	public static void pruebaGetValue(){
+		BasculaParser bp = new BasculaParser();
+		System.out.println(bp.getValue("2   3a   "));
+	}
+	
 	public static void main(String[] args) {
 		try {
 			runLectorBascula();
+			//pruebaGetValue();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,25 +179,35 @@ public class BasculaParser implements Runnable {
 	}
 
 	private void initcializar() throws Exception {
+		print("        buscar puerto");
 		CommPortIdentifier portId = this.buscarPortId();
+		print("        abrir puerto:"+portId);
 		SerialPort serialPort = (SerialPort) portId.open(NOMBRE_APP, 2000);
+
 		
-		BasculaPortEventListener portListener = new BasculaPortEventListener();
-		
-		portListener.inputStream = serialPort.getInputStream();
-		
+		print("        crea inputStream");
+		InputStream inp = serialPort.getInputStream();
+
+		print("        listener");
+		BasculaPortEventListener portListener = new BasculaPortEventListener(inp, this);
+				
 		serialPort.addEventListener(portListener);
 		serialPort.notifyOnDataAvailable(true);
+		print("        set puerto");
 		serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 		// conecta con el WS
+		print("        crea ws");
 		this.ws = new BasculaPesoWSCliente();
 	}
 
 	@Override
 	public void run() {
+		int t = 5;
 		while (true) {
 			try {
-				Thread.sleep(5 * 1000);
+				Thread.sleep(t * 1000);
+				print("                                "+t+" seg");
+
 			} catch (InterruptedException e) {
 				System.out.println(e);
 			}
@@ -172,8 +222,17 @@ class BasculaPortEventListener implements SerialPortEventListener{
 	public InputStream inputStream;
 	public BasculaParser parser;
 
+	
+	public BasculaPortEventListener(InputStream inputStream, BasculaParser parser){
+		this.inputStream = inputStream;
+		this.parser = parser;
+	}
+	
+	
 	@Override
 	public void serialEvent(SerialPortEvent event) {
+		parser.print("                                evento nuevo");
+
 		switch (event.getEventType()) {
 		case SerialPortEvent.BI:
 		case SerialPortEvent.OE:
@@ -193,17 +252,22 @@ class BasculaPortEventListener implements SerialPortEventListener{
 					int numBytes = this.inputStream.read(readBuffer);
 				}
 				String line = new String(readBuffer);
+				parser.print("                                line:["+line+"]");
 
 				long dato = parser.getValue(line);
 				if (dato != parser.NO) {
+					System.out.println(dato);
 					parser.print("   "+dato);
 					parser.ws.enviarPeso(dato);
+				}else{
+					System.out.println("----------NO:"+line);
 				}
 			} catch (IOException e) {
 				System.out.println(e);
 			}
 			break;
 		}
+		parser.print("                                evento fin");
 	}
 
 	
