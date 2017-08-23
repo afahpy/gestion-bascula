@@ -41,7 +41,7 @@ private ComponentBuilder cabecera(){
 	
 	VerticalListBuilder out = cmp.verticalList();
 	 VerticalListBuilder filtro = cmp.verticalList();
-	 filtro.add(this.textoParValor("Filtro", ""));
+	 filtro.add(this.textoParValor("Filtro", this.filtro));
 
 	 
 	 out.add(filtro);
@@ -73,7 +73,19 @@ private ComponentBuilder cabecera(){
 	}
 	
 	public List<Object[]> getMovimientos()  {
-		List<Object[]>movimientos= new ArrayList<Object[]>();
+		List<Object[]>movimientos = new ArrayList<Object[]>();;
+		
+		
+		for (int i = 0; i < 5; i++) {
+			
+			Object[] fila = new String[7];
+			for (int j = 0; j < 7; j++) {
+				fila[j] = "i:"+i+" j:"+j;
+			}
+			movimientos.add(fila);
+		}
+			
+		
 		return movimientos ;
 	
 	}
@@ -81,6 +93,7 @@ private ComponentBuilder cabecera(){
 	public static void main(String[] args) {
 		ReporteMovimiento reporte = new ReporteMovimiento();
 		
+		reporte.setFiltro("123");
 		reporte.ejecutar(true);
 	}
 
