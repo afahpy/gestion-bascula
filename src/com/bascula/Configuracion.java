@@ -12,6 +12,9 @@ public class Configuracion extends Config {
 
 	/*************************** SESION *******************************/
 
+	public static String empresa = "Unisal S.A.";
+	
+	
 	public static String ACCESO = "AccesoDTO";
 	public static String PATH_SESSION = ".";
 	
