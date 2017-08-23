@@ -88,4 +88,14 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		this.peso = peso;
 	}
 
+	public boolean isCampoEditable(@BindingParam("aliasPermiso") String aliasPermiso) throws Exception {
+		boolean out = false;
+
+		if (this.operacionHabilitada(aliasPermiso) == true) {
+			out = true;
+		}
+
+		return out;
+	}
+
 }
