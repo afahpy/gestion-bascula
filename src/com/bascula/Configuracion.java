@@ -56,7 +56,26 @@ public class Configuracion extends Config {
 	/*********************** Alias Permisos **************************/
 
 	public static final String ALIAS_PERM_EDITAR_DATOS_PERSONALES = "datos_personales";
-
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_TIPOMOVIMIENTO = "editar_campo_movimiento_tipomovimiento";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_FECHALLEGADA = "editar_campo_movimiento_fechallegada";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_FECHASALIDA= "editar_campo_movimiento_fechasalida";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_BRUTO = "editar_campo_movimiento_bruto";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_TARA = "editar_campo_movimiento_tara";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_NETO = "editar_campo_movimiento_neto";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_ORIGEN = "editar_campo_movimiento_origen";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_DIFERENCIA = "editar_campo_movimiento_diferencia";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_ORIGENLUGAR = "editar_campo_movimiento_origenlugar";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_DESTINOLUGAR = "editar_campo_movimiento_destinolugar";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_REMITO = "editar_campo_movimiento_remito";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_REMISION = "editar_campo_movimiento_remision";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_CHAPA = "editar_campo_movimiento_chapa";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_CHAPACARRETA = "editar_campo_movimiento_capacarreta";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_CHOFER = "editar_campo_movimiento_chofer";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_TRANSPORTADORA = "editar_campo_movimiento_transportadora";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_DESPACHO = "editar_campo_movimiento_despacho";
+	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_DESPACHANTE = "editar_campo_movimiento_despachante";
+	
+	
 	/*********************** Sistema Propiedad ************************/
 	public static final String SIS_PRO_EMAIL_DESTINATARIOS_CONTACTO = "EMAIL_DESTINATARIOS_CONTACTO";
 	/*************************** Mensajes *****************************/
