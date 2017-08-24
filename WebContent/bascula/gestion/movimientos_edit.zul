@@ -362,7 +362,7 @@
 					<button label="Nuevo" zclass="btn btn-info"
 						onClick="@command('nuevoDetalle')" />
 
-					<button label="Eliminar" zclass="btn btn-info"
+					<button label="Eliminar" zclass="btn btn-danger"
 						onClick="@command('borrarDetalles')" />
 				</hlayout>
 				<div zclass="row" height="10px"></div>

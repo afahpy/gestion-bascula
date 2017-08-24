@@ -52,6 +52,21 @@ public class MovimientoViewModel extends GenericViewModelApp {
 			return;
 		}
 
+		if (this.movimiento != null && this.movimiento.esNuevo() == false) {
+			MovimientoEntradaSalida movAnterior = (MovimientoEntradaSalida) rr
+					.getObject(MovimientoEntradaSalida.class.getName(), this.movimiento.getId());
+
+			if (movAnterior.getModificado().compareTo(this.movimiento.getModificado()) > 0) {
+				this.mensajeError(
+						"El movimiento que esta intentando guardar se encuentra desactualizado, favor vuelva a abrirlo."
+								+ " Ultima modificacion: "
+								+ this.m.dateToString(movAnterior.getModificado(), "dd-MM-yyyy HH:mm:ss")
+								+ " por usuario: " + movAnterior.getUsuarioMod());
+				return;
+			}
+
+		}
+
 		rr.saveObject(this.movimiento, this.getUs().getLogin());
 		this.mensajePopupTemporal("Movimiento guardado correctamente");
 	}
@@ -148,9 +163,6 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 		for (MovimientoDetalle detalle : this.selectedDetalles) {
 			this.movimiento.getDetalles().remove(detalle);
-			if (detalle.esNuevo() == false) {
-				rr.deleteObject(detalle);
-			}
 		}
 
 		this.selectedDetalles = new ArrayList<MovimientoDetalle>();

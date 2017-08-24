@@ -1171,10 +1171,10 @@ public class Misc {
 
 	public void mensajeError(String texto) {
 		
-		this.mensajePopupTemporalWarning(texto);
+	/*	this.mensajePopupTemporalWarning(texto);
 		if (1==1){
 			return;
-		}
+		}*/
 		
 		org.zkoss.zul.Messagebox.Button b = Messagebox.show(texto, "Error",
 				new Messagebox.Button[] { Messagebox.Button.OK }, Messagebox.ERROR, null);
