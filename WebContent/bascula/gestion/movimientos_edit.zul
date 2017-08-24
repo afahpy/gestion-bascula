@@ -78,6 +78,7 @@
 								value="@bind(vm.movimiento.bruto)">
 							</doublebox>
 							<button width="100%" label="Peso"
+								visible="@load(vm.isCampoEditable('editar_boton_movimiento_bruto'))"
 								zclass="btn btn-info"
 								onClick="@command('copiarPesoToCampo', campo='CAMPO_BRUTO')" />
 						</hlayout>
@@ -96,6 +97,7 @@
 								value="@bind(vm.movimiento.tara)">
 							</doublebox>
 							<button width="100%" label="Peso"
+								visible="@load(vm.isCampoEditable('editar_boton_movimiento_tara'))"
 								zclass="btn btn-info"
 								onClick="@command('copiarPesoToCampo', campo='CAMPO_TARA')" />
 

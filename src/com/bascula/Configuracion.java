@@ -75,6 +75,10 @@ public class Configuracion extends Config {
 	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_DESPACHO = "editar_campo_movimiento_despacho";
 	public static final String ALIAS_PERM_EDITAR_CAMPO_MOV_DESPACHANTE = "editar_campo_movimiento_despachante";
 	
+	public static final String ALIAS_PERM_EDITAR_MOV = "editar_movimiento";
+	public static final String ALIAS_PERM_CREAR_MOV = "crear_movimiento";
+	public static final String ALIAS_PERM_ELIMINAR_MOV = "eliminar_movimiento";
+	
 	
 	/*********************** Sistema Propiedad ************************/
 	public static final String SIS_PRO_EMAIL_DESTINATARIOS_CONTACTO = "EMAIL_DESTINATARIOS_CONTACTO";
