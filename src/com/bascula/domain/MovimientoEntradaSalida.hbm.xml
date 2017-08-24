@@ -49,7 +49,7 @@
 			column="idDespachante" lazy="false" />
 
 		<set name="detalles" table="MovimientoDetalle" inverse="false"
-			lazy="false" fetch="select" cascade="all">
+			lazy="false" fetch="select" cascade="all-delete-orphan">
 			<key>
 				<column name="idMovimiento" not-null="false" />
 			</key>

@@ -360,9 +360,11 @@
 				<div zclass="row" height="10px"></div>
 				<hlayout>
 					<button label="Nuevo" zclass="btn btn-info"
+						visible="@load(vm.isCampoEditable('editar_campo_detalles'))"
 						onClick="@command('nuevoDetalle')" />
 
 					<button label="Eliminar" zclass="btn btn-danger"
+						visible="@load(vm.isCampoEditable('editar_campo_detalles'))"
 						onClick="@command('borrarDetalles')" />
 				</hlayout>
 				<div zclass="row" height="10px"></div>
@@ -394,7 +396,9 @@
 								<combobox width="100%"
 									model="@load(vm.rr.productos)"
 									value="@load(each.mercaderia.strCampo1)" autocomplete="true"
-									autodrop="true" selectedItem="@bind(each.mercaderia)">
+									autodrop="true" selectedItem="@bind(each.mercaderia)"
+									readonly="@load(!vm.isCampoEditable('editar_campo_detalles'))"
+									buttonVisible="@load(vm.isCampoEditable('editar_campo_detalles'))">
 									<template name="model">
 										<comboitem
 											label="@load(each.strCampo1)" width="100%">
@@ -406,6 +410,7 @@
 
 							<listcell>
 								<intbox width="100%"
+									readonly="@load(!vm.isCampoEditable('editar_campo_detalles'))"
 									value="@bind(each.numeroBolsa)"
 									tooltiptext="@load(each.numeroBolsa)" />
 							</listcell>
