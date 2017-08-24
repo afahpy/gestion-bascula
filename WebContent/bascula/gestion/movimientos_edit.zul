@@ -355,6 +355,12 @@
 
 
 			<h:div class="col-xs-12 col-md-6">
+
+				<button label="Reporte" zclass="btn btn-info"
+					onClick="@command('verReporte')" />
+
+				<div zclass="row" height="10px"></div>
+
 				<include src="/bascula/leerPeso/leerPeso.zul" />
 
 				<div zclass="row" height="10px"></div>

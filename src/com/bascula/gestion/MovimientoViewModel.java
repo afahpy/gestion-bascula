@@ -16,7 +16,9 @@ import com.bascula.GenericViewModelApp;
 import com.bascula.domain.MovimientoDetalle;
 import com.bascula.domain.MovimientoEntradaSalida;
 import com.bascula.domain.RegisterDomain;
+import com.bascula.gestion.reportes.ReporteListaMovimientoEntradaSalida;
 import com.bascula.leerPeso.BasculaPeso;
+import com.coreweb.extras.reporte.ViewPdf;
 
 public class MovimientoViewModel extends GenericViewModelApp {
 
@@ -177,4 +179,14 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		this.selectedDetalles = selectedDetalles;
 	}
 
+	@Command
+	public void verReporte() throws Exception {
+
+		ReporteListaMovimientoEntradaSalida reporte = new ReporteListaMovimientoEntradaSalida();
+
+		reporte.setMovimiento(this.movimiento);
+		ViewPdf vp = new ViewPdf();
+		vp.showReporte(reporte, this);
+
+	}
 }
