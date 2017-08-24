@@ -98,7 +98,6 @@ public class MovimientoViewModel extends GenericViewModelApp {
 				&& this.operacionHabilitada(aliasPermiso) == true) {
 			out = true;
 		}
-		System.out.println("Es editable = " + out + aliasPermiso);
 		return out;
 	}
 
@@ -116,6 +115,17 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		}
 
 		return out;
+	}
+
+	public boolean isFormularioModoEdicion() {
+
+		boolean out = false;
+
+		if (this.modoFormulario.compareTo(Configuracion.MODO_FORMULARIO_EDICION) == 0) {
+			out = true;
+		}
+		return out;
+
 	}
 
 }

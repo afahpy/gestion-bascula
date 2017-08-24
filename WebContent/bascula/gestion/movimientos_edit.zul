@@ -356,14 +356,17 @@
 			<h:div class="col-xs-12 col-md-12 text-center">
 				<hlayout>
 					<button label="Guardar" zclass="btn btn-info"
+						visible="@load(vm.formularioModoEdicion)"
 						onClick="@command('guardarMovimiento')">
 					</button>
 
 					<button label="Cancelar" zclass="btn btn-info"
+						visible="@load(vm.formularioModoEdicion)"
 						onClick="@command('cancelar')">
 					</button>
 
 					<button label="Volver" zclass="btn btn-info"
+						visible="@load(!vm.formularioModoEdicion)"
 						onClick="@command('cancelar')">
 					</button>
 				</hlayout>
