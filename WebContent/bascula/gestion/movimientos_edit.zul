@@ -24,8 +24,9 @@
 						<combobox width="100%"
 							model="@load(vm.utilDto.tiposMovimientos)"
 							value="@load(vm.movimiento.tipoMovimiento.descripcion)"
-							autocomplete="true" buttonVisible="true" autodrop="true"
-							readonly="false"
+							autocomplete="true" autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_tipomovimiento'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_tipomovimiento'))"
 							selectedItem="@bind(vm.movimiento.tipoMovimiento)">
 							<template name="model">
 								<comboitem
@@ -44,6 +45,8 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<datebox
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_fechallegada'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_fechallegada'))"
 							value="@bind(vm.movimiento.fechaLlegada)" format="dd-MM-yyyy">
 						</datebox>
 					</h:div>
@@ -56,6 +59,8 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<datebox
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_fechasalida'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_fechasalida'))"
 							value="@bind(vm.movimiento.fechaSalida)" format="dd-MM-yyyy">
 						</datebox>
 					</h:div>
@@ -87,6 +92,7 @@
 					<h:div class="col-xs-7 col-md-4">
 						<hlayout>
 							<doublebox
+								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_tara'))"
 								value="@bind(vm.movimiento.tara)">
 							</doublebox>
 							<button width="100%" label="Peso"
@@ -104,7 +110,9 @@
 						<label value=" Neto: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox value="@bind(vm.movimiento.neto)">
+						<doublebox
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_neto'))"
+							value="@bind(vm.movimiento.neto)">
 						</doublebox>
 					</h:div>
 				</h:div>
@@ -116,6 +124,7 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<doublebox
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_origen'))"
 							value="@bind(vm.movimiento.origen)">
 						</doublebox>
 					</h:div>
@@ -128,6 +137,7 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<doublebox
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_diferencia'))"
 							value="@bind(vm.movimiento.diferencia)">
 						</doublebox>
 					</h:div>
@@ -143,8 +153,9 @@
 						<combobox width="100%"
 							model="@load(vm.rr.origenLugares)"
 							value="@load(vm.movimiento.origenLugar.strCampo1)"
-							autocomplete="true" buttonVisible="true" autodrop="true"
-							readonly="false"
+							autocomplete="true" autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_origenlugar'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_origenlugar'))"
 							selectedItem="@bind(vm.movimiento.origenLugar)">
 							<template name="model">
 								<comboitem label="@load(each.strCampo1)"
@@ -165,8 +176,9 @@
 						<combobox width="100%"
 							model="@load(vm.rr.destinoLugares)"
 							value="@load(vm.movimiento.destinoLugar.strCampo1)"
-							autocomplete="true" buttonVisible="true" autodrop="true"
-							readonly="false"
+							autocomplete="true" autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_destinolugar'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_destinolugar'))"
 							selectedItem="@bind(vm.movimiento.destinoLugar)">
 							<template name="model">
 								<comboitem label="@load(each.strCampo1)"
@@ -185,6 +197,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<textbox width="100%"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_remito'))"
 							value="@bind(vm.movimiento.remito)">
 						</textbox>
 					</h:div>
@@ -197,6 +210,7 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<textbox width="100%"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_remision'))"
 							value="@bind(vm.movimiento.remision)">
 						</textbox>
 					</h:div>
@@ -212,7 +226,9 @@
 						<combobox width="100%"
 							model="@load(vm.rr.chapas)"
 							value="@load(vm.movimiento.chapa.strCampo1)" autocomplete="true"
-							buttonVisible="true" autodrop="true" readonly="false"
+							autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_chapa'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_chapa'))"
 							selectedItem="@bind(vm.movimiento.chapa)">
 							<template name="model">
 								<comboitem label="@load(each.strCampo1)"
@@ -233,8 +249,9 @@
 						<combobox width="100%"
 							model="@load(vm.rr.chapasCarretas)"
 							value="@load(vm.movimiento.chapaCarreta.strCampo1)"
-							autocomplete="true" buttonVisible="true" autodrop="true"
-							readonly="false"
+							autocomplete="true" autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_capacarreta'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_capacarreta'))"
 							selectedItem="@bind(vm.movimiento.chapaCarreta)">
 							<template name="model">
 								<comboitem label="@load(each.strCampo1)"
@@ -255,7 +272,9 @@
 						<combobox width="100%"
 							model="@load(vm.rr.choferes)"
 							value="@load(vm.movimiento.chofer.strCampo1)" autocomplete="true"
-							buttonVisible="true" autodrop="true" readonly="false"
+							autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_chofer'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_chofer'))"
 							selectedItem="@bind(vm.movimiento.chofer)">
 							<template name="model">
 								<comboitem label="@load(each.strCampo1)"
@@ -276,8 +295,9 @@
 						<combobox width="100%"
 							model="@load(vm.rr.transportadoras)"
 							value="@load(vm.movimiento.transportadora.strCampo1)"
-							autocomplete="true" buttonVisible="true" autodrop="true"
-							readonly="false"
+							autocomplete="true" autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_transportadora'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_transportadora'))"
 							selectedItem="@bind(vm.movimiento.transportadora)">
 							<template name="model">
 								<comboitem label="@load(each.strCampo1)"
@@ -295,6 +315,7 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<textbox width="100%"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_despacho'))"
 							value="@bind(vm.movimiento.despacho)">
 						</textbox>
 					</h:div>
@@ -310,8 +331,9 @@
 						<combobox width="100%"
 							model="@load(vm.rr.despachantes)"
 							value="@load(vm.movimiento.despachante.strCampo1)"
-							autocomplete="true" buttonVisible="true" autodrop="true"
-							readonly="false"
+							autocomplete="true" autodrop="true"
+							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_despachante'))"
+							buttonVisible="@load(vm.isCampoEditable('editar_campo_movimiento_despachante'))"
 							selectedItem="@bind(vm.movimiento.despachante)">
 							<template name="model">
 								<comboitem label="@load(each.strCampo1)"
