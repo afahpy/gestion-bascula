@@ -69,6 +69,7 @@
 					<h:div class="col-xs-7 col-md-4">
 						<hlayout>
 							<doublebox
+								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_bruto'))"
 								value="@bind(vm.movimiento.bruto)">
 							</doublebox>
 							<button width="100%" label="Peso"

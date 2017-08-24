@@ -94,10 +94,11 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	public boolean isCampoEditable(String aliasPermiso) throws Exception {
 		boolean out = false;
 
-		if (this.operacionHabilitada(aliasPermiso) == true) {
+		if (this.modoFormulario.compareTo(Configuracion.MODO_FORMULARIO_EDICION) == 0
+				&& this.operacionHabilitada(aliasPermiso) == true) {
 			out = true;
 		}
-		System.out.println("Es editable = " + out);
+		System.out.println("Es editable = " + out + aliasPermiso);
 		return out;
 	}
 
@@ -109,13 +110,11 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 		if (campo.compareTo(CAMPO_BRUTO) == 0) {
 			this.movimiento.setBruto(this.peso.getPeso());
-			System.out.println("Copia valores bruto");
 		} else if (campo.compareTo(CAMPO_TARA) == 0) {
 			this.movimiento.setNeto(this.peso.getPeso());
-			System.out.println("Copia valores neto");
 
 		}
-		
+
 		return out;
 	}
 
