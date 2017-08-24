@@ -14,11 +14,11 @@
 		<div zclass="row" style="border-bottom: 1px solid black"
 			height="10px">
 		</div>
-		
+
 		<div zclass="row" height="10px"></div>
 
 		<div zclass="row">
-			<h:div class="col-xs-12 col-md-12">
+			<h:div class="col-xs-12 col-md-10">
 				<hlayout>
 					<hlayout width="100%">
 						<button label="Nuevo" zclass="btn btn-info"
@@ -34,6 +34,14 @@
 
 					<button label="Limpiar" zclass="btn btn-info"
 						onClick="@command('limpiarFiltros')" />
+				</hlayout>
+			</h:div>
+			<h:div class="col-xs-12 col-md-1"></h:div>
+			<h:div class="col-xs-12 col-md-1">
+				<hlayout>
+					<button width="100%" label="Reporte"
+						zclass="btn btn-info" onClick="" />
+
 				</hlayout>
 			</h:div>
 		</div>
