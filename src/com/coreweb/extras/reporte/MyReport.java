@@ -223,6 +223,10 @@ public class MyReport extends ReporteDefinicion {
 		rep.toDocx((JasperDocxExporterBuilder) exporterAux);
 	}
 
+	public void crearPDF(String nombreArchivo) throws Exception{
+		AbstractJasperExporterBuilder exporterAux = export.pdfExporter(nombreArchivo);
+		rep.toPdf((JasperPdfExporterBuilder) exporterAux);
+	}
 	
 	
 	public void show(boolean ver) {

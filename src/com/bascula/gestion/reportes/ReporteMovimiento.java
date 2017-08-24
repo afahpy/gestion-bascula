@@ -12,6 +12,7 @@ public class ReporteMovimiento extends BasculaReporte {
 
 	private String filtro = "";
 
+<<<<<<< HEAD
 	String[][] cols = null;
 	List<Object[]> listaMovimiento = null;
 
@@ -22,6 +23,10 @@ public class ReporteMovimiento extends BasculaReporte {
 	public void setListaMovimiento(List<Object[]> listaMovimiento) {
 		this.listaMovimiento = listaMovimiento;
 	}
+=======
+	String[][] cols = { { "", WIDTH + "65" }, { "", WIDTH + "65" }, { "", WIDTH + "65" }, { "", WIDTH + "65" },
+			{ "", WIDTH + "65" }, { "", WIDTH + "65" }, { "", WIDTH + "65" }, };
+>>>>>>> eade36af70e190ad323bcb33cf0a43fe3b68c077
 
 	@Override
 	public void informacionReporte() {
@@ -40,7 +45,11 @@ public class ReporteMovimiento extends BasculaReporte {
 
 		VerticalListBuilder out = cmp.verticalList();
 		VerticalListBuilder filtro = cmp.verticalList();
+<<<<<<< HEAD
 		filtro.add(this.textoParValor("Filtro", this.filtro));
+=======
+		filtro.add(this.textoParValor("Filtro", ""));
+>>>>>>> eade36af70e190ad323bcb33cf0a43fe3b68c077
 
 		out.add(filtro);
 
@@ -49,6 +58,7 @@ public class ReporteMovimiento extends BasculaReporte {
 
 	private ComponentBuilder datosDetalle() {
 		VerticalListBuilder out = cmp.verticalList();
+<<<<<<< HEAD
 
 		out.add(this.espacioAlto(20));
 		String tablaMovim = LETRA_8 + TABLA_TITULO + "";
@@ -68,11 +78,23 @@ public class ReporteMovimiento extends BasculaReporte {
 	public void setCols(String[][] cols) {
 		this.cols = cols;
 	}
+=======
 
-	public String getFiltro() {
-		return filtro;
+		// tabla Movimiento
+
+		List<Object[]> listaMovimientos = this.getMovimientos();
+		out.add(this.espacioAlto(20));
+		String tablaMovim = LETRA_8 + TABLA_TITULO + "";
+
+		ComponentBuilder mov = this.getTabla(cols, listaMovimientos, tablaMovim, true, false, false);
+		out.add(mov);
+		out.add(this.espacioAlto(20));
+		return out;
+>>>>>>> eade36af70e190ad323bcb33cf0a43fe3b68c077
+
 	}
 
+<<<<<<< HEAD
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
@@ -98,6 +120,23 @@ public class ReporteMovimiento extends BasculaReporte {
 
 	public static void main(String[] args) {
 		ReporteMovimiento reporte = new ReporteMovimiento();
+=======
+	public List<Object[]> getMovimientos() {
+		List<Object[]> movimientos = new ArrayList<Object[]>();
+		return movimientos;
+
+	}
+
+	public static void main(String[] args) {
+		ReporteMovimiento reporte = new ReporteMovimiento();
+
+		reporte.ejecutar(true);
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+>>>>>>> eade36af70e190ad323bcb33cf0a43fe3b68c077
 
 		String[][] cols = { { "Col1", WIDTH + "65" }, { "Col2", WIDTH + "65" },
 				{ "Col3", WIDTH + "65" }, { "Col4", WIDTH + "65" },
@@ -110,5 +149,8 @@ public class ReporteMovimiento extends BasculaReporte {
 		reporte.ejecutar(true);
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> eade36af70e190ad323bcb33cf0a43fe3b68c077
 }

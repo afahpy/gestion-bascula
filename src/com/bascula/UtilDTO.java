@@ -85,6 +85,7 @@ public class UtilDTO extends UtilCoreDTO {
 	Tipo tipoMovmientoSalida = new Tipo();
 
 	// Tipos objeto
+	List<Tipo> tiposObjectos = new ArrayList<Tipo>();
 	Tipo tipoObjetoOrigenLugar = new Tipo();
 	Tipo tipoObjetoDestinoLugar = new Tipo();
 	Tipo tipoObjetoChapa = new Tipo();
@@ -173,6 +174,14 @@ public class UtilDTO extends UtilCoreDTO {
 
 	public void setTipoObjetoDespachante(Tipo tipoObjetoDespachante) {
 		this.tipoObjetoDespachante = tipoObjetoDespachante;
+	}
+
+	public List<Tipo> getTiposObjectos() {
+		return tiposObjectos;
+	}
+
+	public void setTiposObjectos(List<Tipo> tiposObjectos) {
+		this.tiposObjectos = tiposObjectos;
 	}
 
 }
