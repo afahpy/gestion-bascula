@@ -121,7 +121,7 @@ public class ReporteListaMovimientoEntradaSalida extends BasculaReporte {
 		RegisterDomain rr = RegisterDomain.getInstance();
 
 		MovimientoEntradaSalida dato = (MovimientoEntradaSalida) rr.getObject(
-				MovimientoEntradaSalida.class.getName(), 3);
+				MovimientoEntradaSalida.class.getName(), 1);
 		reporte.setMovimiento(dato);
 		reporte.ejecutar(true);
 	}

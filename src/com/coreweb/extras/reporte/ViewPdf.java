@@ -193,6 +193,17 @@ public class ViewPdf {
 		this.m.borrarArchivo(nombreArchivo);
 	}
 	
+	@Command
+	public void pdf() throws Exception {
+		
+		String dire = this.reporte.getDirectorioBase();
+		String nombreArchivo = dire+"/"+System.nanoTime()+".pdf";		
+		// crear el word
+		this.reporte.getReporte().crearPDF(nombreArchivo);
+		Filedownload.save(new FileInputStream(nombreArchivo), "application/vnd.pdf", this.reporte.getTitulo()+".pdf");
+		
+		this.m.borrarArchivo(nombreArchivo);
+	}
 	
 	
 }
