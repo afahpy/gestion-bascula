@@ -45,6 +45,7 @@ public class AssemblerUtil extends AssemblerCoreUtil {
 		dto.setTipoMovimientoEntrada(rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_MOVIMIENTO_ENTRADA));
 		dto.setTipoMovmientoSalida(rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_MOVIMIENTO_SALIDA));
 
+		dto.setTiposObjectos(rr.getTipos(Configuracion.TIPO_TIPO_OBJETOS));
 		dto.setTipoObjetoOrigenLugar(rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_ORIGEN_LUGAR));
 		dto.setTipoObjetoDestinoLugar(rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_DESTINO_LUGAR));
 		dto.setTipoObjetoChapa(rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_CHAPA));

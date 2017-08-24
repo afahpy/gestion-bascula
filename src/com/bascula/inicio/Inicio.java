@@ -56,6 +56,7 @@ public class Inicio {
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_ADMINISTRACION, true);
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_USER_INFO, true);
 			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_LOGOUT, true);
+			utilDto.getMenusVisibilidadConLogin().put(ID.F_ALIAS_DATOS_MY_OBJECT, true);
 		}
 	}
 
