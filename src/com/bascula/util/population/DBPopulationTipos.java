@@ -55,7 +55,8 @@ public class DBPopulationTipos {
 				{ Configuracion.TIPO_OBJETO_CHAPA_CARRETA, Configuracion.SIGLA_TIPO_OBJETO_CHAPA_CARRETA },
 				{ Configuracion.TIPO_OBJETO_CHOFER, Configuracion.SIGLA_TIPO_OBJETO_CHOFER },
 				{ Configuracion.TIPO_OBJETO_TRANSPORTADORA, Configuracion.SIGLA_TIPO_OBJETO_TRANSPORTADORA },
-				{ Configuracion.TIPO_OBJETO_DESPACHANTE, Configuracion.SIGLA_TIPO_OBJETO_DESPACHANTE } };
+				{ Configuracion.TIPO_OBJETO_DESPACHANTE, Configuracion.SIGLA_TIPO_OBJETO_DESPACHANTE },
+				{ Configuracion.TIPO_OBJETO_PRODUCTO, Configuracion.SIGLA_TIPO_OBJETO_PRODUCTO }};
 
 		this.cargaTiposConTipoTipo(descTipoObjeto, tiposObjeto);
 

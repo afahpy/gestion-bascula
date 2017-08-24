@@ -13,6 +13,7 @@ import org.zkoss.bind.annotation.NotifyChange;
 
 import com.bascula.Configuracion;
 import com.bascula.GenericViewModelApp;
+import com.bascula.domain.MovimientoDetalle;
 import com.bascula.domain.MovimientoEntradaSalida;
 import com.bascula.domain.RegisterDomain;
 import com.bascula.leerPeso.BasculaPeso;
@@ -25,6 +26,7 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	private BasculaPeso peso = new BasculaPeso();
 	private static final String CAMPO_BRUTO = "CAMPO_BRUTO";
 	private static final String CAMPO_TARA = "CAMPO_TARA";
+	private List<MovimientoDetalle> selectedDetalles = new ArrayList<MovimientoDetalle>();
 
 	@Init(superclass = true)
 	public void initMovimientosViewModel(@ExecutionArgParam("movimiento") MovimientoEntradaSalida movimiento,
@@ -126,6 +128,41 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		}
 		return out;
 
+	}
+
+	@Command
+	@NotifyChange("movimiento")
+	public void nuevoDetalle() {
+		MovimientoDetalle detalle = new MovimientoDetalle();
+		this.movimiento.getDetalles().add(detalle);
+	}
+
+	@Command
+	@NotifyChange({ "movimiento", "selectedDetalles" })
+	public void borrarDetalles() throws Exception {
+
+		if (this.selectedDetalles.size() == 0) {
+			this.mensajeInfo("Debe seleccionar detalles a eliminar.");
+			return;
+		}
+
+		for (MovimientoDetalle detalle : this.selectedDetalles) {
+			this.movimiento.getDetalles().remove(detalle);
+			if (detalle.esNuevo() == false) {
+				rr.deleteObject(detalle);
+			}
+		}
+
+		this.selectedDetalles = new ArrayList<MovimientoDetalle>();
+
+	}
+
+	public List<MovimientoDetalle> getSelectedDetalles() {
+		return selectedDetalles;
+	}
+
+	public void setSelectedDetalles(List<MovimientoDetalle> selectedDetalles) {
+		this.selectedDetalles = selectedDetalles;
 	}
 
 }

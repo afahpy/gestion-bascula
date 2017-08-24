@@ -11,6 +11,12 @@
 			</h:div>
 		</div>
 
+		<div zclass="row" style="border-bottom: 1px solid black"
+			height="5px">
+		</div>
+		<div zclass="row" height="10px"></div>
+
+
 		<h:div class="row">
 
 			<h:div class="col-xs-12 col-md-6">
@@ -347,8 +353,66 @@
 				</h:div>
 			</h:div>
 
+
 			<h:div class="col-xs-12 col-md-6">
 				<include src="/bascula/leerPeso/leerPeso.zul" />
+
+				<div zclass="row" height="10px"></div>
+				<hlayout>
+					<button label="Nuevo" zclass="btn btn-info"
+						onClick="@command('nuevoDetalle')" />
+
+					<button label="Eliminar" zclass="btn btn-info"
+						onClick="@command('borrarDetalles')" />
+				</hlayout>
+				<div zclass="row" height="10px"></div>
+
+				<listbox id="detalles" sclass="small-list" mold="paging"
+					selectedItems="@bind(vm.selectedDetalles)" checkmark="true"
+					multiple="true" pageSize="10" model="@load(vm.movimiento.detalles)"
+					vflex="true" emptyMessage="Sin detalles.">
+					<custom-attributes
+						org.zkoss.zul.listbox.autoSort="true" />
+					<listhead menupopup="auto" sizable="true">
+
+						<listheader width="40px" align="center" />
+
+						<listheader label="Producto:"
+							style="text-align: center" sort="auto(mercaderia.strCampo1)"
+							onCreate="self.sort(true);" />
+
+
+						<listheader label="Cantidad"
+							style="text-align: center" align="right" />
+
+
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell />
+							<listcell>
+								<combobox width="100%"
+									model="@load(vm.rr.productos)"
+									value="@load(each.mercaderia.strCampo1)" autocomplete="true"
+									autodrop="true" selectedItem="@bind(each.mercaderia)">
+									<template name="model">
+										<comboitem
+											label="@load(each.strCampo1)" width="100%">
+										</comboitem>
+									</template>
+								</combobox>
+							</listcell>
+
+
+							<listcell>
+								<intbox width="100%"
+									value="@bind(each.numeroBolsa)"
+									tooltiptext="@load(each.numeroBolsa)" />
+							</listcell>
+
+						</listitem>
+					</template>
+				</listbox>
 			</h:div>
 
 

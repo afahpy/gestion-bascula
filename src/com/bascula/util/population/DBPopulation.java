@@ -87,6 +87,14 @@ public class DBPopulation {
 		Tipo toTransportadora = rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_TRANSPORTADORA);
 		cargarMyObjects(toTransportadora, transportadoras);
 
+		// Transportadora
+		String[][] productos = { { "Sal 1", "nombre", "", "" }, { "Sal 2", "nombre", "", "" },
+				{ "Sal 3", "nombre", "", "" }, { "Sal 4", "nombre", "", "" }, { "Sal 5", "nombre", "", "" },
+				{ "Sal 6", "nombre", "", "" }, { "Sal 7", "nombre", "", "" }, { "Sal 8", "nombre", "", "" },
+				{ "Sal 9", "nombre", "", "" } };
+		Tipo toProducto = rr.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_PRODUCTO);
+		cargarMyObjects(toProducto, productos);
+
 	}
 
 	@SuppressWarnings("static-access")

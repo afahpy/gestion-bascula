@@ -60,13 +60,10 @@ public class RegisterDomain extends Register {
 		return objetos;
 	}
 
-	
 	public List<MyObject> getListMyObjects(Tipo tipoObjeto) throws Exception {
 		return this.getObjetosByTipoObjeto(tipoObjeto);
 	}
 
-	
-	
 	public List<MyObject> getOrigenLugares() throws Exception {
 		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_ORIGEN_LUGAR);
 		return this.getObjetosByTipoObjeto(tipoObjeto);
@@ -99,6 +96,11 @@ public class RegisterDomain extends Register {
 
 	public List<MyObject> getDespachantes() throws Exception {
 		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_DESPACHANTE);
+		return this.getObjetosByTipoObjeto(tipoObjeto);
+	}
+
+	public List<MyObject> getProductos() throws Exception {
+		Tipo tipoObjeto = this.getTipoPorSigla(Configuracion.SIGLA_TIPO_OBJETO_PRODUCTO);
 		return this.getObjetosByTipoObjeto(tipoObjeto);
 	}
 

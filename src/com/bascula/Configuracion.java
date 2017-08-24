@@ -50,6 +50,9 @@ public class Configuracion extends Config {
 	public static final String SIGLA_TIPO_OBJETO_TRANSPORTADORA = "TO-TRANS";
 	public static final String TIPO_OBJETO_DESPACHANTE = "Despachante";
 	public static final String SIGLA_TIPO_OBJETO_DESPACHANTE = "TO-DESPA";
+	
+	public static final String TIPO_OBJETO_PRODUCTO = "Producto";
+	public static final String SIGLA_TIPO_OBJETO_PRODUCTO = "TO-PRODUC";
 
 	
 
