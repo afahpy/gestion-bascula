@@ -22,9 +22,11 @@
 				<hlayout>
 					<hlayout width="100%">
 						<button label="Nuevo" zclass="btn btn-info"
+							visible="@load(vm.operacionHabilitada('crear_movimiento'))"
 							width="100%" onClick="@command('crearMovimiento')">
 						</button>
 						<button label="Eliminar" zclass="btn btn-danger"
+							visible="@load(vm.operacionHabilitada('eliminar_movimiento'))"
 							width="100%" onClick="@command('eliminarMovimientos')">
 						</button>
 					</hlayout>
@@ -252,6 +254,7 @@
 										onClick="@command('verMovimiento', movimiento=each)" />
 
 									<toolbarbutton
+										visible="@load(vm.operacionHabilitada('editar_movimiento'))"
 										class="glyphicon glyphicon-pencil" style="font-size:1em;"
 										tooltiptext="Editar"
 										onClick="@command('editarMovimiento', movimiento=each)" />
