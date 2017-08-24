@@ -8,6 +8,10 @@
 				<zk
 					forEach="${vm.menuLateralItem(self, 'USUARIOS','', 'Administrar Usuarios', '/bascula/gestion/usuarios.zul')}" />
 
+				<zk
+					forEach="${vm.menuLateralItem(self, 'DATOS_MY_OBJECT','', 'Carga de Datos', '/bascula/gestion/datosMyObject.zul')}" />
+
+
 			</h:ul>
 		</h:div>
 		<!-- /#sidebar-wrapper -->

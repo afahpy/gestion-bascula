@@ -117,4 +117,13 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 		this.movimientos = new ArrayList<MovimientoEntradaSalida>();
 	}
 
+	@Command
+	@NotifyChange("*")
+	public void reporteMovimiento() throws Exception {
+		this.mensajeError("ToDo");
+		
+	}
+	
+	
+	
 }
