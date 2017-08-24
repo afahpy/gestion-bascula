@@ -67,8 +67,14 @@
 						<label value=" Bruto: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox value="@bind(vm.movimiento.bruto)">
-						</doublebox>
+						<hlayout>
+							<doublebox
+								value="@bind(vm.movimiento.bruto)">
+							</doublebox>
+							<button width="100%" label="Peso"
+								zclass="btn btn-info"
+								onClick="@command('copiarPesoToCampo', campo='CAMPO_BRUTO')" />
+						</hlayout>
 					</h:div>
 				</h:div>
 
@@ -78,8 +84,15 @@
 						<label value=" Tara: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox value="@bind(vm.movimiento.tara)">
-						</doublebox>
+						<hlayout>
+							<doublebox
+								value="@bind(vm.movimiento.tara)">
+							</doublebox>
+							<button width="100%" label="Peso"
+								zclass="btn btn-info"
+								onClick="@command('copiarPesoToCampo', campo='CAMPO_TARA')" />
+
+						</hlayout>
 					</h:div>
 				</h:div>
 
