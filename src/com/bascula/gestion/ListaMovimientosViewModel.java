@@ -1,17 +1,22 @@
 package com.bascula.gestion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zul.Window;
 
 import com.bascula.Configuracion;
 import com.bascula.GenericViewModelApp;
+import com.bascula.ID;
 import com.bascula.domain.MovimientoEntradaSalida;
 import com.bascula.domain.RegisterDomain;
 
@@ -120,10 +125,13 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	@Command
 	@NotifyChange("*")
 	public void reporteMovimiento() throws Exception {
-		this.mensajeError("ToDo");
+
 		
+		Map args = new HashMap();
+		args.put("vmMov", this);
+		Window w = (Window) Executions.createComponents(ID.ZUL_FILTRO_MOVIMIENTOS, null, args);
+		w.setPosition("center");
+		w.doModal();
 	}
-	
-	
-	
+
 }

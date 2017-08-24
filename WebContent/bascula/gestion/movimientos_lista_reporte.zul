@@ -1,0 +1,162 @@
+<window id="windowreportmovimiento" border="none"
+	apply="org.zkoss.bind.BindComposer" sizable="true" closable="true"
+	maximizable="true"
+	viewModel="@id('vm') @init('com.bascula.gestion.MovimientoVMReporte')"
+	title="Filtro de Reporte Movimiento" onClose="" width="400px"
+	height="500px">
+	<zk xmlns:h="http://www.w3.org/1999/xhtml">
+
+		<vlayout>
+			<hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.tipoMovimiento)" />
+					<label value=" Tipo Movimiento" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.fechaLlegada)" />
+					<label value=" Fecha Llegada" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.fechaSalida)" />
+					<label value=" Fecha Salida" width="100%"></label>
+				</hlayout>
+			</hlayout>
+
+
+			<div zclass="row" height="5px"></div>
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="5px">
+			</div>
+			<div zclass="row" height="5px"></div>
+
+			<hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.origenLugar)" />
+					<label value=" Origen Lugar" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.destinoLugar)" />
+					<label value=" Destino Lugar" width="100%"></label>
+				</hlayout>
+			</hlayout>
+
+			<div zclass="row" height="5px"></div>
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="5px">
+			</div>
+			<div zclass="row" height="5px"></div>
+
+			<hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.remito)" />
+					<label value=" Remito" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.remision)" />
+					<label value=" Remision" width="100%"></label>
+				</hlayout>
+			</hlayout>
+
+
+			<div zclass="row" height="5px"></div>
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="5px">
+			</div>
+			<div zclass="row" height="5px"></div>
+
+			<hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.chofer)" />
+					<label value=" Chofer" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.transportadora)" />
+					<label value=" Transportadora" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.chapa)" />
+					<label value=" Chapa" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.chapaCarreta)" />
+					<label value=" Chapa Carreta" width="100%"></label>
+				</hlayout>
+			</hlayout>
+
+
+			<div zclass="row" height="5px"></div>
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="5px">
+			</div>
+			<div zclass="row" height="5px"></div>
+
+			<hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.bruto)" />
+					<label value=" Bruto" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.tara)" />
+					<label value=" Tara" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.neto)" />
+					<label value=" Neto" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.origen)" />
+					<label value=" Origen" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.diferencia)" />
+					<label value=" Diferencia" width="100%"></label>
+				</hlayout>
+			</hlayout>
+
+
+			<div zclass="row" height="5px"></div>
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="5px">
+			</div>
+			<div zclass="row" height="5px"></div>
+
+			<hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.despacho)" />
+					<label value=" Despacho" width="100%"></label>
+				</hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.despachante)" />
+					<label value=" Despachante" width="100%"></label>
+				</hlayout>
+			</hlayout>
+
+
+			<div zclass="row" height="5px"></div>
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="5px">
+			</div>
+			<div zclass="row" height="5px"></div>
+
+			<hlayout>
+				<hlayout>
+					<checkbox checked="@bind(vm.fm.detalles)" />
+					<label value=" Detalles" width="100%"></label>
+				</hlayout>
+			</hlayout>
+
+
+			<div zclass="row" height="5px"></div>
+			<div zclass="row" style="border-bottom: 1px solid black"
+				height="5px">
+			</div>
+			<div zclass="row" height="5px"></div>
+
+			<button label="Reporte" zclass="btn btn-info" onClick="@command('reporteMovimiento')" />
+
+
+		</vlayout>
+
+
+	</zk>
+</window>

@@ -41,8 +41,8 @@
 			<h:div class="col-xs-12 col-md-1"></h:div>
 			<h:div class="col-xs-12 col-md-1">
 				<hlayout>
-					<button width="100%" label="Reporte"
-						zclass="btn btn-info" onClick="" />
+					<button width="100%" label="Reporte" 
+						zclass="btn btn-info" onClick="@command('reporteMovimiento')" />
 
 				</hlayout>
 			</h:div>
