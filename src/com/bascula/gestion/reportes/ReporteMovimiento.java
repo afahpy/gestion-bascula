@@ -52,6 +52,11 @@ public class ReporteMovimiento extends BasculaReporte {
 		out.add(this.espacioAlto(20));
 		String tablaMovim = LETRA_8 + TABLA_TITULO + "";
 
+		if (this.cols.length > 6){
+			this.setApaisada();
+		}
+		
+		
 		ComponentBuilder mov = this.getTabla(this.cols, this.listaMovimiento,
 				tablaMovim, true, false, false);
 		out.add(mov);
@@ -97,7 +102,6 @@ public class ReporteMovimiento extends BasculaReporte {
 
 		String[][] cols = { { "Col1", WIDTH + "65" }, { "Col2", WIDTH + "65" },
 				{ "Col3", WIDTH + "65" }, { "Col4", WIDTH + "65" },
-				{ "Col5", WIDTH + "65" }, { "Col6", WIDTH + "65" },
 				{ "Col7", WIDTH + "65" }, };
 
 		reporte.setFiltro("123");
