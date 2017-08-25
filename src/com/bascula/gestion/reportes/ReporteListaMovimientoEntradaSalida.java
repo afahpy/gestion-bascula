@@ -28,9 +28,10 @@ public class ReporteListaMovimientoEntradaSalida extends BasculaReporte {
 
 		HorizontalListBuilder dat = cmp.horizontalList();
 
-		dat.add(this.textoParValor("Movimiento ", movimiento
-				.getTipoMovimiento().getDescripcion()));
-
+		
+		String s1 = this.m.getString(movimiento.getTipoMovimiento(), "descripcion");
+		dat.add(this.textoParValor("Movimiento ", s1));		
+		
 		dat.add(this.textoParValor("Llegada", this.m.dateToString(
 				this.movimiento.getFechaLlegada(), this.m.DD_MM_YYYY)));
 
@@ -39,11 +40,14 @@ public class ReporteListaMovimientoEntradaSalida extends BasculaReporte {
 
 		HorizontalListBuilder dato1 = cmp.horizontalList();
 
-		dato1.add(this.textoParValor("Lugar de Origen", movimiento
-				.getOrigenLugar().getStrCampo1()));
+		
+		String s2 = this.m.getString(movimiento.getOrigenLugar(), "strCampo1");
+		dato1.add(this.textoParValor("Lugar de Origen", s2));
+		
+		
+		String s3 = this.m.getString(movimiento.getDestinoLugar(), "strCampo1");
+		dato1.add(this.textoParValor("Lugar de Destino ", s3));
 
-		dato1.add(this.textoParValor("Lugar de Destino ", movimiento
-				.getDestinoLugar().getStrCampo1()));
 		
 		dato1.add(this.textoParValor("Remito ", movimiento.getRemito()));
 
@@ -54,17 +58,17 @@ public class ReporteListaMovimientoEntradaSalida extends BasculaReporte {
 
 		HorizontalListBuilder dato2 = cmp.horizontalList();
 
-		dato2.add(this.textoParValorVertical("Chapa", movimiento.getChapa()
-				.getStrCampo1()));
+		String s4 = this.m.getString(movimiento.getChapa(), "strCampo1");
+		dato2.add(this.textoParValorVertical("Chapa", s4));
 
-		dato2.add(this.textoParValorVertical("Chapa carreta ",
-				movimiento.getChapaCarreta()));
+		String s5 = this.m.getString(movimiento.getChapaCarreta(), "strCampo1");
+		dato2.add(this.textoParValorVertical("Chapa carreta ", s5));
 
-		dato2.add(this.textoParValorVertical("Chofer ", movimiento.getChofer()
-				.getStrCampo1()));
+		String s6 = this.m.getString(movimiento.getChofer(), "strCampo1");
+		dato2.add(this.textoParValorVertical("Chofer ", s6));
 
-		dato2.add(this.textoParValorVertical("Transportadora", movimiento
-				.getTransportadora().getStrCampo1()));
+		String s7 = this.m.getString(movimiento.getTransportadora(), "strCampo1");
+		dato2.add(this.textoParValorVertical("Transportadora", s7));
 
 		HorizontalListBuilder dato3 = cmp.horizontalList();
 
@@ -88,9 +92,18 @@ public class ReporteListaMovimientoEntradaSalida extends BasculaReporte {
 		dato4.add(this.textoParValorVertical("Despacho ",
 				movimiento.getDespacho()));
 
-		dato4.add(this.textoParValorVertical("Despachante ",
-				movimiento.getDespachante()));
+		String s8 = this.m.getString(movimiento.getDespachante(), "strCampo1");
+		dato4.add(this.textoParValorVertical("Despachante ",s8));
 
+
+		VerticalListBuilder dato5 = cmp.verticalList();
+
+		dato5.add(this.textoNegrita("Mercadería"));
+		dato5.add(this.textoMonoSpace(movimiento.getDetallesString()));
+
+		
+		
+		
 		out.add(espacioAlto(20));
 		out.add(dat);
 		
@@ -112,6 +125,11 @@ public class ReporteListaMovimientoEntradaSalida extends BasculaReporte {
 		out.add(espacioAlto(5));
 		out.add(cmp.line());
 		out.add(dato4);
+
+		out.add(espacioAlto(5));
+		out.add(cmp.line());
+		out.add(dato5);
+
 		return out;
 
 	}

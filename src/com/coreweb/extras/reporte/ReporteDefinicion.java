@@ -517,6 +517,7 @@ public class ReporteDefinicion {
 		ver.add(cmp.text(valor.toString()).setStyle(Templates.styleHTML));
 		return ver;
 	}
+
 	
 	
 	public ComponentBuilder textoAutorizado() {

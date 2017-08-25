@@ -45,13 +45,20 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 	@Command
 	public void reporteMovimiento() throws Exception {
 
+
+		// recorre los movimientos
 		ArrayList<Object[]> datos = new ArrayList<>();
 		for (int i = 0; i < this.vmMov.getMovimientos().size(); i++) {
 			MovimientoEntradaSalida mov = this.vmMov.getMovimientos().get(i);
 			Object[] dato = this.fm.getMovimientoFiltrado(mov);
 			datos.add(dato);
 		}
-
+		// filtra el total
+		MovimientoEntradaSalida movTotal = new MovimientoEntradaSalida();
+		Object[] datoTotal = this.fm.getMovimientoFiltrado(movTotal);
+		datos.add(datoTotal);
+		
+		
 		ReporteMovimiento rep = new ReporteMovimiento();
 		rep.setCols(this.fm.getColTablas());
 		rep.setListaMovimiento(datos);

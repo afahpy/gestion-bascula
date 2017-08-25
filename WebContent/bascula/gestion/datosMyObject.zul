@@ -3,74 +3,51 @@
 		viewModel="@id('vm') @init('com.bascula.gestion.DatosMyObjectVM')"
 		width="100%">
 
+
 		<div>
 			<h:div class="row">
-				<h:div class="col-sm-12 col-md-12 text-center">
+				<h:div class="col-xs-12 col-md-12 text-center">
 					<h:h3>Carga de Datos</h:h3>
 				</h:div>
 			</h:div>
 		</div>
+
 		<div zclass="row" style="border-bottom: 1px solid black"
 			height="10px">
 		</div>
-
 		<div zclass="row" height="10px"></div>
 
+		<!-- ========================================= -->
+		<vlayout>
+			<hlayout>
+				<label value=" Tipo Mov.:"></label>
+				<combobox width="200px"
+					onChange="@command('refrecarListaMyObject')"
+					model="@load(vm.utilDto.tiposObjectos)"
+					value="@bind(vm.selectedTipoMyObject.descripcion)"
+					autocomplete="true" buttonVisible="true" autodrop="true"
+					readonly="false" selectedItem="@bind(vm.selectedTipoMyObject)">
+					<template name="model">
+						<comboitem label="@load(each.descripcion)"
+							width="200px">
+						</comboitem>
+					</template>
+				</combobox>
+				<label value="(*)" style="color:red"></label>
+			</hlayout>
+			<!-- ========================================= -->
+			<hlayout>
+				<label
+					value="@load(vm.selectedTipoMyObject.descripcion)" />
+			</hlayout>
 
-		<!-- ==================================================== -->
-		<h:div class="row">
-			<h:div class="col-xs-12 col-md-6">
-				<h:div class="row">
-					<h:div
-						class="col-xs-5 col-md-2 form-group text-left">
-						<label value=" Tipo Mov.: " width="100%"></label>
-					</h:div>
-					<h:div class="col-xs-7 col-md-4">
+			<!-- ========================================= -->
 
-						<combobox width="100%"
-							onChange="@command('refrecarListaMyObject')"
-							model="@load(vm.utilDto.tiposObjectos)"
-							value="@bind(vm.selectedTipoMyObject.descripcion)"
-							autocomplete="true" buttonVisible="true" autodrop="true"
-							readonly="false" selectedItem="@bind(vm.selectedTipoMyObject)">
-							<template name="model">
-								<comboitem
-									label="@load(each.descripcion)" width="100%">
-								</comboitem>
-							</template>
-						</combobox>
-					</h:div>
-					<label value="(*)" style="color:red"></label>
-				</h:div>
-
-			</h:div>
-		</h:div>
-		<!-- ==================================================== -->
-
-		<div zclass="row" height="30px"></div>
-		<!-- ==================================================== -->
-
-		<h:div class="row">
-			<h:div class="col-xs-12 col-md-6">
-				<h:h3>
-					<label
-						value="@load(vm.selectedTipoMyObject.descripcion)" />
-				</h:h3>
-			</h:div>
-		</h:div>
-
-		<!-- ==================================================== -->
-
-
-		<h:div class="row">
-
-			<!-- = izq =================================================== -->
-
-
-			<h:div class="col-xs-12 col-md-4">
-				<listbox id="listaMyObjectsMov" sclass="small-list"
+			<hlayout>
+				<!-- ==IZQ -->
+				<listbox id="listaMyObjectsMov"  width="300px" height="300px"
 					mold="paging" selectedItem="@bind(vm.selectedMyObject)"
-					pageSize="10" model="@load(vm.listaMyObject)" vflex="true"
+					pageSize="10" model="@load(vm.listaMyObject)" 
 					emptyMessage="Sin datos.">
 					<custom-attributes
 						org.zkoss.zul.listbox.autoSort="true" />
@@ -92,52 +69,27 @@
 						</listitem>
 					</template>
 				</listbox>
+				<!-- ==DER -->
+				<vlayout>
+					<label
+						value="@load(vm.selectedTipoMyObject.descripcion)" />
+					<label value=" Dato nuevo: " ></label>
 
-			</h:div>
-
-
-			<!-- = der =================================================== -->
-
-			<h:div class="col-xs-12 col-md-4">
-				<h:div class="row">
-					<h:div class="col-xs-12 col-md-6">
-						<h:h3>
-							<label
-								value="@load(vm.selectedTipoMyObject.descripcion)" />
-						</h:h3>
-					</h:div>
-				</h:div>
+					<textbox width="200px"
+						value="@bind(vm.nvoMyObject.strCampo1)">
+					</textbox>
+					<button label="Agregar" zclass="btn btn-info"
+						onClick="@command('agregarMyObject')" />
 
 
-				<h:div class="row">
-					<h:div
-						class="col-xs-5 col-md-9 form-group text-left">
-						<hlayout>
-						<label value=" Dato nuevo: " width="100%"></label>
-						
-						<textbox width="100%"
-							value="@bind(vm.nvoMyObject.strCampo1)">
-						</textbox>
-						</hlayout>
-					</h:div>
-				</h:div>
-				<h:div class="row">
-					<h:div class="col-xs-5 col-md-9 text-center">
+				</vlayout>
+			</hlayout>
 
-						<button label="Agregar" zclass="btn btn-info"
-							onClick="@command('agregarMyObject')">
-						</button>
-					</h:div>
-				</h:div>
+			<!-- ========================================= -->
 
+		</vlayout>
 
-
-			</h:div>
-
-		</h:div>
-
-		<!-- ==================================================== -->
-
+		<!-- ===FIN====================================== -->
 
 
 

@@ -1,8 +1,10 @@
 package com.bascula.gestion;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.BindingParam;
@@ -10,11 +12,15 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ExecutionArgParam;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zul.Window;
 
 import com.bascula.Configuracion;
 import com.bascula.GenericViewModelApp;
+import com.bascula.ID;
 import com.bascula.domain.MovimientoDetalle;
 import com.bascula.domain.MovimientoEntradaSalida;
+import com.bascula.domain.MyObject;
 import com.bascula.domain.RegisterDomain;
 import com.bascula.gestion.reportes.ReporteListaMovimientoEntradaSalida;
 import com.bascula.leerPeso.BasculaPeso;
@@ -193,6 +199,20 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	}
 
 	@Command
+	@NotifyChange({ "origenLugares", "destinoLugares", "chapas", "chapasCarretas", "choferes", "transportadoras",
+			"despachantes", "productos" })
+	public void datoNuevo() throws Exception {
+		Map args = new HashMap();
+		args.put("vmMov", this);
+		Window w = (Window) Executions.createComponents(ID.ZUL_MY_OBJECT_POPUP, null, args);
+		w.setPosition("center");
+		w.doModal();
+
+		// "origenLugares","destinoLugares","chapas","chapasCarretas","choferes","transportadoras","despachantes","productos"
+
+	}
+
+	@Command
 	@NotifyChange("movimiento")
 	public void calcularNeto() {
 		this.movimiento.setNeto(this.movimiento.getBruto() - this.movimiento.getTara());
@@ -204,4 +224,39 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	public void calcularDiferencia() {
 		this.movimiento.setDiferencia(this.movimiento.getOrigen() - this.movimiento.getNeto());
 	}
+
+	// =====================================
+
+	public List<MyObject> getOrigenLugares() throws Exception {
+		return this.rr.getOrigenLugares();
+	}
+
+	public List<MyObject> getDestinoLugares() throws Exception {
+		return this.rr.getDestinoLugares();
+	}
+
+	public List<MyObject> getChapas() throws Exception {
+		return this.rr.getChapas();
+	}
+
+	public List<MyObject> getChapasCarretas() throws Exception {
+		return this.rr.getChapasCarretas();
+	}
+
+	public List<MyObject> getChoferes() throws Exception {
+		return this.rr.getChoferes();
+	}
+
+	public List<MyObject> getTransportadoras() throws Exception {
+		return this.rr.getTransportadoras();
+	}
+
+	public List<MyObject> getDespachantes() throws Exception {
+		return this.rr.getDespachantes();
+	}
+
+	public List<MyObject> getProductos() throws Exception {
+		return this.rr.getProductos();
+	}
+
 }

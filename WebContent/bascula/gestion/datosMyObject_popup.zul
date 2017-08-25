@@ -1,0 +1,10 @@
+<window id="windowDatosMyObjectPopUp" border="none"
+	apply="org.zkoss.bind.BindComposer" sizable="true" closable="true"
+	maximizable="true" title="Datos" onClose="" width="600px"
+	height="500px">
+	<zk xmlns:h="http://www.w3.org/1999/xhtml">
+
+		<include src="/bascula/gestion/datosMyObject.zul" />
+
+	</zk>
+</window>

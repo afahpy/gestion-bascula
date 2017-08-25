@@ -84,6 +84,7 @@
 								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_bruto'))"
 								value="@bind(vm.movimiento.bruto)">
 							</doublebox>
+							<label value="kg" />
 							<button width="100%" label="Peso"
 								visible="@load(vm.isCampoEditable('editar_boton_movimiento_bruto'))"
 								zclass="btn btn-info"
@@ -104,6 +105,7 @@
 								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_tara'))"
 								value="@bind(vm.movimiento.tara)">
 							</doublebox>
+							<label value="kg" />
 							<button width="100%" label="Peso"
 								visible="@load(vm.isCampoEditable('editar_boton_movimiento_tara'))"
 								zclass="btn btn-info"
@@ -125,6 +127,7 @@
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_neto'))"
 							value="@bind(vm.movimiento.neto)">
 						</doublebox>
+						<label value="kg" />
 					</h:div>
 				</h:div>
 
@@ -138,6 +141,7 @@
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_origen'))"
 							value="@bind(vm.movimiento.origen)">
 						</doublebox>
+						<label value="kg" />
 					</h:div>
 				</h:div>
 
@@ -151,6 +155,7 @@
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_diferencia'))"
 							value="@bind(vm.movimiento.diferencia)">
 						</doublebox>
+						<label value="kg" />
 					</h:div>
 				</h:div>
 
@@ -162,7 +167,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%"
-							model="@load(vm.rr.origenLugares)"
+							model="@load(vm.origenLugares)"
 							value="@load(vm.movimiento.origenLugar.strCampo1)"
 							autocomplete="true" autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_origenlugar'))"
@@ -185,7 +190,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%"
-							model="@load(vm.rr.destinoLugares)"
+							model="@load(vm.destinoLugares)"
 							value="@load(vm.movimiento.destinoLugar.strCampo1)"
 							autocomplete="true" autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_destinolugar'))"
@@ -234,8 +239,7 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 
-						<combobox width="100%"
-							model="@load(vm.rr.chapas)"
+						<combobox width="100%" model="@load(vm.chapas)"
 							value="@load(vm.movimiento.chapa.strCampo1)" autocomplete="true"
 							autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_chapa'))"
@@ -258,7 +262,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%"
-							model="@load(vm.rr.chapasCarretas)"
+							model="@load(vm.chapasCarretas)"
 							value="@load(vm.movimiento.chapaCarreta.strCampo1)"
 							autocomplete="true" autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_capacarreta'))"
@@ -281,7 +285,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%"
-							model="@load(vm.rr.choferes)"
+							model="@load(vm.choferes)"
 							value="@load(vm.movimiento.chofer.strCampo1)" autocomplete="true"
 							autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_chofer'))"
@@ -304,7 +308,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%"
-							model="@load(vm.rr.transportadoras)"
+							model="@load(vm.transportadoras)"
 							value="@load(vm.movimiento.transportadora.strCampo1)"
 							autocomplete="true" autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_transportadora'))"
@@ -340,7 +344,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%"
-							model="@load(vm.rr.despachantes)"
+							model="@load(vm.despachantes)"
 							value="@load(vm.movimiento.despachante.strCampo1)"
 							autocomplete="true" autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_despachante'))"
@@ -358,10 +362,14 @@
 
 
 			<h:div class="col-xs-12 col-md-6">
+				<hlayout>
 
-				<button label="Reporte" zclass="btn btn-info"
-					onClick="@command('verReporte')" />
+					<button label="Dato nuevo" zclass="btn btn-info"
+						onClick="@command('datoNuevo')" />
 
+					<button label="Reporte" zclass="btn btn-info"
+						onClick="@command('verReporte')" />
+				</hlayout>
 				<div zclass="row" height="10px"></div>
 
 				<include src="/bascula/leerPeso/leerPeso.zul" />
@@ -403,7 +411,7 @@
 							<listcell />
 							<listcell>
 								<combobox width="100%"
-									model="@load(vm.rr.productos)"
+									model="@load(vm.productos)"
 									value="@load(each.mercaderia.strCampo1)" autocomplete="true"
 									autodrop="true" selectedItem="@bind(each.mercaderia)"
 									readonly="@load(!vm.isCampoEditable('editar_campo_detalles'))"

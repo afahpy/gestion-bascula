@@ -27,7 +27,7 @@ public class HibernateUtil {
 	// private Session session;
 
 	private static void cargaPropiedades(Configuration conf) throws Exception {
-		String file = "/data_source.properties";
+		String file = "./data_source.properties";
 		try {
 			InputStream in = new String().getClass().getResourceAsStream(file);
 

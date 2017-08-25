@@ -1660,6 +1660,22 @@ public class Misc {
 		return "no valido";
 	}
 
+	
+	/**
+	 * Controla que si el atributo es nulo, retorna un string en blanco
+	 * @param o
+	 * @param campo
+	 * @return
+	 */
+	public String getString(Object obj, String att){
+		String out = "";
+		try {
+			out = (this.getValue(obj, att)).toString();
+		} catch (Exception e) {
+		}
+		return out;
+	}
+	
 }
 
 class A {
