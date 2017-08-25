@@ -1,14 +1,20 @@
 package com.bascula.gestion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.bascula.domain.MovimientoEntradaSalida;
 import com.coreweb.extras.reporte.ReporteDefinicion;
 import com.coreweb.util.Misc;
 
-public class FiltroMovimiento {
+public class FiltroMovimiento implements Serializable{
 
-	Misc m = new Misc();
+	static String DATE = "fecha";
+	static String NUMERO = "numero";
+	static String OTRO = "otro";
+
+	transient Misc m = new Misc();
 
 	boolean tipoMovimiento = true;
 	boolean fechaLlegada = true;
@@ -30,45 +36,37 @@ public class FiltroMovimiento {
 	boolean despachante = true;
 	boolean detalles = true;
 
-	String[][] datosCols = { { "tipoMovimiento", "Tipo Movimiento", ReporteDefinicion.WIDTH + "65" },
-			{ "fechaLlegada", "Fecha Llegada", ReporteDefinicion.WIDTH + "65" },
-			{ "fechaSalida", "Fecha Salida", ReporteDefinicion.WIDTH + "65" },
-			{ "origenLugar", "Origen Lugar", ReporteDefinicion.WIDTH + "65" },
-			{ "destinoLugar", "Oestino Lugar", ReporteDefinicion.WIDTH + "65" },
-			{ "remito", "Remito", ReporteDefinicion.WIDTH + "65" },
-			{ "remision", "Remisión", ReporteDefinicion.WIDTH + "65" },
-			{ "chofer", "Chofer", ReporteDefinicion.WIDTH + "65" },
-			{ "transportadora", "Transportadora", ReporteDefinicion.WIDTH + "65" },
-			{ "chapa", "Chapa", ReporteDefinicion.WIDTH + "65" },
-			{ "chapaCarreta", "Chapa Carreta", ReporteDefinicion.WIDTH + "65" },
-			{ "bruto", "Bruto", ReporteDefinicion.WIDTH + "65" }, { "tara", "Tara", ReporteDefinicion.WIDTH + "65" },
-			{ "neto", "Neto", ReporteDefinicion.WIDTH + "65" }, { "origen", "Origen", ReporteDefinicion.WIDTH + "65" },
-			{ "diferencia", "Diferencia", ReporteDefinicion.WIDTH + "65" },
-			{ "despacho", "Despacho", ReporteDefinicion.WIDTH + "65" },
-			{ "despachante", "Despachante", ReporteDefinicion.WIDTH + "65" },
-			{ "detalles", "Detalles", ReporteDefinicion.WIDTH + "65" },
+	static String[][] datosCols = { 
+			{ "tipoMovimiento", "E/S", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "fechaLlegada", "Llegada", ReporteDefinicion.WIDTH + "65", DATE },
+			{ "fechaSalida", "Salida", ReporteDefinicion.WIDTH + "65", DATE },
+			{ "origenLugar", "Origen", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "destinoLugar", "Oestino", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "remito", "Remito", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "remision", "Remisión", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "chofer", "Chofer", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "transportadora", "Transp.", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "chapa", "Chapa", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "chapaCarreta", "Carreta", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "bruto", "Bruto", ReporteDefinicion.WIDTH + "65", NUMERO },
+			{ "tara", "Tara", ReporteDefinicion.WIDTH + "65", NUMERO },
+			{ "neto", "Neto", ReporteDefinicion.WIDTH + "65", NUMERO },
+			{ "origen", "Origen", ReporteDefinicion.WIDTH + "65", NUMERO },
+			{ "diferencia", "Dif.", ReporteDefinicion.WIDTH + "65", NUMERO },
+			{ "despacho", "Despacho", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "despachante", "Despachante", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ "detalles", "Detalles", ReporteDefinicion.WIDTH + "65", OTRO },
 
 	};
 
-	/**
-	 * las posiciones dónde se hizo clic
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	private ArrayList<Integer> getPosiciones() throws Exception {
-		ArrayList<Integer> lp = new ArrayList<>();
-
-		for (int i = 0; i < datosCols.length; i++) {
-			String nCol = datosCols[i][0];
-			boolean b = (boolean) this.m.getValue(this, nCol);
-			if (b == true) {
-				lp.add(i);
-			}
+	
+	private Misc getM(){
+		if (this.m == null){
+			this.m = new Misc();
 		}
-		return lp;
+		return this.m;
 	}
-
+	
 	/**
 	 * Las columnas de la tabla
 	 * 
@@ -81,7 +79,7 @@ public class FiltroMovimiento {
 
 		for (int i = 0; i < datosCols.length; i++) {
 			String nCol = datosCols[i][0];
-			boolean b = (boolean) this.m.getValue(this, nCol);
+			boolean b = (boolean) this.getM().getValue(this, nCol);
 			if (b == true) {
 				String[] c = { datosCols[i][1], datosCols[i][2] };
 				lis.add(c);
@@ -108,13 +106,33 @@ public class FiltroMovimiento {
 
 		for (int i = 0; i < datosCols.length; i++) {
 			String nCol = datosCols[i][0];
-			boolean b = (boolean) this.m.getValue(this, nCol);
+			boolean b = (boolean) this.getM().getValue(this, nCol);
 			if (b == true) {
-				lis.add(this.m.getValue(mov, nCol));
+				Object valor = this.getM().getValue(mov, nCol);
+				String vStr = this.getFormato(datosCols[i][3], valor);
+				lis.add(vStr);
 			}
 		}
 		out = lis.toArray();
 		return out;
+	}
+
+	private String getFormato(String ff, Object dato) {
+		String out = "";
+		try {
+			if (ff.compareTo(DATE) == 0) {
+				out = this.getM().dateToString((Date) dato, "MMM dd");
+			} else if (ff.compareTo(NUMERO) == 0) {
+				out = this.getM().formatoGs((double) dato);
+			} else {
+				// otro
+				out = dato.toString();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return out;
+
 	}
 
 	// =====================================

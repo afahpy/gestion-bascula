@@ -13,6 +13,15 @@ public class MyObject extends Domain {
 	private String strCampo2 = "";
 	private String strCampo2Alias = "";
 
+	public String toString(){
+		String out = strCampo1;
+		if (strCampo1 == null){
+			out = "";
+		}
+		return out;
+	}
+	
+	
 	public Tipo getTipoObjeto() {
 		return tipoObjeto;
 	}
