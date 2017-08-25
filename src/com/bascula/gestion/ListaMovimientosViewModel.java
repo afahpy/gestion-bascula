@@ -25,6 +25,18 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	private List<MovimientoEntradaSalida> movimientos = new ArrayList<MovimientoEntradaSalida>();
 	private List<MovimientoEntradaSalida> selectedMovimientos = new ArrayList<MovimientoEntradaSalida>();
 
+	private String filTipoMovimiento = "";
+	private String filLugarOrigen = "";
+	private String filLugarDestino = "";
+	private String filRemito = "";
+	private String filRemision = "";
+	private String filChapa = "";
+	private String filChapaCarreta = "";
+	private String filChofer = "";
+	private String filTransportadora = "";
+	private String filDespacho = "";
+	private String filDespachante = "";
+
 	@Init(superclass = true)
 	public void initMovimientosViewModel() throws Exception {
 		movimientos = rr.getMovimientos();
@@ -57,7 +69,7 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 
 	@Command
 	public void verMovimiento(@BindingParam("movimiento") MovimientoEntradaSalida movimiento) {
-		
+
 		Hashtable<String, Object> params = new Hashtable<String, Object>();
 		params.put("movimiento", movimiento);
 		params.put("modoFormulario", Configuracion.MODO_FORMULARIO_VISTA);
@@ -120,19 +132,118 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	@Command
 	@NotifyChange("*")
 	public void limpiarFiltros() {
-		this.movimientos = new ArrayList<MovimientoEntradaSalida>();
+		
+		this.filTipoMovimiento = "";
+		this.filLugarOrigen = "";
+		this.filLugarDestino = "";
+		this.filRemito = "";
+		this.filRemision = "";
+		this.filChapa = "";
+		this.filChapaCarreta = "";
+		this.filChofer = "";
+		this.filTransportadora = "";
+		this.filDespacho = "";
+		this.filDespachante = "";
+
 	}
 
 	@Command
 	@NotifyChange("*")
 	public void reporteMovimiento() throws Exception {
 
-		
 		Map args = new HashMap();
 		args.put("vmMov", this);
 		Window w = (Window) Executions.createComponents(ID.ZUL_FILTRO_MOVIMIENTOS, null, args);
 		w.setPosition("center");
 		w.doModal();
+	}
+
+	public String getFilTipoMovimiento() {
+		return filTipoMovimiento;
+	}
+
+	public void setFilTipoMovimiento(String filTipoMovimiento) {
+		this.filTipoMovimiento = filTipoMovimiento;
+	}
+
+	public String getFilLugarOrigen() {
+		return filLugarOrigen;
+	}
+
+	public void setFilLugarOrigen(String filLugarOrigen) {
+		this.filLugarOrigen = filLugarOrigen;
+	}
+
+	public String getFilLugarDestino() {
+		return filLugarDestino;
+	}
+
+	public void setFilLugarDestino(String filLugarDestino) {
+		this.filLugarDestino = filLugarDestino;
+	}
+
+	public String getFilRemito() {
+		return filRemito;
+	}
+
+	public void setFilRemito(String filRemito) {
+		this.filRemito = filRemito;
+	}
+
+	public String getFilRemision() {
+		return filRemision;
+	}
+
+	public void setFilRemision(String filRemision) {
+		this.filRemision = filRemision;
+	}
+
+	public String getFilChapa() {
+		return filChapa;
+	}
+
+	public void setFilChapa(String filChapa) {
+		this.filChapa = filChapa;
+	}
+
+	public String getFilChapaCarreta() {
+		return filChapaCarreta;
+	}
+
+	public void setFilChapaCarreta(String filChapaCarreta) {
+		this.filChapaCarreta = filChapaCarreta;
+	}
+
+	public String getFilChofer() {
+		return filChofer;
+	}
+
+	public void setFilChofer(String filChofer) {
+		this.filChofer = filChofer;
+	}
+
+	public String getFilTransportadora() {
+		return filTransportadora;
+	}
+
+	public void setFilTransportadora(String filTransportadora) {
+		this.filTransportadora = filTransportadora;
+	}
+
+	public String getFilDespacho() {
+		return filDespacho;
+	}
+
+	public void setFilDespacho(String filDespacho) {
+		this.filDespacho = filDespacho;
+	}
+
+	public String getFilDespachante() {
+		return filDespachante;
+	}
+
+	public void setFilDespachante(String filDespachante) {
+		this.filDespachante = filDespachante;
 	}
 
 }
