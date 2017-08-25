@@ -37,7 +37,7 @@ public class MovimientoEntradaSalida extends Domain {
 		String out = "";
 		for (MovimientoDetalle det : detalles) {
 			String sc = m.formatoGs(det.getNumeroBolsa(), 7, false);
-			out += sc + "  " + m.getString(det.getMercaderia(), "strCampo1") + "\n";
+			out += sc + "  " +  m.getString(det.getMercaderia(), "strCampo1")  + "\n";
 		}
 		return out;
 	}

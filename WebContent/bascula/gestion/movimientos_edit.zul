@@ -79,11 +79,11 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<hlayout>
-							<doublebox
+							<guaranibox
 								onChange="@command('calcularNeto')"
 								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_bruto'))"
 								value="@bind(vm.movimiento.bruto)">
-							</doublebox>
+							</guaranibox>
 							<label value="kg" />
 							<button width="100%" label="Peso"
 								visible="@load(vm.isCampoEditable('editar_boton_movimiento_bruto'))"
@@ -100,11 +100,11 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<hlayout>
-							<doublebox
+							<guaranibox
 								onChange="@command('calcularNeto')"
 								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_tara'))"
 								value="@bind(vm.movimiento.tara)">
-							</doublebox>
+							</guaranibox>
 							<label value="kg" />
 							<button width="100%" label="Peso"
 								visible="@load(vm.isCampoEditable('editar_boton_movimiento_tara'))"
@@ -122,11 +122,10 @@
 						<label value=" Neto: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox tooltiptext="Bruto - Tara"
-							onChange="@command('calcularDiferencia')"
-							readonly="true"
+						<guaranibox tooltiptext="Bruto - Tara"
+							onChange="@command('calcularDiferencia')" readonly="true"
 							value="@bind(vm.movimiento.neto)">
-						</doublebox>
+						</guaranibox>
 						<label value="kg" />
 					</h:div>
 				</h:div>
@@ -137,10 +136,10 @@
 						<label value=" Origen: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox onChange="@command('calcularNeto')"
+						<guaranibox onChange="@command('calcularNeto')"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_origen'))"
 							value="@bind(vm.movimiento.origen)">
-						</doublebox>
+						</guaranibox>
 						<label value="kg" />
 					</h:div>
 				</h:div>
@@ -151,10 +150,9 @@
 						<label value=" Diferencia: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox tooltiptext="Diferencia - Neto"
-							readonly="true"
-							value="@bind(vm.movimiento.diferencia)">
-						</doublebox>
+						<guaranibox tooltiptext="Diferencia - Neto"
+							readonly="true" value="@bind(vm.movimiento.diferencia)">
+						</guaranibox>
 						<label value="kg" />
 					</h:div>
 				</h:div>
@@ -426,7 +424,7 @@
 
 
 							<listcell>
-								<intbox width="100%"
+								<guaranibox width="100%"
 									readonly="@load(!vm.isCampoEditable('editar_campo_detalles'))"
 									value="@bind(each.numeroBolsa)"
 									tooltiptext="@load(each.numeroBolsa)" />
