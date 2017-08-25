@@ -80,7 +80,7 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 			out = (FiltroMovimiento) this.m.deSerializar(ff);
 			entrada.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("No pudo leer: " + e.getMessage());
 			out = new FiltroMovimiento();
 		}
 		return out;
