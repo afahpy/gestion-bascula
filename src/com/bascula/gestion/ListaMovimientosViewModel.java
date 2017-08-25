@@ -1,6 +1,7 @@
 package com.bascula.gestion;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -25,7 +26,7 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	private List<MovimientoEntradaSalida> movimientos = new ArrayList<MovimientoEntradaSalida>();
 	private List<MovimientoEntradaSalida> selectedMovimientos = new ArrayList<MovimientoEntradaSalida>();
 
-	private String filTipoMovimiento = "";
+	private String filTipoMovimiento = "";//
 	private String filLugarOrigen = "";
 	private String filLugarDestino = "";
 	private String filRemito = "";
@@ -37,9 +38,19 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	private String filDespacho = "";
 	private String filDespachante = "";
 
+	private Date filtroFechaLlegadaDesde = null;
+	private Date filtroFechaLlegadaHasta = null;
+
+	private Date filtroFechaSalidaDesde = null;
+	private Date filtroFechaSalidaHasta = null;
+
 	@Init(superclass = true)
 	public void initMovimientosViewModel() throws Exception {
-		movimientos = rr.getMovimientos();
+
+		this.movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
+				this.filRemito, this.filRemision, this.filChapa, this.filChapaCarreta, this.filChofer,
+				this.filTransportadora, this.filDespacho, this.filDespachante, this.filtroFechaLlegadaDesde,
+				this.filtroFechaLlegadaHasta, this.filtroFechaSalidaDesde, this.filtroFechaSalidaHasta);
 	}
 
 	@AfterCompose(superclass = true)
@@ -119,20 +130,23 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	}
 
 	@Command
-	@NotifyChange("deudas")
+	@NotifyChange("movimientos")
 	public void filtrar() throws Exception {
 
 		RegisterDomain rr = RegisterDomain.getInstance();
 		List<MovimientoEntradaSalida> movimientos = new ArrayList<MovimientoEntradaSalida>();
-		movimientos = rr.getMovimientos();
+		movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
+				this.filRemito, this.filRemision, this.filChapa, this.filChapaCarreta, this.filChofer,
+				this.filTransportadora, this.filDespacho, this.filDespachante, this.filtroFechaLlegadaDesde,
+				this.filtroFechaLlegadaHasta, this.filtroFechaSalidaDesde, this.filtroFechaSalidaHasta);
 		this.movimientos = movimientos;
 
 	}
 
 	@Command
 	@NotifyChange("*")
-	public void limpiarFiltros() {
-		
+	public void limpiarFiltros() throws Exception {
+
 		this.filTipoMovimiento = "";
 		this.filLugarOrigen = "";
 		this.filLugarDestino = "";
@@ -144,6 +158,15 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 		this.filTransportadora = "";
 		this.filDespacho = "";
 		this.filDespachante = "";
+		this.filtroFechaLlegadaDesde = null;
+		this.filtroFechaLlegadaHasta = null;
+		this.filtroFechaSalidaDesde = null;
+		this.filtroFechaSalidaHasta = null;
+
+		this.movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
+				this.filRemito, this.filRemision, this.filChapa, this.filChapaCarreta, this.filChofer,
+				this.filTransportadora, this.filDespacho, this.filDespachante, this.filtroFechaLlegadaDesde,
+				this.filtroFechaLlegadaHasta, this.filtroFechaSalidaDesde, this.filtroFechaSalidaHasta);
 
 	}
 
@@ -244,6 +267,38 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 
 	public void setFilDespachante(String filDespachante) {
 		this.filDespachante = filDespachante;
+	}
+
+	public Date getFiltroFechaLlegadaDesde() {
+		return filtroFechaLlegadaDesde;
+	}
+
+	public void setFiltroFechaLlegadaDesde(Date filtroFechaLlegadaDesde) {
+		this.filtroFechaLlegadaDesde = filtroFechaLlegadaDesde;
+	}
+
+	public Date getFiltroFechaLlegadaHasta() {
+		return filtroFechaLlegadaHasta;
+	}
+
+	public void setFiltroFechaLlegadaHasta(Date filtroFechaLlegadaHasta) {
+		this.filtroFechaLlegadaHasta = filtroFechaLlegadaHasta;
+	}
+
+	public Date getFiltroFechaSalidaDesde() {
+		return filtroFechaSalidaDesde;
+	}
+
+	public void setFiltroFechaSalidaDesde(Date filtroFechaSalidaDesde) {
+		this.filtroFechaSalidaDesde = filtroFechaSalidaDesde;
+	}
+
+	public Date getFiltroFechaSalidaHasta() {
+		return filtroFechaSalidaHasta;
+	}
+
+	public void setFiltroFechaSalidaHasta(Date filtroFechaSalidaHasta) {
+		this.filtroFechaSalidaHasta = filtroFechaSalidaHasta;
 	}
 
 }

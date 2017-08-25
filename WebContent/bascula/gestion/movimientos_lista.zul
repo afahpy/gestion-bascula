@@ -134,15 +134,66 @@
 
 						<auxheader>
 							<textbox value="@bind(vm.filTipoMovimiento)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 
-						<auxheader></auxheader>
+						<auxheader>
+
+							<bandbox id="bd" mold="rounded" hflex="1"
+								autodrop="true" readonly="true">
+
+								<bandpopup>
+									<vlayout>
+										<hlayout>
+											<label value="Desde"></label>
+											<datebox
+												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												value="@bind(vm.filtroFechaLlegadaDesde)">
+											</datebox>
+										</hlayout>
+										<hlayout>
+											<label value="Hasta"></label>
+
+											<datebox
+												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												value="@bind(vm.filtroFechaLlegadaHasta)">
+											</datebox>
+										</hlayout>
+									</vlayout>
+								</bandpopup>
+							</bandbox>
+						</auxheader>
 
 
-						<auxheader></auxheader>
+						<auxheader>
+
+							<bandbox id="bd2" mold="rounded" hflex="1"
+								autodrop="true" readonly="true">
+
+								<bandpopup>
+									<vlayout>
+										<hlayout>
+											<label value="Desde"></label>
+											<datebox
+												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												value="@bind(vm.filtroFechaSalidaDesde)">
+											</datebox>
+										</hlayout>
+										<hlayout>
+											<label value="Hasta"></label>
+
+											<datebox
+												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												value="@bind(vm.filtroFechaSalidaHasta)">
+											</datebox>
+										</hlayout>
+									</vlayout>
+								</bandpopup>
+							</bandbox>
+
+						</auxheader>
 
 						<auxheader></auxheader>
 
@@ -155,62 +206,62 @@
 						<auxheader></auxheader>
 
 						<auxheader>
-							<textbox value="@bind(vm.filLugarOrigen)"
-								hflex="1">
+							<textbox onOK="@command('filtrar')"
+								value="@bind(vm.filLugarOrigen)" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filLugarDestino)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filRemito)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filRemision)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filChapa)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filChapaCarreta)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filChofer)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filTransportadora)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filDespacho)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
 						<auxheader>
 							<textbox value="@bind(vm.filDespachante)"
-								hflex="1">
+								onOK="@command('filtrar')" hflex="1">
 							</textbox>
 						</auxheader>
 
