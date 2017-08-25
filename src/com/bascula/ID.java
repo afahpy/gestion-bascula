@@ -17,5 +17,8 @@ public class ID extends IDCore{
 	
 	// zul files
 	public static final String ZUL_FILTRO_MOVIMIENTOS = "/bascula/gestion/movimientos_lista_reporte.zul";
+	public static final String ZUL_MY_OBJECT_POPUP = "/bascula/gestion/datosMyObject_popup.zul";
+	
+	
 	
 }

@@ -20,6 +20,7 @@ import com.bascula.util.population.DBPopulationDatos;
 import com.bascula.util.population.DBPopulationTipos;
 
 public class DBPopulation {
+	
 
 	private static RegisterDomain rr = RegisterDomain.getInstance();
 	private static Misc m = new Misc();

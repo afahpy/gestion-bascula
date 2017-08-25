@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.coreweb.domain.Domain;
 import com.coreweb.domain.Tipo;
+import com.coreweb.util.Misc;
 
 public class MovimientoEntradaSalida extends Domain {
 
@@ -30,6 +31,16 @@ public class MovimientoEntradaSalida extends Domain {
 	private String despacho = "";
 	private MyObject despachante;
 	private Set<MovimientoDetalle> detalles = new HashSet<MovimientoDetalle>();
+
+	public String getDetallesString() {
+		Misc m = new Misc();
+		String out = "";
+		for (MovimientoDetalle det : detalles) {
+			String sc = m.formatoGs(det.getNumeroBolsa(), 7, false);
+			out += sc + "  " + det.getMercaderia().getStrCampo1() + "\n";
+		}
+		return out;
+	}
 
 	public Tipo getTipoMovimiento() {
 		return tipoMovimiento;

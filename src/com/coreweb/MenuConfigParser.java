@@ -44,7 +44,7 @@ public class MenuConfigParser {
 		// borrar los usuarios y los PermisosEditar, 0j0, que pasa con las
 		// relaciones a la clase Usuario que puede haber desde el dominio de la
 		// app??
-		this.deleteDatos();
+//		this.deleteDatos();
 
 		// parser usuarios
 		this.parserUsuarios();
@@ -59,6 +59,17 @@ public class MenuConfigParser {
 
 	private void deleteDatos() throws Exception {
 		Register rr = Register.getInstance();
+		
+		String[] dels = {"usuario","usuario_permisoeditar","permisoeditar"};
+		for (int i = 0; i < dels.length; i++) {
+			String delSql = "DROP TABLE IF EXISTS "+dels[i]+" ";
+			try {
+				rr.sql2(delSql+"CASCADE");
+			} catch (Exception e) {
+				rr.sql2(delSql);
+			}
+		}
+		/*
 		String delTablas = "DROP TABLE IF EXISTS " +
 				"usuario, " +
 				"usuario_permisoeditar, " +
@@ -66,6 +77,7 @@ public class MenuConfigParser {
 				"CASCADE";
 
 		rr.sql2(delTablas);
+		*/
 		rr.resetTables();
 
 	}
