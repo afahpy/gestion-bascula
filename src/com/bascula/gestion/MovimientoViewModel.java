@@ -129,7 +129,7 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		if (campo.compareTo(CAMPO_BRUTO) == 0) {
 			this.movimiento.setBruto(this.peso.getPeso());
 		} else if (campo.compareTo(CAMPO_TARA) == 0) {
-			this.movimiento.setNeto(this.peso.getPeso());
+			this.movimiento.setTara(this.peso.getPeso());
 
 		}
 

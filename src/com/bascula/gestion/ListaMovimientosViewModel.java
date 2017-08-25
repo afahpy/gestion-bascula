@@ -57,8 +57,9 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 
 	@Command
 	public void verMovimiento(@BindingParam("movimiento") MovimientoEntradaSalida movimiento) {
+		
 		Hashtable<String, Object> params = new Hashtable<String, Object>();
-		params.put("deuda", movimiento);
+		params.put("movimiento", movimiento);
 		params.put("modoFormulario", Configuracion.MODO_FORMULARIO_VISTA);
 		this.saltoDePagina(Configuracion.URL_MOVIMIENTO_EDIT, params);
 
