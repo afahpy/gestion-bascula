@@ -80,6 +80,7 @@
 					<h:div class="col-xs-7 col-md-4">
 						<hlayout>
 							<doublebox
+								onChange="@command('calcularNeto')"
 								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_bruto'))"
 								value="@bind(vm.movimiento.bruto)">
 							</doublebox>
@@ -99,6 +100,7 @@
 					<h:div class="col-xs-7 col-md-4">
 						<hlayout>
 							<doublebox
+								onChange="@command('calcularNeto')"
 								readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_tara'))"
 								value="@bind(vm.movimiento.tara)">
 							</doublebox>
@@ -118,7 +120,8 @@
 						<label value=" Neto: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox
+						<doublebox tooltiptext="Bruto - Tara"
+							onChange="@command('calcularDiferencia')"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_neto'))"
 							value="@bind(vm.movimiento.neto)">
 						</doublebox>
@@ -131,7 +134,7 @@
 						<label value=" Origen: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox
+						<doublebox onChange="@command('calcularNeto')"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_origen'))"
 							value="@bind(vm.movimiento.origen)">
 						</doublebox>
@@ -144,7 +147,7 @@
 						<label value=" Diferencia: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<doublebox
+						<doublebox tooltiptext="Diferencia - Neto"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_diferencia'))"
 							value="@bind(vm.movimiento.diferencia)">
 						</doublebox>

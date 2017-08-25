@@ -128,8 +128,10 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 		if (campo.compareTo(CAMPO_BRUTO) == 0) {
 			this.movimiento.setBruto(this.peso.getPeso());
+			this.calcularNeto();
 		} else if (campo.compareTo(CAMPO_TARA) == 0) {
 			this.movimiento.setTara(this.peso.getPeso());
+			this.calcularNeto();
 
 		}
 
@@ -188,5 +190,18 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		ViewPdf vp = new ViewPdf();
 		vp.showReporte(reporte, this);
 
+	}
+
+	@Command
+	@NotifyChange("movimiento")
+	public void calcularNeto() {
+		this.movimiento.setNeto(this.movimiento.getBruto() - this.movimiento.getTara());
+		this.calcularDiferencia();
+	}
+
+	@Command
+	@NotifyChange("movimiento")
+	public void calcularDiferencia() {
+		this.movimiento.setDiferencia(this.movimiento.getOrigen() - this.movimiento.getNeto());
 	}
 }
