@@ -41,7 +41,7 @@
 			<h:div class="col-xs-12 col-md-1"></h:div>
 			<h:div class="col-xs-12 col-md-1">
 				<hlayout>
-					<button width="100%" label="Reporte" 
+					<button width="100%" label="Reporte"
 						zclass="btn btn-info" onClick="@command('reporteMovimiento')" />
 
 				</hlayout>
@@ -127,6 +127,145 @@
 
 
 					</listhead>
+					<auxhead>
+
+						<auxheader></auxheader>
+
+
+						<auxheader>
+							<textbox value="@bind(vm.filTipoMovimiento)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+
+						<auxheader>
+
+							<bandbox id="bd" mold="rounded" hflex="1"
+								autodrop="true" readonly="true">
+
+								<bandpopup>
+									<vlayout>
+										<hlayout>
+											<label value="Desde"></label>
+											<datebox
+												onOK="@command('filtrar')" 
+												value="@bind(vm.filtroFechaLlegadaDesde)">
+											</datebox>
+										</hlayout>
+										<hlayout>
+											<label value="Hasta"></label>
+
+											<datebox
+												onOK="@command('filtrar')" 
+												value="@bind(vm.filtroFechaLlegadaHasta)">
+											</datebox>
+										</hlayout>
+									</vlayout>
+								</bandpopup>
+							</bandbox>
+						</auxheader>
+
+
+						<auxheader>
+
+							<bandbox id="bd2" mold="rounded" hflex="1"
+								autodrop="true" readonly="true">
+
+								<bandpopup>
+									<vlayout>
+										<hlayout>
+											<label value="Desde"></label>
+											<datebox
+												onOK="@command('filtrar')"
+												value="@bind(vm.filtroFechaSalidaDesde)">
+											</datebox>
+										</hlayout>
+										<hlayout>
+											<label value="Hasta"></label>
+
+											<datebox
+												onOK="@command('filtrar')"
+												value="@bind(vm.filtroFechaSalidaHasta)">
+											</datebox>
+										</hlayout>
+									</vlayout>
+								</bandpopup>
+							</bandbox>
+
+						</auxheader>
+
+						<auxheader></auxheader>
+
+						<auxheader></auxheader>
+
+						<auxheader></auxheader>
+
+						<auxheader></auxheader>
+
+						<auxheader></auxheader>
+
+						<auxheader>
+							<textbox onOK="@command('filtrar')"
+								value="@bind(vm.filLugarOrigen)" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filLugarDestino)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filRemito)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filRemision)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filChapa)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filChapaCarreta)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filChofer)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filTransportadora)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filDespacho)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+						<auxheader>
+							<textbox value="@bind(vm.filDespachante)"
+								onOK="@command('filtrar')" hflex="1">
+							</textbox>
+						</auxheader>
+
+					</auxhead>
 					<template name="model">
 						<listitem>
 							<listcell />

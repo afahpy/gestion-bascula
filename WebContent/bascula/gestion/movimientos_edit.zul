@@ -124,7 +124,7 @@
 					<h:div class="col-xs-7 col-md-4">
 						<doublebox tooltiptext="Bruto - Tara"
 							onChange="@command('calcularDiferencia')"
-							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_neto'))"
+							readonly="true"
 							value="@bind(vm.movimiento.neto)">
 						</doublebox>
 						<label value="kg" />
@@ -152,7 +152,7 @@
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 						<doublebox tooltiptext="Diferencia - Neto"
-							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_diferencia'))"
+							readonly="true"
 							value="@bind(vm.movimiento.diferencia)">
 						</doublebox>
 						<label value="kg" />
