@@ -7,6 +7,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import com.coreweb.IDCore;
 import com.coreweb.util.Misc;
 //import org.hibernate.service.ServiceRegistryBuilder;
 
@@ -27,9 +28,11 @@ public class HibernateUtil {
 	// private Session session;
 
 	private static void cargaPropiedades(Configuration conf) throws Exception {
-		String file = "./data_source.properties";
+		String file = "/data_source.properties";
 		try {
-			InputStream in = new String().getClass().getResourceAsStream(file);
+			
+				
+			InputStream in = new IDCore().getClass().getResourceAsStream(file);
 
 			Properties pro = new Properties();
 			pro.load(in);
@@ -42,6 +45,7 @@ public class HibernateUtil {
 			
 		} catch (Exception e) {
 			System.out.println("\n\n\n Error al leer el archivo de Hibernate "+file+"\n"+e.getMessage()+"\n");
+			e.printStackTrace();
 		}
 	}
 
