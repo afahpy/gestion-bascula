@@ -149,7 +149,7 @@
 										<hlayout>
 											<label value="Desde"></label>
 											<datebox
-												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												onOK="@command('filtrar')" 
 												value="@bind(vm.filtroFechaLlegadaDesde)">
 											</datebox>
 										</hlayout>
@@ -157,7 +157,7 @@
 											<label value="Hasta"></label>
 
 											<datebox
-												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												onOK="@command('filtrar')" 
 												value="@bind(vm.filtroFechaLlegadaHasta)">
 											</datebox>
 										</hlayout>
@@ -177,7 +177,7 @@
 										<hlayout>
 											<label value="Desde"></label>
 											<datebox
-												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												onOK="@command('filtrar')"
 												value="@bind(vm.filtroFechaSalidaDesde)">
 											</datebox>
 										</hlayout>
@@ -185,7 +185,7 @@
 											<label value="Hasta"></label>
 
 											<datebox
-												onOK="@command('filtrar')" onChange="@command('filtrar')"
+												onOK="@command('filtrar')"
 												value="@bind(vm.filtroFechaSalidaHasta)">
 											</datebox>
 										</hlayout>
