@@ -148,16 +148,16 @@
 									<vlayout>
 										<hlayout>
 											<label value="Desde"></label>
-											<datebox
-												onOK="@command('filtrar')" 
+											<datebox format="dd-MM-yyyy"
+												onOK="@command('filtrar')"
 												value="@bind(vm.filtroFechaLlegadaDesde)">
 											</datebox>
 										</hlayout>
 										<hlayout>
 											<label value="Hasta"></label>
 
-											<datebox
-												onOK="@command('filtrar')" 
+											<datebox format="dd-MM-yyyy"
+												onOK="@command('filtrar')"
 												value="@bind(vm.filtroFechaLlegadaHasta)">
 											</datebox>
 										</hlayout>
@@ -176,7 +176,7 @@
 									<vlayout>
 										<hlayout>
 											<label value="Desde"></label>
-											<datebox
+											<datebox format="dd-MM-yyyy"
 												onOK="@command('filtrar')"
 												value="@bind(vm.filtroFechaSalidaDesde)">
 											</datebox>
@@ -184,7 +184,7 @@
 										<hlayout>
 											<label value="Hasta"></label>
 
-											<datebox
+											<datebox format="dd-MM-yyyy"
 												onOK="@command('filtrar')"
 												value="@bind(vm.filtroFechaSalidaHasta)">
 											</datebox>
@@ -289,32 +289,32 @@
 							</listcell>
 
 							<listcell>
-								<intbox readonly="true" inplace="true"
-									width="100%" value="@load(each.bruto)"
+								<guaranibox readonly="true"
+									inplace="true" width="100%" value="@load(each.bruto)"
 									tooltiptext="@load(each.bruto)" />
 							</listcell>
 
 							<listcell>
-								<intbox readonly="true" inplace="true"
-									width="100%" value="@load(each.tara)"
+								<guaranibox readonly="true"
+									inplace="true" width="100%" value="@load(each.tara)"
 									tooltiptext="@load(each.tara)" />
 							</listcell>
 
 							<listcell>
-								<intbox readonly="true" inplace="true"
-									width="100%" value="@load(each.neto)"
+								<guaranibox readonly="true"
+									inplace="true" width="100%" value="@load(each.neto)"
 									tooltiptext="@load(each.neto)" />
 							</listcell>
 
 							<listcell>
-								<intbox readonly="true" inplace="true"
-									width="100%" value="@load(each.origen)"
+								<guaranibox readonly="true"
+									inplace="true" width="100%" value="@load(each.origen)"
 									tooltiptext="@load(each.origen)" />
 							</listcell>
 
 							<listcell>
-								<intbox readonly="true" inplace="true"
-									width="100%" value="@load(each.diferencia)"
+								<guaranibox readonly="true"
+									inplace="true" width="100%" value="@load(each.diferencia)"
 									tooltiptext="@load(each.diferencia)" />
 							</listcell>
 
