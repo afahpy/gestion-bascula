@@ -401,6 +401,50 @@
 							</listcell>
 						</listitem>
 					</template>
+					<listfoot>
+
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter>
+						<label value="Totales:"></label>
+						</listfooter>
+
+						<listfooter>
+							<guaranibox readonly="true" inplace="true"
+								hflex="1" value="@load(vm.movTempSumas.bruto)" />
+						</listfooter>
+						<listfooter>
+							<guaranibox readonly="true" inplace="true"
+								hflex="1" value="@load(vm.movTempSumas.tara)" />
+						</listfooter>
+						<listfooter>
+							<guaranibox readonly="true" inplace="true"
+								hflex="1" value="@load(vm.movTempSumas.neto)" />
+						</listfooter>
+						<listfooter>
+							<guaranibox readonly="true" inplace="true"
+								hflex="1" value="@load(vm.movTempSumas.origen)" />
+						</listfooter>
+						<listfooter>
+							<guaranibox readonly="true" inplace="true"
+								hflex="1" value="@load(vm.movTempSumas.diferencia)" />
+						</listfooter>
+
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+						<listfooter></listfooter>
+
+
+					</listfoot>
 				</listbox>
 
 			</h:div>

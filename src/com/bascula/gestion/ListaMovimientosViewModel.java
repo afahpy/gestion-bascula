@@ -24,6 +24,8 @@ import com.bascula.domain.RegisterDomain;
 public class ListaMovimientosViewModel extends GenericViewModelApp {
 
 	private List<MovimientoEntradaSalida> movimientos = new ArrayList<MovimientoEntradaSalida>();
+	private MovimientoEntradaSalida movTempSumas = new MovimientoEntradaSalida();
+
 	private List<MovimientoEntradaSalida> selectedMovimientos = new ArrayList<MovimientoEntradaSalida>();
 
 	private String filTipoMovimiento = "";//
@@ -47,10 +49,7 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	@Init(superclass = true)
 	public void initMovimientosViewModel() throws Exception {
 
-		this.movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
-				this.filRemito, this.filRemision, this.filChapa, this.filChapaCarreta, this.filChofer,
-				this.filTransportadora, this.filDespacho, this.filDespachante, this.filtroFechaLlegadaDesde,
-				this.filtroFechaLlegadaHasta, this.filtroFechaSalidaDesde, this.filtroFechaSalidaHasta);
+		this.filtrar();
 	}
 
 	@AfterCompose(superclass = true)
@@ -133,13 +132,20 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	@NotifyChange("movimientos")
 	public void filtrar() throws Exception {
 
-		RegisterDomain rr = RegisterDomain.getInstance();
-		List<MovimientoEntradaSalida> movimientos = new ArrayList<MovimientoEntradaSalida>();
-		movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
+		this.movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
 				this.filRemito, this.filRemision, this.filChapa, this.filChapaCarreta, this.filChofer,
 				this.filTransportadora, this.filDespacho, this.filDespachante, this.filtroFechaLlegadaDesde,
 				this.filtroFechaLlegadaHasta, this.filtroFechaSalidaDesde, this.filtroFechaSalidaHasta);
-		this.movimientos = movimientos;
+
+		this.movTempSumas = new MovimientoEntradaSalida();
+
+		for (MovimientoEntradaSalida mov : movimientos) {
+			this.movTempSumas.setBruto(this.movTempSumas.getBruto() + mov.getBruto());
+			this.movTempSumas.setTara(this.movTempSumas.getTara() + mov.getTara());
+			this.movTempSumas.setNeto(this.movTempSumas.getNeto() + mov.getNeto());
+			this.movTempSumas.setOrigen(this.movTempSumas.getOrigen() + mov.getOrigen());
+			this.movTempSumas.setDiferencia(this.movTempSumas.getDiferencia() + mov.getDiferencia());
+		}
 
 	}
 
@@ -163,10 +169,7 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 		this.filtroFechaSalidaDesde = null;
 		this.filtroFechaSalidaHasta = null;
 
-		this.movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
-				this.filRemito, this.filRemision, this.filChapa, this.filChapaCarreta, this.filChofer,
-				this.filTransportadora, this.filDespacho, this.filDespachante, this.filtroFechaLlegadaDesde,
-				this.filtroFechaLlegadaHasta, this.filtroFechaSalidaDesde, this.filtroFechaSalidaHasta);
+		this.filtrar();
 
 	}
 
@@ -299,6 +302,14 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 
 	public void setFiltroFechaSalidaHasta(Date filtroFechaSalidaHasta) {
 		this.filtroFechaSalidaHasta = filtroFechaSalidaHasta;
+	}
+
+	public MovimientoEntradaSalida getMovTempSumas() {
+		return movTempSumas;
+	}
+
+	public void setMovTempSumas(MovimientoEntradaSalida movTempSumas) {
+		this.movTempSumas = movTempSumas;
 	}
 
 }

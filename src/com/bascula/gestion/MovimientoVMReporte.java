@@ -54,7 +54,7 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 			datos.add(dato);
 		}
 		// filtra el total
-		MovimientoEntradaSalida movTotal = new MovimientoEntradaSalida();
+		MovimientoEntradaSalida movTotal = this.vmMov.getMovTempSumas();
 		Object[] datoTotal = this.fm.getMovimientoFiltrado(movTotal);
 		datos.add(datoTotal);
 		
