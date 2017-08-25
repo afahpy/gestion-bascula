@@ -184,11 +184,18 @@ public class FiltroMovimiento implements Serializable{
 	}
 
 	public boolean isTara() {
+		System.out.println("================================");
+		System.out.println("isTara: "+tara);
+		System.out.println("================================");
 		return tara;
 	}
 
 	public void setTara(boolean tara) {
+		System.out.println("================================");
+		System.out.println("setTara antes: "+tara);
 		this.tara = tara;
+		System.out.println("setTara despues: "+tara);
+		System.out.println("================================");
 	}
 
 	public boolean isNeto() {

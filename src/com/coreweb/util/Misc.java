@@ -3,10 +3,13 @@ package com.coreweb.util;
 import java.beans.PropertyDescriptor;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
@@ -22,7 +25,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -37,6 +42,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jme.Monto;
 
+import org.apache.commons.beanutils.BeanComparator;
 import org.apache.commons.lang.SerializationUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.zkoss.io.Files;
@@ -47,8 +53,6 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Messagebox;
 
 import com.coreweb.Config;
-//import com.yhaguy.Configuracion;
-//import com.yhaguy.gestion.compras.importacion.ImportacionPedidoCompraDTO;
 import com.coreweb.domain.IiD;
 
 public class Misc {
@@ -125,6 +129,20 @@ public class Misc {
 		double var = Math.pow(10, redondeo);
 
 		return String.valueOf(Math.round(precio / var) * var);
+	}
+	
+	public double redondearConPrecioMinimo(double precio, double precioMinimo, double redondeoMax, double redondeoMin) {
+		/**
+		 * precio =253812, redondeo = 3, resultado = 254000 precio =253312,
+		 * redondeo = 3, resultado = 253000
+		 */
+		double redondeo = redondeoMin;
+		if(precio > precioMinimo){
+			redondeo = redondeoMax;
+		}
+		double var = Math.pow(10, redondeo);
+
+		return Math.round(precio / var) * var;
 	}
 
 	public static String getDir() {
@@ -272,7 +290,7 @@ public class Misc {
 	 * @param fecha
 	 *            Fecha que se desea convertir a Date
 	 * @param formatoFecha
-	 *            El formato del String que almacena la fecha Ej∴ String fecha
+	 *            El formato del String que almacena la fecha Ej.: String fecha
 	 *            = "03-27-2014 00:00:00" Formato de la fecha
 	 *            "MM-dd-yyyy HH:mm:ss";
 	 * 
@@ -338,6 +356,33 @@ public class Misc {
 
 	}
 
+	public Date toFechaMes01(Date fecha) {
+
+		Calendar dateCal = Calendar.getInstance();
+		// make it now
+		dateCal.setTime(fecha);
+		// fin del dia
+		dateCal.set(Calendar.DAY_OF_MONTH, 1);
+		Date dd = dateCal.getTime();
+		return this.toFecha0000(dd);
+	}
+
+	public Date toFechaMes31(Date fecha) {
+
+		Calendar dateCal = Calendar.getInstance();
+		// make it now
+		dateCal.setTime(fecha);
+		// fin del dia
+		
+		dateCal.add(Calendar.MONTH, 1);  
+		dateCal.set(Calendar.DAY_OF_MONTH, 1);  
+		dateCal.add(Calendar.DATE, -1);
+
+		Date dd = dateCal.getTime();
+		return this.toFecha2400(dd);
+	}
+	
+	
 	public Date toFecha2400(Date fecha) {
 
 		Calendar dateCal = Calendar.getInstance();
@@ -465,8 +510,8 @@ public class Misc {
 	public long diasEntreFechas(Date d1, Date d2) {
 		long aux = 0;
 		long out = 0;
-		long ld1 = this.toFecha0000(d1).getTime();
-		long ld2 = this.toFecha2400(d2).getTime();
+		long ld1 =  this.toFecha0000(d1).getTime();
+		long ld2 =  this.toFecha2400(d2).getTime();
 
 		long dia = (24 * 60 * 60 * 1000);
 		long diff = ld2 - ld1;
@@ -479,9 +524,8 @@ public class Misc {
 			if (diff * -1 < dia) {
 				return -1;
 			}
-
 		}
-		out = (diff / dia) + aux;
+ 		out = (diff / dia) + aux;
 		return out;
 	}
 
@@ -588,6 +632,11 @@ public class Misc {
 		return d2;
 	}
 
+	public double redondeoCuatroDecimales(double d) {
+		double d2 = Math.rint(d * 10000) / 10000;
+		return d2;
+	}
+
 	/**
 	 * Para poner numero en blanco si son cero
 	 * 
@@ -670,6 +719,35 @@ public class Misc {
 	}
 
 	public String formatoGs(double dato) {
+		return formatoGs(dato, false);
+	}
+
+	public String formatoIfDecimal(double dato, boolean blanco) {
+
+		if ((blanco == true) && ((dato * dato) < 0.001)) {
+			return " ";
+		}
+
+		// saber si tiene 1 decimal
+		int x = (int) (dato + 0);
+		double y = x + 0.0;
+		String fomatoIf = "###,###,##0";
+		if (y != dato){
+			fomatoIf = "###,###,##0.0";
+		}
+		
+		NumberFormat formatter = new DecimalFormat(fomatoIf);
+		String str = formatter.format(dato);
+		return str;
+	}
+	
+	
+	public String formatoGs(double dato, boolean blanco) {
+
+		if ((blanco == true) && ((dato * dato) < 0.001)) {
+			return " ";
+		}
+
 		NumberFormat formatter = new DecimalFormat("###,###,##0");
 		String str = formatter.format(dato);
 		return str;
@@ -854,9 +932,9 @@ public class Misc {
 		return out;
 	}
 
-	public Map<String, String> getQueryParam(String query) {
+	public Map<String, Object> getQueryParam(String query) {
 
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		if (query.trim().length() > 0) {
 			String[] params = query.split("&");
 
@@ -919,8 +997,6 @@ public class Misc {
 		boolean out = false;
 		try {
 
-			// Class aClass = com.yhaguy.ID.class;
-
 			String campo = this.parserPalabrasAMayusculas(tipo, alias);
 
 			Field field = aClass.getField(campo);
@@ -943,7 +1019,6 @@ public class Misc {
 		boolean out = false;
 		try {
 
-			// Class aClass = com.yhaguy.ID.class;
 			Field[] fields = aClass.getFields();
 			for (int i = 0; i < fields.length; i++) {
 				Field field = fields[i];
@@ -1142,12 +1217,8 @@ public class Misc {
 
 	public boolean mensajeEliminar(String texto) {
 
-		// Messagebox.show(message, title, buttons, icon, listener)
 		org.zkoss.zul.Messagebox.Button b = Messagebox.show(texto, "Eliminar",
 				new Messagebox.Button[] { Messagebox.Button.YES, Messagebox.Button.NO }, Messagebox.QUESTION, null);
-
-		System.out.println("botones si: " + Messagebox.Button.YES + "  no: " + Messagebox.Button.NO + "  b: " + b);
-
 		if ((b != null) && (b.compareTo(Messagebox.Button.YES)) == 0) {
 			return true;
 		}
@@ -1170,12 +1241,6 @@ public class Misc {
 	}
 
 	public void mensajeError(String texto) {
-		
-	/*	this.mensajePopupTemporalWarning(texto);
-		if (1==1){
-			return;
-		}*/
-		
 		org.zkoss.zul.Messagebox.Button b = Messagebox.show(texto, "Error",
 				new Messagebox.Button[] { Messagebox.Button.OK }, Messagebox.ERROR, null);
 	}
@@ -1185,9 +1250,6 @@ public class Misc {
 		org.zkoss.zul.Messagebox.Button b = Messagebox.show(texto, "Confirmar",
 				new Messagebox.Button[] { Messagebox.Button.YES, Messagebox.Button.NO }, Messagebox.QUESTION, null);
 
-		System.out.println("botones si: " + Messagebox.Button.YES + "  no: " + Messagebox.Button.NO + "  b: " + b);
-
-		
 		if ((b != null) && (b.compareTo(Messagebox.Button.YES)) == 0) {
 			return true;
 		}
@@ -1464,6 +1526,46 @@ public class Misc {
 		return out;
 	}
 
+	
+	/**
+	 * Un objeto serializable se guada en el disco
+	 * @param obj
+	 * @param file
+	 */
+	public void grabarObjectToArchvo(Serializable obj, String file) {
+		try {
+			byte[] ff = this.serializar(obj);
+			ObjectOutputStream fil = new ObjectOutputStream(new FileOutputStream(file));
+			fil.write(ff);
+			fil.close();
+		} catch (Exception e) {
+			System.out.println("NO pudo grabar en ["+file+"] "+e.getMessage());
+		}
+	}
+
+
+	/**
+	 * Leer desde el disco un objeto
+	 * @param file
+	 * @return
+	 */
+	public Serializable leerObjetoFromDisco(String file) {
+		Serializable out = null;
+		try {
+			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file));
+			byte[] ff = new byte[entrada.available()];
+			entrada.readFully(ff);
+			out = (Serializable) this.deSerializar(ff);
+			entrada.close();
+		} catch (Exception e) {
+			System.out.println("NO pudo leer  ["+file+"] "+e.getMessage());
+			out = null;
+		}
+		return out;
+	}
+
+	
+	
 	public void mensajePopupTemporal(String mensaje) {
 		this.mensajePopupTemporal(mensaje, 3000);
 	}
@@ -1660,6 +1762,42 @@ public class Misc {
 		return "no valido";
 	}
 
+	public String concatenarSep(String punto, Object... values) {
+		String out = "";
+		boolean pri = true;
+		for (Object c : values) {
+			if (pri == true) {
+				out = c + "";
+			} else {
+				out += punto + c;
+			}
+			pri = false;
+		}
+		return out;
+	}
+
+	public String concatenar(Object... values) {
+		return concatenarSep(" - ", values);
+	}
+
+	// Los resultados van del 1 = Domingo, 2 = Lunes …
+	public static int getDiaPorFecha(Date d) {
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTime(d);
+		return cal.get(Calendar.DAY_OF_WEEK);
+	}
+
+	/**
+	 * Ordena una lista de algún tipo, por uno de sus campos
+	 * 
+	 * @param collection
+	 * @param campo
+	 */
+	public void ordernar(List collection, String campo) {
+		BeanComparator fieldComparator = new BeanComparator(campo);
+		Collections.sort(collection, fieldComparator);
+	}
+
 	
 	/**
 	 * Controla que si el atributo es nulo, retorna un string en blanco
@@ -1675,35 +1813,51 @@ public class Misc {
 		}
 		return out;
 	}
+
+	
+	
+	public static void main(String[] args) {
+		Misc m = new Misc();	
+
+		long dia = (24 * 60 * 60 * 1000);
+
+		Date dd =  new Date(   (new Date()).getTime() - (dia * 10));
+//		Date dd =  new Date();
+		
+		Date fechaDesde = m.toFechaMes01(dd);
+		Date fechaHasta = m.toFechaMes31(dd);
+
+		long nd = m.diasEntreFechas(fechaDesde, fechaHasta);
+		
+		System.out.println(m.dateToString(fechaDesde, m.YYYY_MM_DD_HORA_MIN_SEG) +"  - " + fechaDesde);
+		System.out.println(m.dateToString(fechaHasta, m.YYYY_MM_DD_HORA_MIN_SEG) +"  - " + fechaHasta);
+		System.out.println(nd);
+		
+//		System.out.println(m.redondearConPrecioMinimo(7740, 5000, 3, 2));
+//		System.out.println(m.redondearConPrecioMinimo(3740, 5000, 3, 2));
+		
+	}
+	
 	
 }
 
-class A {
 
-	public void setNameA(String nameA) {
-		System.out.println("-- paso por set A");
-	}
-
-	public String getNameA() {
-		return "andoA";
-	}
-
-	public String metodoA() {
-		return "Estoy en A";
-	}
-}
-
-class B extends A {
-
-	String name = "pepe";
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		System.out.println("pasa:" + name + " - " + this.name + this);
-		this.name = name;
-	}
-
-}
+/*
+ * class A {
+ * 
+ * public void setNameA(String nameA) { System.out.println("-- paso por set A");
+ * }
+ * 
+ * public String getNameA() { return "andoA"; }
+ * 
+ * public String metodoA() { return "Estoy en A"; } }
+ * 
+ * class B extends A {
+ * 
+ * String name = "pepe";
+ * 
+ * public String getName() { return name; }
+ * 
+ * public void setName(String name) { System.out.println("pasa:" + name + " - "
+ * + this.name + this); this.name = name; } }
+ */

@@ -7,6 +7,8 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.batik.dom.svg.ListHandler;
+import org.hamcrest.core.IsInstanceOf;
 import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
@@ -23,10 +25,14 @@ import com.bascula.domain.RegisterDomain;
 
 public class ListaMovimientosViewModel extends GenericViewModelApp {
 
+	static String KEY_FILTRO_COL = "filtroColumnas";
+
 	private List<MovimientoEntradaSalida> movimientos = new ArrayList<MovimientoEntradaSalida>();
 	private MovimientoEntradaSalida movTempSumas = new MovimientoEntradaSalida();
 
 	private List<MovimientoEntradaSalida> selectedMovimientos = new ArrayList<MovimientoEntradaSalida>();
+
+	private FiltroMovimiento verCol = new FiltroMovimiento();
 
 	private String filTipoMovimiento = "";//
 	private String filLugarOrigen = "";
@@ -50,10 +56,37 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	public void initMovimientosViewModel() throws Exception {
 
 		this.filtrar();
+		this.verCol = this.getFiltro(KEY_FILTRO_COL);
+
 	}
 
 	@AfterCompose(superclass = true)
 	public void afterComposeMovimientosViewModel() {
+	}
+
+	@Command
+	public void grabarVerColumnas(@BindingParam("header") Object dato) throws Exception {
+
+		org.zkoss.zul.Listhead listaHead = (org.zkoss.zul.Listhead) dato;
+
+		// busca en el header el estado de cada col, y graba eso
+		for (int i = 0; i < listaHead.getChildren().size(); i++) {
+			Object headCol =  listaHead.getChildren().get(i);
+			if (headCol  instanceof org.zkoss.zul.Listheader) {
+				org.zkoss.zul.Listheader he = (org.zkoss.zul.Listheader) headCol;
+				String id = he.getId();
+				// cada col que me interesa empieza con idH+[nombreAtriuto]
+				if (id.indexOf("idH")==0){
+					String key = id.substring(3);
+					boolean visible = he.isVisible();
+					this.m.setValue(this.verCol, key, visible);
+				}
+				
+			}
+		}
+		
+		this.grabaFiltro(this.verCol, KEY_FILTRO_COL);
+		this.mensajePopupTemporal("Columnas grabadas..");
 	}
 
 	@Command
@@ -312,4 +345,20 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 		this.movTempSumas = movTempSumas;
 	}
 
+	public FiltroMovimiento getVerCol() {
+		return verCol;
+	}
+
+	public void setVerCol(FiltroMovimiento verCol) {
+		this.verCol = verCol;
+	}
+
+	/*
+	 * 
+	 * @Command
+	 * 
+	 * @NotifyChange("verCol") public void clickTara(){
+	 * this.mensajeInfo("this.verCol.isTara():"+this.verCol.isTara());
+	 * this.verCol.setTara(false); this.mensajePopupTemporal("click tara"); }
+	 */
 }

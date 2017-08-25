@@ -27,14 +27,16 @@ import com.sun.mail.iap.ByteArray;
 
 public class MovimientoVMReporte extends GenericViewModelApp {
 
+	static String KEY_FITRO_REPORTE = "filtroReporte";
+
 	FiltroMovimiento fm = null;
 	ListaMovimientosViewModel vmMov;
 
 	@Init(superclass = true)
 	public void initMovimientoVMReporte(@ExecutionArgParam("vmMov") ListaMovimientosViewModel vmMov) {
 		this.vmMov = vmMov;
-		this.fm = this.getFiltro();
-		
+		this.fm = this.getFiltro(KEY_FITRO_REPORTE);
+
 	}
 
 	@AfterCompose(superclass = true)
@@ -45,6 +47,7 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 	@Command
 	public void reporteMovimiento() throws Exception {
 
+		this.grabaFiltro(this.fm, KEY_FITRO_REPORTE);
 
 		// recorre los movimientos
 		ArrayList<Object[]> datos = new ArrayList<>();
@@ -57,8 +60,7 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 		MovimientoEntradaSalida movTotal = this.vmMov.getMovTempSumas();
 		Object[] datoTotal = this.fm.getMovimientoFiltrado(movTotal);
 		datos.add(datoTotal);
-		
-		
+
 		ReporteMovimiento rep = new ReporteMovimiento();
 		rep.setCols(this.fm.getColTablas());
 		rep.setListaMovimiento(datos);
@@ -66,42 +68,7 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 
 		ViewPdf vp = new ViewPdf();
 		vp.showReporte(rep, this);
-		
-		this.grabaFiltro(this.fm);
 
-	}
-
-	private FiltroMovimiento getFiltro() {
-		FiltroMovimiento out = null;
-		try {
-			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(this.getFileFilter()));
-			byte[] ff = new byte[entrada.available()];
-			entrada.readFully(ff);
-			out = (FiltroMovimiento) this.m.deSerializar(ff);
-			entrada.close();
-		} catch (Exception e) {
-			System.out.println("No pudo leer: " + e.getMessage());
-			out = new FiltroMovimiento();
-		}
-		return out;
-	}
-
-	private void grabaFiltro(FiltroMovimiento afm) {
-		try {
-			
-			byte[] ff = this.m.serializar(afm);
-			ObjectOutputStream fil = new ObjectOutputStream(new FileOutputStream(this.getFileFilter()));
-			fil.write(ff);
-			fil.close();
-		} catch (Exception e) {
-			System.out.println("NO pudo grabar:"+e.getMessage());
-		}
-	}
-
-	private String getFileFilter() {
-		String out = Config.DIRECTORIO_BASE_REAL + "/filtroMovimiento-" + this.getLoginNombre();
-		System.out.println("file:"+out);
-		return out;
 	}
 
 	public FiltroMovimiento getFm() {
@@ -112,17 +79,4 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 		this.fm = fm;
 	}
 
-	
-	public static void main(String[] args) {
-		FiltroMovimiento fm = new FiltroMovimiento();
-		fm.setChapa(false);
-		
-		MovimientoVMReporte mm = new MovimientoVMReporte();
-		mm.grabaFiltro(fm);
-		
-		FiltroMovimiento fm2 = mm.getFiltro();
-		System.out.println("fm.isChapa():"+fm.isChapa());
-		System.out.println("fm2.isChapa():"+fm2.isChapa());
-		
-	}
 }
