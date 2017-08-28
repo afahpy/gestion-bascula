@@ -62,14 +62,22 @@
 
 						<listheader width="40px" align="center" />
 
+						<listheader label="" width="60px"
+							style="text-align: center" align="center">
+							<button id="btnCancel"
+								image="/core/img/save_close-16.png"
+								onClick="@command('grabarVerColumnas', header=self.parent.parent)" />
+						</listheader>
+
+
 						<listheader label="ID" id="idMov"
 							style="text-align: center" sort="auto(id)" />
 
 						<listheader label="Tipo Mov."
 							width="@load(vm.verCol.tipoMovimientoInt)" id="idHtipoMovimiento"
 							visible="@load(vm.verCol.tipoMovimiento)" />
-							
-							
+
+
 						<listheader label="Fecha Llegada"
 							width="@load(vm.verCol.fechaLlegadaInt)" id="idHfechaLlegada"
 							visible="@load(vm.verCol.fechaLlegada)" sort="auto(fechaLlegada)"
@@ -156,16 +164,12 @@
 							visible="@load(vm.verCol.despachante)" style="text-align: center"
 							sort="auto(despachante.strCampo1)" />
 
-						<listheader label="" width="60px"
-							style="text-align: center" align="center">
-							<button id="btnCancel"
-								image="/core/img/save_close-16.png"
-								onClick="@command('grabarVerColumnas', header=self.parent.parent)" />
-						</listheader>
 
 
 					</listhead>
 					<auxhead>
+
+						<auxheader></auxheader>
 
 						<auxheader></auxheader>
 
@@ -311,6 +315,21 @@
 							<listcell />
 
 							<listcell>
+								<hlayout width="100%">
+									<toolbarbutton
+										class="glyphicon glyphicon-zoom-in" style="font-size:1em;"
+										tooltiptext="Ver detalles"
+										onClick="@command('verMovimiento', movimiento=each)" />
+
+									<toolbarbutton
+										visible="@load(vm.operacionHabilitada('editar_movimiento'))"
+										class="glyphicon glyphicon-pencil" style="font-size:1em;"
+										tooltiptext="Editar"
+										onClick="@command('editarMovimiento', movimiento=each)" />
+								</hlayout>
+							</listcell>
+
+							<listcell>
 								<label value="@load(each.id)"
 									maxlength="50" tooltiptext="@load(each.id)"
 									sclass="label-list" />
@@ -450,7 +469,8 @@
 						</listitem>
 					</template>
 					<listfoot>
-
+						<listfooter></listfooter>
+						<listfooter></listfooter>
 						<listfooter></listfooter>
 						<listfooter></listfooter>
 						<listfooter></listfooter>
@@ -489,7 +509,7 @@
 						<listfooter></listfooter>
 						<listfooter></listfooter>
 						<listfooter></listfooter>
-						<listfooter></listfooter>
+
 
 
 					</listfoot>
