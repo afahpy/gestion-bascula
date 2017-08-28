@@ -36,12 +36,12 @@
 		<h:div class="navbar-collapse collapse"
 			id="example-navbar-collapse">
 			<h:ul id="ul-navbar-collapse" class="nav navbar-nav">
-				<zk
-					forEach="${vm.menuItem(self, 'INICIO', 'Inicio', '/bascula/gestion/inicio.zul')}" />
+				<!-- <zk
+					forEach="${vm.menuItem(self, 'INICIO', 'Inicio', '/bascula/gestion/inicio.zul')}" /> -->
 				<zk
 					forEach="${vm.menuItem(self, 'INICIO_AFTER_LOGIN', 'Inicio', '/bascula/gestion/inicio_after_login.zul')}" />
-				<zk
-					forEach="${vm.menuItem(self, 'CONTACTO', 'Contacto', '/bascula/gestion/contacto.zul')}" />
+			<!-- 	<zk
+					forEach="${vm.menuItem(self, 'CONTACTO', 'Contacto', '/bascula/gestion/contacto.zul')}" /> -->
 				<zk
 					forEach="${vm.menuItem(self, 'MOVIMIENTOS', 'Movimientos', '/bascula/gestion/movimientos_lista.zul')}" />
 				<zk
