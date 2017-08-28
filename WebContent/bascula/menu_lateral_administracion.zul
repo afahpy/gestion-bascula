@@ -5,8 +5,8 @@
 			<h:ul id="menu" class="sidebar-nav">
 				<zk
 					forEach="${vm.menuLateralItem(self, 'MICUENTA', '', 'Mi Cuenta', '/bascula/gestion/datos_personales.zul')}" />
-				<zk
-					forEach="${vm.menuLateralItem(self, 'USUARIOS','', 'Administrar Usuarios', '/bascula/gestion/usuarios.zul')}" />
+				<!-- <zk
+					forEach="${vm.menuLateralItem(self, 'USUARIOS','', 'Administrar Usuarios', '/bascula/gestion/usuarios.zul')}" /> -->
 
 				<zk
 					forEach="${vm.menuLateralItem(self, 'DATOS_MY_OBJECT','', 'Carga de Datos', '/bascula/gestion/datosMyObject.zul')}" />
