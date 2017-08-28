@@ -63,6 +63,9 @@
 
 						<listheader width="40px" align="center" />
 
+						<listheader label="ID" id="idMov"
+							style="text-align: center" sort="auto(id)" />
+
 						<listheader label="Tipo Mov."
 							id="idHtipoMovimiento" visible="@bind(vm.verCol.tipoMovimiento)"
 							style="text-align: center"
@@ -150,6 +153,8 @@
 
 					</listhead>
 					<auxhead>
+
+						<auxheader></auxheader>
 
 						<auxheader></auxheader>
 
@@ -291,6 +296,15 @@
 					<template name="model">
 						<listitem>
 							<listcell />
+
+							<listcell>
+								<label
+									value="@load(each.id)" maxlength="50"
+									tooltiptext="@load(each.id)"
+									sclass="label-list" />
+							</listcell>
+
+
 							<listcell>
 								<label
 									value="@load(each.tipoMovimiento.descripcion)" maxlength="50"

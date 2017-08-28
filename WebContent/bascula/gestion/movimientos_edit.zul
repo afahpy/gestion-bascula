@@ -20,6 +20,22 @@
 		<h:div class="row">
 
 			<h:div class="col-xs-12 col-md-6">
+
+
+				<h:div class="row">
+					<h:div
+						class="col-xs-5 col-md-2 form-group text-left">
+						<label value=" ID: " width="100%"></label>
+					</h:div>
+					<h:div class="col-xs-7 col-md-4">
+						<textbox width="100%"
+							readonly="true"
+							value="@load(vm.movimiento.id)">
+						</textbox>
+					</h:div>
+				</h:div>
+
+
 				<h:div class="row">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
