@@ -18,7 +18,7 @@
 				type="password">
 			</textbox>
 		</div>
-		<button id="loginBtn" label="Login"
+		<button id="loginBtn" label="Login" zclass="btn btn-primary"
 			onClick="@command('loginOkBootstrap')">
 		</button>
 		<label id="mesg" value="@load(login.msg)"

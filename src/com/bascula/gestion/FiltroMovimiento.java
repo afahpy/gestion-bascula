@@ -8,7 +8,7 @@ import com.bascula.domain.MovimientoEntradaSalida;
 import com.coreweb.extras.reporte.ReporteDefinicion;
 import com.coreweb.util.Misc;
 
-public class FiltroMovimiento implements Serializable{
+public class FiltroMovimiento implements Serializable {
 
 	static String DATE = "fecha";
 	static String NUMERO = "numero";
@@ -37,9 +37,8 @@ public class FiltroMovimiento implements Serializable{
 	boolean detalles = true;
 
 	static String DETALLES = "detalles";
-	
-	static String[][] datosCols = { 
-			{ "tipoMovimiento", "E/S", ReporteDefinicion.WIDTH + "65", OTRO },
+
+	static String[][] datosCols = { { "tipoMovimiento", "E/S", ReporteDefinicion.WIDTH + "65", OTRO },
 			{ "fechaLlegada", "Llegada", ReporteDefinicion.WIDTH + "65", DATE },
 			{ "fechaSalida", "Salida", ReporteDefinicion.WIDTH + "65", DATE },
 			{ "origenLugar", "Origen", ReporteDefinicion.WIDTH + "65", OTRO },
@@ -50,25 +49,34 @@ public class FiltroMovimiento implements Serializable{
 			{ "transportadora", "Transp.", ReporteDefinicion.WIDTH + "65", OTRO },
 			{ "chapa", "Chapa", ReporteDefinicion.WIDTH + "65", OTRO },
 			{ "chapaCarreta", "Carreta", ReporteDefinicion.WIDTH + "65", OTRO },
-			{ "bruto", "Kg.Bruto", ReporteDefinicion.WIDTH + "65", NUMERO },
-			{ "tara", "Kg.Tara", ReporteDefinicion.WIDTH + "65", NUMERO },
-			{ "neto", "Kg.Neto", ReporteDefinicion.WIDTH + "65", NUMERO },
-			{ "origen", "Kg.Origen", ReporteDefinicion.WIDTH + "65", NUMERO },
-			{ "diferencia", "Kg.Dif.", ReporteDefinicion.WIDTH + "65", NUMERO },
+			{ "bruto", "Kg.Bruto",
+					ReporteDefinicion.PADDING_DER + ReporteDefinicion.DERECHA + ReporteDefinicion.WIDTH + "65",
+					NUMERO },
+			{ "tara", "Kg.Tara",
+					ReporteDefinicion.PADDING_DER + ReporteDefinicion.DERECHA + ReporteDefinicion.WIDTH + "65",
+					NUMERO },
+			{ "neto", "Kg.Neto",
+					ReporteDefinicion.PADDING_DER + ReporteDefinicion.DERECHA + ReporteDefinicion.WIDTH + "65",
+					NUMERO },
+			{ "origen", "Kg.Origen",
+					ReporteDefinicion.PADDING_DER + ReporteDefinicion.DERECHA + ReporteDefinicion.WIDTH + "65",
+					NUMERO },
+			{ "diferencia", "Kg.Dif.",
+					ReporteDefinicion.PADDING_DER + ReporteDefinicion.DERECHA + ReporteDefinicion.WIDTH + "65",
+					NUMERO },
 			{ "despacho", "Despacho", ReporteDefinicion.WIDTH + "65", OTRO },
 			{ "despachante", "Despachante", ReporteDefinicion.WIDTH + "65", OTRO },
 			{ DETALLES, "Detalles", ReporteDefinicion.WIDTH + "65", OTRO },
 
 	};
 
-	
-	private Misc getM(){
-		if (this.m == null){
+	private Misc getM() {
+		if (this.m == null) {
 			this.m = new Misc();
 		}
 		return this.m;
 	}
-	
+
 	/**
 	 * Las columnas de la tabla
 	 * 
@@ -111,13 +119,13 @@ public class FiltroMovimiento implements Serializable{
 			boolean b = (boolean) this.getM().getValue(this, nCol);
 			if (b == true) {
 				String vStr = "";
-				if (nCol.compareTo(DETALLES)==0){
+				if (nCol.compareTo(DETALLES) == 0) {
 					vStr = mov.getDetallesString();
-				}else{
+				} else {
 					Object valor = this.getM().getValue(mov, nCol);
 					vStr = this.getFormato(datosCols[i][3], valor);
 				}
-				
+
 				lis.add(vStr);
 			}
 		}
@@ -193,16 +201,16 @@ public class FiltroMovimiento implements Serializable{
 
 	public boolean isTara() {
 		System.out.println("================================");
-		System.out.println("isTara: "+tara);
+		System.out.println("isTara: " + tara);
 		System.out.println("================================");
 		return tara;
 	}
 
 	public void setTara(boolean tara) {
 		System.out.println("================================");
-		System.out.println("setTara antes: "+tara);
+		System.out.println("setTara antes: " + tara);
 		this.tara = tara;
-		System.out.println("setTara despues: "+tara);
+		System.out.println("setTara despues: " + tara);
 		System.out.println("================================");
 	}
 
