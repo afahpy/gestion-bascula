@@ -36,6 +36,26 @@ public class FiltroMovimiento implements Serializable {
 	boolean despachante = true;
 	boolean detalles = true;
 
+	String tipoMovimientoInt = "30px";
+	String fechaLlegadaInt = "120px";
+	String fechaSalidaInt = "1200px";
+	String brutoInt = "65px";
+	String taraInt = "65px";
+	String netoInt = "65px";
+	String origenInt = "65px";
+	String diferenciaInt = "65px";
+	String origenLugarInt = "65px";
+	String destinoLugarInt = "65px";
+	String remitoInt = "65px";
+	String remisionInt = "65px";
+	String chapaInt = "65px";
+	String chapaCarretaInt = "65px";
+	String choferInt = "65px";
+	String transportadoraInt = "65px";
+	String despachoInt = "65px";
+	String despachanteInt = "65px";
+	String detallesInt = "65px";
+
 	static String DETALLES = "detalles";
 
 	static String[][] datosCols = { { "tipoMovimiento", "E/S", ReporteDefinicion.WIDTH + "65", OTRO },
@@ -324,6 +344,158 @@ public class FiltroMovimiento implements Serializable {
 
 	public void setDetalles(boolean detalles) {
 		this.detalles = detalles;
+	}
+
+	public String getTipoMovimientoInt() {
+		return tipoMovimientoInt;
+	}
+
+	public void setTipoMovimientoInt(String tipoMovimientoInt) {
+		this.tipoMovimientoInt = tipoMovimientoInt;
+	}
+
+	public String getFechaLlegadaInt() {
+		return fechaLlegadaInt;
+	}
+
+	public void setFechaLlegadaInt(String fechaLlegadaInt) {
+		this.fechaLlegadaInt = fechaLlegadaInt;
+	}
+
+	public String getFechaSalidaInt() {
+		return fechaSalidaInt;
+	}
+
+	public void setFechaSalidaInt(String fechaSalidaInt) {
+		this.fechaSalidaInt = fechaSalidaInt;
+	}
+
+	public String getBrutoInt() {
+		return brutoInt;
+	}
+
+	public void setBrutoInt(String brutoInt) {
+		this.brutoInt = brutoInt;
+	}
+
+	public String getTaraInt() {
+		return taraInt;
+	}
+
+	public void setTaraInt(String taraInt) {
+		this.taraInt = taraInt;
+	}
+
+	public String getNetoInt() {
+		return netoInt;
+	}
+
+	public void setNetoInt(String netoInt) {
+		this.netoInt = netoInt;
+	}
+
+	public String getOrigenInt() {
+		return origenInt;
+	}
+
+	public void setOrigenInt(String origenInt) {
+		this.origenInt = origenInt;
+	}
+
+	public String getDiferenciaInt() {
+		return diferenciaInt;
+	}
+
+	public void setDiferenciaInt(String diferenciaInt) {
+		this.diferenciaInt = diferenciaInt;
+	}
+
+	public String getOrigenLugarInt() {
+		return origenLugarInt;
+	}
+
+	public void setOrigenLugarInt(String origenLugarInt) {
+		this.origenLugarInt = origenLugarInt;
+	}
+
+	public String getDestinoLugarInt() {
+		return destinoLugarInt;
+	}
+
+	public void setDestinoLugarInt(String destinoLugarInt) {
+		this.destinoLugarInt = destinoLugarInt;
+	}
+
+	public String getRemitoInt() {
+		return remitoInt;
+	}
+
+	public void setRemitoInt(String remitoInt) {
+		this.remitoInt = remitoInt;
+	}
+
+	public String getRemisionInt() {
+		return remisionInt;
+	}
+
+	public void setRemisionInt(String remisionInt) {
+		this.remisionInt = remisionInt;
+	}
+
+	public String getChapaInt() {
+		return chapaInt;
+	}
+
+	public void setChapaInt(String chapaInt) {
+		this.chapaInt = chapaInt;
+	}
+
+	public String getChapaCarretaInt() {
+		return chapaCarretaInt;
+	}
+
+	public void setChapaCarretaInt(String chapaCarretaInt) {
+		this.chapaCarretaInt = chapaCarretaInt;
+	}
+
+	public String getChoferInt() {
+		return choferInt;
+	}
+
+	public void setChoferInt(String choferInt) {
+		this.choferInt = choferInt;
+	}
+
+	public String getTransportadoraInt() {
+		return transportadoraInt;
+	}
+
+	public void setTransportadoraInt(String transportadoraInt) {
+		this.transportadoraInt = transportadoraInt;
+	}
+
+	public String getDespachoInt() {
+		return despachoInt;
+	}
+
+	public void setDespachoInt(String despachoInt) {
+		this.despachoInt = despachoInt;
+	}
+
+	public String getDespachanteInt() {
+		return despachanteInt;
+	}
+
+	public void setDespachanteInt(String despachanteInt) {
+		this.despachanteInt = despachanteInt;
+	}
+
+	public String getDetallesInt() {
+		return detallesInt;
+	}
+
+	public void setDetallesInt(String detallesInt) {
+		this.detallesInt = detallesInt;
 	}
 
 }

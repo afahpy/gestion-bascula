@@ -79,7 +79,10 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 				if (id.indexOf("idH")==0){
 					String key = id.substring(3);
 					boolean visible = he.isVisible();
+					String width = he.getWidth();
 					this.m.setValue(this.verCol, key, visible);
+					this.m.setValue(this.verCol, key+"Int", width);
+					System.out.println(key+"Int:"+ width);
 				}
 				
 			}
