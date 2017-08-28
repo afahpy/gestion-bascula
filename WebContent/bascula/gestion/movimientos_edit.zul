@@ -28,8 +28,7 @@
 						<label value=" ID: " width="100%"></label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
-						<textbox width="100%"
-							readonly="true"
+						<textbox width="100%" readonly="true"
 							value="@load(vm.movimiento.id)">
 						</textbox>
 					</h:div>
@@ -93,7 +92,7 @@
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Bruto: " width="100%"></label>
 					</h:div>
-					<h:div class="col-xs-7 col-md-6">
+					<h:div class="col-xs-7 col-md-7">
 						<hlayout>
 							<guaranibox
 								onChange="@command('calcularNeto')"
@@ -118,7 +117,7 @@
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Tara: " width="100%"></label>
 					</h:div>
-					<h:div class="col-xs-7 col-md-6">
+					<h:div class="col-xs-7 col-md-7">
 						<hlayout>
 							<guaranibox
 								onChange="@command('calcularNeto')"
@@ -489,5 +488,7 @@
 			</h:div>
 
 		</h:div>
+
+		<div zclass="row" height="20px"></div>
 	</div>
 </zk>
