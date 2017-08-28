@@ -46,7 +46,7 @@
 				</div>
 				<div class="col-xs-12" style="height:10px;"></div>
 				<button id="sendBtn" label="Enviar"
-					zclass="btn btn-info pull-right"
+					zclass="btn btn-primary pull-right"
 					onClick="@command('enviarContacto')">
 				</button>
 				<div class="col-xs-12" style="height:10px;"></div>

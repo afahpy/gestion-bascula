@@ -36,6 +36,8 @@ public class FiltroMovimiento implements Serializable{
 	boolean despachante = true;
 	boolean detalles = true;
 
+	static String DETALLES = "detalles";
+	
 	static String[][] datosCols = { 
 			{ "tipoMovimiento", "E/S", ReporteDefinicion.WIDTH + "65", OTRO },
 			{ "fechaLlegada", "Llegada", ReporteDefinicion.WIDTH + "65", DATE },
@@ -55,7 +57,7 @@ public class FiltroMovimiento implements Serializable{
 			{ "diferencia", "Kg.Dif.", ReporteDefinicion.WIDTH + "65", NUMERO },
 			{ "despacho", "Despacho", ReporteDefinicion.WIDTH + "65", OTRO },
 			{ "despachante", "Despachante", ReporteDefinicion.WIDTH + "65", OTRO },
-			{ "detalles", "Detalles", ReporteDefinicion.WIDTH + "65", OTRO },
+			{ DETALLES, "Detalles", ReporteDefinicion.WIDTH + "65", OTRO },
 
 	};
 
@@ -108,8 +110,14 @@ public class FiltroMovimiento implements Serializable{
 			String nCol = datosCols[i][0];
 			boolean b = (boolean) this.getM().getValue(this, nCol);
 			if (b == true) {
-				Object valor = this.getM().getValue(mov, nCol);
-				String vStr = this.getFormato(datosCols[i][3], valor);
+				String vStr = "";
+				if (nCol.compareTo(DETALLES)==0){
+					vStr = mov.getDetallesString();
+				}else{
+					Object valor = this.getM().getValue(mov, nCol);
+					vStr = this.getFormato(datosCols[i][3], valor);
+				}
+				
 				lis.add(vStr);
 			}
 		}

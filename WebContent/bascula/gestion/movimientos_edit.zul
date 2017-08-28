@@ -77,7 +77,7 @@
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Bruto: " width="100%"></label>
 					</h:div>
-					<h:div class="col-xs-7 col-md-4">
+					<h:div class="col-xs-7 col-md-6">
 						<hlayout>
 							<guaranibox
 								onChange="@command('calcularNeto')"
@@ -87,8 +87,12 @@
 							<label value="kg" />
 							<button width="100%" label="Peso"
 								visible="@load(vm.isCampoEditable('editar_boton_movimiento_bruto'))"
-								zclass="btn btn-info"
+								zclass="btn btn-primary"
 								onClick="@command('copiarPesoToCampo', campo='CAMPO_BRUTO')" />
+							<button width="100%" label="Cero"
+								visible="@load(vm.isCampoEditable('editar_boton_movimiento_bruto'))"
+								zclass="btn btn-danger"
+								onClick="@command('poneCero', campo='CAMPO_BRUTO')" />
 						</hlayout>
 					</h:div>
 				</h:div>
@@ -98,7 +102,7 @@
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Tara: " width="100%"></label>
 					</h:div>
-					<h:div class="col-xs-7 col-md-4">
+					<h:div class="col-xs-7 col-md-6">
 						<hlayout>
 							<guaranibox
 								onChange="@command('calcularNeto')"
@@ -108,8 +112,12 @@
 							<label value="kg" />
 							<button width="100%" label="Peso"
 								visible="@load(vm.isCampoEditable('editar_boton_movimiento_tara'))"
-								zclass="btn btn-info"
+								zclass="btn btn-primary"
 								onClick="@command('copiarPesoToCampo', campo='CAMPO_TARA')" />
+							<button width="100%" label="Cero"
+								visible="@load(vm.isCampoEditable('editar_boton_movimiento_tara'))"
+								zclass="btn btn-danger"
+								onClick="@command('poneCero', campo='CAMPO_TARA')" />
 
 						</hlayout>
 					</h:div>
@@ -362,10 +370,10 @@
 			<h:div class="col-xs-12 col-md-6">
 				<hlayout>
 
-					<button label="Dato nuevo" zclass="btn btn-info"
+					<button label="Dato nuevo" zclass="btn btn-primary"
 						onClick="@command('datoNuevo')" />
 
-					<button label="Reporte" zclass="btn btn-info"
+					<button label="Reporte" zclass="btn btn-success"
 						onClick="@command('verReporte')" />
 				</hlayout>
 				<div zclass="row" height="10px"></div>
@@ -374,7 +382,7 @@
 
 				<div zclass="row" height="10px"></div>
 				<hlayout>
-					<button label="Nuevo" zclass="btn btn-info"
+					<button label="Nuevo" zclass="btn btn-primary"
 						visible="@load(vm.isCampoEditable('editar_campo_detalles'))"
 						onClick="@command('nuevoDetalle')" />
 
@@ -441,17 +449,23 @@
 		<h:div class="row">
 			<h:div class="col-xs-12 col-md-12 text-center">
 				<hlayout>
-					<button label="Guardar" zclass="btn btn-info"
+					<button label="Guardar" zclass="btn btn-primary"
 						visible="@load(vm.formularioModoEdicion)"
 						onClick="@command('guardarMovimiento')">
 					</button>
 
-					<button label="Cancelar" zclass="btn btn-info"
+					<button label="Cancelar" zclass="btn btn-primary"
 						visible="@load(vm.formularioModoEdicion)"
 						onClick="@command('cancelar')">
 					</button>
 
-					<button label="Volver" zclass="btn btn-info"
+					<button label="Volver" zclass="btn btn-primary"
+						visible="@load(vm.formularioModoEdicion)"
+						onClick="@command('cancelar')">
+					</button>
+
+
+					<button label="Volver" zclass="btn btn-primary"
 						visible="@load(!vm.formularioModoEdicion)"
 						onClick="@command('cancelar')">
 					</button>

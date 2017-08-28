@@ -152,7 +152,7 @@
 			</div>
 			<div zclass="row" height="5px"></div>
 
-			<button label="Reporte" zclass="btn btn-info" onClick="@command('reporteMovimiento')" />
+			<button label="Reporte" zclass="btn btn-success" onClick="@command('reporteMovimiento')" />
 
 
 		</vlayout>

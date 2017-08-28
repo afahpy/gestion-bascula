@@ -144,6 +144,23 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		return out;
 	}
 
+	@Command
+	@NotifyChange("movimiento")
+	public boolean poneCero(@BindingParam("campo") String campo) throws Exception {
+		boolean out = false;
+
+		if (campo.compareTo(CAMPO_BRUTO) == 0) {
+			this.movimiento.setBruto(0.0);
+			this.calcularNeto();
+		} else if (campo.compareTo(CAMPO_TARA) == 0) {
+			this.movimiento.setTara(0.0);
+			this.calcularNeto();
+		}
+		return out;
+	}
+
+	
+	
 	public boolean isFormularioModoEdicion() {
 
 		boolean out = false;

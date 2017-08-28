@@ -78,7 +78,7 @@
 					<textbox width="200px"
 						value="@bind(vm.nvoMyObject.strCampo1)">
 					</textbox>
-					<button label="Agregar" zclass="btn btn-info"
+					<button label="Agregar" zclass="btn btn-primary"
 						onClick="@command('agregarMyObject')" />
 
 

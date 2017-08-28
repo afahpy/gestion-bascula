@@ -18,10 +18,10 @@
 		<div zclass="row" height="10px"></div>
 
 		<div zclass="row">
-			<h:div class="col-xs-12 col-md-10">
+			<h:div class="col-xs-12 col-md-9">
 				<hlayout>
 					<hlayout width="100%">
-						<button label="Nuevo" zclass="btn btn-info"
+						<button label="Nuevo" zclass="btn btn-primary"
 							visible="@load(vm.operacionHabilitada('crear_movimiento'))"
 							width="100%" onClick="@command('crearMovimiento')">
 						</button>
@@ -31,19 +31,19 @@
 						</button>
 					</hlayout>
 
-					<button label="Buscar" zclass="btn btn-info"
+					<button label="Buscar" zclass="btn btn-primary"
 						onClick="@command('filtrar')" />
 
-					<button label="Limpiar" zclass="btn btn-info"
+					<button label="Limpiar" zclass="btn btn-primary"
 						onClick="@command('limpiarFiltros')" />
 				</hlayout>
 			</h:div>
-			<h:div class="col-xs-12 col-md-1"></h:div>
-			<h:div class="col-xs-12 col-md-1">
+			<h:div class="col-xs-12 col-md-3"></h:div>
+			<h:div class="col-xs-12 col-md-3">
 				<hlayout>
 					<button width="100%" label="Reporte"
-						zclass="btn btn-info" onClick="@command('reporteMovimiento')" />
-
+						zclass="btn btn-success" onClick="@command('reporteMovimiento')" />
+					<include src="/bascula/leerPeso/leerPesoSimple.zul" />
 				</hlayout>
 			</h:div>
 		</div>
@@ -59,43 +59,45 @@
 					emptyMessage="Sin movimientos.">
 					<custom-attributes
 						org.zkoss.zul.listbox.autoSort="true" />
-					<listhead menupopup="auto" sizable="true"  >
+					<listhead menupopup="auto" sizable="true">
 
 						<listheader width="40px" align="center" />
 
-						<listheader label="Tipo Mov." id="idHtipoMovimiento"
-							visible="@bind(vm.verCol.tipoMovimiento)"
+						<listheader label="Tipo Mov."
+							id="idHtipoMovimiento" visible="@bind(vm.verCol.tipoMovimiento)"
 							style="text-align: center"
 							sort="auto(tipoMovimiento.descripcion)"
 							onCreate="self.sort(true);" />
 
-						<listheader label="Fecha Llegada" width="120px" id="idHfechaLlegada"
-							visible="@bind(vm.verCol.fechaLlegada)" sort="auto(fechaLlegada)"
-							style="text-align: center" align="center" />
+						<listheader label="Fecha Llegada" width="120px"
+							id="idHfechaLlegada" visible="@bind(vm.verCol.fechaLlegada)"
+							sort="auto(fechaLlegada)" style="text-align: center"
+							align="center" />
 
-						<listheader label="Fecha Salida" width="120px" id="idHfechaSalida"
-							visible="@bind(vm.verCol.fechaSalida)" sort="auto(fechaSalida)"
-							style="text-align: center" align="center" />
+						<listheader label="Fecha Salida" width="120px"
+							id="idHfechaSalida" visible="@bind(vm.verCol.fechaSalida)"
+							sort="auto(fechaSalida)" style="text-align: center"
+							align="center" />
 
-						<listheader label="Kg.Bruto" width="65px" id="idHbruto"
-							visible="@bind(vm.verCol.bruto)" style="text-align: center"
-							align="right" />
+						<listheader label="Kg.Bruto" width="65px"
+							id="idHbruto" visible="@bind(vm.verCol.bruto)"
+							style="text-align: center" align="right" />
 
-						<listheader label="Kg.Tara" width="65px" id="idHtara"
-							visible="@bind(vm.verCol.tara)" style="text-align: center"
-							align="right" />
+						<listheader label="Kg.Tara" width="65px"
+							id="idHtara" visible="@bind(vm.verCol.tara)"
+							style="text-align: center" align="right" />
 
-						<listheader label="Kg.Neto" width="65px" id="idHneto"
-							visible="@bind(vm.verCol.neto)" style="text-align: center"
-							align="right" />
+						<listheader label="Kg.Neto" width="65px"
+							id="idHneto" visible="@bind(vm.verCol.neto)"
+							style="text-align: center" align="right" />
 
-						<listheader label="Kg.Origen" width="65px" id="idHorigen"
-							visible="@bind(vm.verCol.origen)" style="text-align: center"
-							align="right" />
+						<listheader label="Kg.Origen" width="65px"
+							id="idHorigen" visible="@bind(vm.verCol.origen)"
+							style="text-align: center" align="right" />
 
-						<listheader label="Kg.Dif." width="65px" id="idHdiferencia"
-							visible="@bind(vm.verCol.diferencia)" style="text-align: center"
-							align="right" />
+						<listheader label="Kg.Dif." width="65px"
+							id="idHdiferencia" visible="@bind(vm.verCol.diferencia)"
+							style="text-align: center" align="right" />
 
 
 						<listheader label="Origen" id="idHorigenLugar"
@@ -118,25 +120,25 @@
 							visible="@bind(vm.verCol.chapa)" style="text-align: center"
 							sort="auto(chapa.strCampo1)" />
 
-						<listheader label="Chapa Carreta" id="idHchapaCarreta"
-							visible="@bind(vm.verCol.chapaCarreta)"
+						<listheader label="Chapa Carreta"
+							id="idHchapaCarreta" visible="@bind(vm.verCol.chapaCarreta)"
 							style="text-align: center" sort="auto(chapaCarreta.strCampo1)" />
 
 						<listheader label="Chofer" id="idHchofer"
 							visible="@bind(vm.verCol.chofer)" style="text-align: center"
 							sort="auto(chofer.strCampo1)" />
 
-						<listheader label="Transportadora" id="idHtransportadora"
-							visible="@bind(vm.verCol.transportadora)"
+						<listheader label="Transportadora"
+							id="idHtransportadora" visible="@bind(vm.verCol.transportadora)"
 							style="text-align: center" sort="auto(transportadora.strCampo1)" />
 
 						<listheader label="Despacho" id="idHdespacho"
 							visible="@bind(vm.verCol.despacho)" style="text-align: center"
 							sort="auto(despachio)" />
 
-						<listheader label="Despachante" id="idHdespachante"
-							visible="@bind(vm.verCol.despachante)" style="text-align: center"
-							sort="auto(despachante.strCampo1)" />
+						<listheader label="Despachante"
+							id="idHdespachante" visible="@bind(vm.verCol.despachante)"
+							style="text-align: center" sort="auto(despachante.strCampo1)" />
 
 						<listheader label="" width="60px"
 							style="text-align: center" align="center">

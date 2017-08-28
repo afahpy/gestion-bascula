@@ -24,7 +24,7 @@
 			<h:div class="row">
 				<h:div class="col-xs-12 col-md-2">
 					<button label="Cambiar Contraseña"
-						zclass="btn btn-info" onClick="@command('cambiarModoPassActi')"
+						zclass="btn btn-primary" onClick="@command('cambiarModoPassActi')"
 						width="100%">
 					</button>
 				</h:div>
@@ -56,7 +56,7 @@
 
 				<h:div class="row">
 					<h:div class="col-xs-12 col-md-2">
-						<button label="Cambiar" zclass="btn btn-info"
+						<button label="Cambiar" zclass="btn btn-primary"
 							onClick="@command('cambiarPass')" width="100%">
 						</button>
 					</h:div>
