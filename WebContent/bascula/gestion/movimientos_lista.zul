@@ -67,100 +67,101 @@
 
 						<listheader label="Tipo Mov."
 							width="@load(vm.verCol.tipoMovimientoInt)" id="idHtipoMovimiento"
-							visible="@load(vm.verCol.tipoMovimiento)"
-							<listheader label="Fecha Llegada"
-								width="@load(vm.verCol.fechaLlegadaInt)" id="idHfechaLlegada"
-								visible="@load(vm.verCol.fechaLlegada)"
-								sort="auto(fechaLlegada)" style="text-align: center"
-								align="center" />
+							visible="@load(vm.verCol.tipoMovimiento)" />
+							
+							
+						<listheader label="Fecha Llegada"
+							width="@load(vm.verCol.fechaLlegadaInt)" id="idHfechaLlegada"
+							visible="@load(vm.verCol.fechaLlegada)" sort="auto(fechaLlegada)"
+							style="text-align: center" align="center" />
 
-							<listheader label="Fecha Salida"
-								width="@load(vm.verCol.fechaSalidaInt)" id="idHfechaSalida"
-								visible="@load(vm.verCol.fechaSalida)" sort="auto(fechaSalida)"
-								style="text-align: center" align="center" />
+						<listheader label="Fecha Salida"
+							width="@load(vm.verCol.fechaSalidaInt)" id="idHfechaSalida"
+							visible="@load(vm.verCol.fechaSalida)" sort="auto(fechaSalida)"
+							style="text-align: center" align="center" />
 
-							<listheader label="Kg.Bruto"
-								width="@load(vm.verCol.brutoInt)" id="idHbruto"
-								visible="@load(vm.verCol.bruto)" style="text-align: center"
-								align="right" />
+						<listheader label="Kg.Bruto"
+							width="@load(vm.verCol.brutoInt)" id="idHbruto"
+							visible="@load(vm.verCol.bruto)" style="text-align: center"
+							align="right" />
 
-							<listheader label="Kg.Tara"
-								width="@load(vm.verCol.taraInt)" id="idHtara"
-								visible="@load(vm.verCol.tara)" style="text-align: center"
-								align="right" />
+						<listheader label="Kg.Tara"
+							width="@load(vm.verCol.taraInt)" id="idHtara"
+							visible="@load(vm.verCol.tara)" style="text-align: center"
+							align="right" />
 
-							<listheader label="Kg.Neto"
-								width="@load(vm.verCol.netoInt)" id="idHneto"
-								visible="@load(vm.verCol.neto)" style="text-align: center"
-								align="right" />
+						<listheader label="Kg.Neto"
+							width="@load(vm.verCol.netoInt)" id="idHneto"
+							visible="@load(vm.verCol.neto)" style="text-align: center"
+							align="right" />
 
-							<listheader label="Kg.Origen"
-								width="@load(vm.verCol.origenInt)" id="idHorigen"
-								visible="@load(vm.verCol.origen)" style="text-align: center"
-								align="right" />
+						<listheader label="Kg.Origen"
+							width="@load(vm.verCol.origenInt)" id="idHorigen"
+							visible="@load(vm.verCol.origen)" style="text-align: center"
+							align="right" />
 
-							<listheader label="Kg.Dif."
-								width="@load(vm.verCol.diferenciaInt)" id="idHdiferencia"
-								visible="@load(vm.verCol.diferencia)" style="text-align: center"
-								align="right" />
+						<listheader label="Kg.Dif."
+							width="@load(vm.verCol.diferenciaInt)" id="idHdiferencia"
+							visible="@load(vm.verCol.diferencia)" style="text-align: center"
+							align="right" />
 
 
-							<listheader label="Origen"
-								id="idHorigenLugar" width="@load(vm.verCol.origenLugarInt)"
-								visible="@load(vm.verCol.origenLugar)"
-								style="text-align: center" sort="auto(origenLugar.strCampo1)" />
+						<listheader label="Origen" id="idHorigenLugar"
+							width="@load(vm.verCol.origenLugarInt)"
+							visible="@load(vm.verCol.origenLugar)" style="text-align: center"
+							sort="auto(origenLugar.strCampo1)" />
 
-							<listheader label="Destino"
-								id="idHdestinoLugar" width="@load(vm.verCol.destinoLugarInt)"
-								visible="@load(vm.verCol.destinoLugar)"
-								style="text-align: center" sort="auto(destinoLugar.strCampo1)" />
+						<listheader label="Destino" id="idHdestinoLugar"
+							width="@load(vm.verCol.destinoLugarInt)"
+							visible="@load(vm.verCol.destinoLugar)"
+							style="text-align: center" sort="auto(destinoLugar.strCampo1)" />
 
-							<listheader label="Remito" id="idHremito"
-								width="@load(vm.verCol.remitoInt)"
-								visible="@load(vm.verCol.remito)" style="text-align: center"
-								sort="auto(remito)" />
+						<listheader label="Remito" id="idHremito"
+							width="@load(vm.verCol.remitoInt)"
+							visible="@load(vm.verCol.remito)" style="text-align: center"
+							sort="auto(remito)" />
 
-							<listheader label="Remisión"
-								id="idHremision" width="@load(vm.verCol.remisionInt)"
-								visible="@load(vm.verCol.remision)" style="text-align: center"
-								sort="auto(remision)" />
+						<listheader label="Remisión" id="idHremision"
+							width="@load(vm.verCol.remisionInt)"
+							visible="@load(vm.verCol.remision)" style="text-align: center"
+							sort="auto(remision)" />
 
-							<listheader label="Chapa" id="idHchapa"
-								width="@load(vm.verCol.chapaInt)"
-								visible="@load(vm.verCol.chapa)" style="text-align: center"
-								sort="auto(chapa.strCampo1)" />
+						<listheader label="Chapa" id="idHchapa"
+							width="@load(vm.verCol.chapaInt)"
+							visible="@load(vm.verCol.chapa)" style="text-align: center"
+							sort="auto(chapa.strCampo1)" />
 
-							<listheader label="Chapa Carreta"
-								width="@load(vm.verCol.chapaCarretaInt)" id="idHchapaCarreta"
-								visible="@load(vm.verCol.chapaCarreta)"
-								style="text-align: center" sort="auto(chapaCarreta.strCampo1)" />
+						<listheader label="Chapa Carreta"
+							width="@load(vm.verCol.chapaCarretaInt)" id="idHchapaCarreta"
+							visible="@load(vm.verCol.chapaCarreta)"
+							style="text-align: center" sort="auto(chapaCarreta.strCampo1)" />
 
-							<listheader label="Chofer" id="idHchofer"
-								width="@load(vm.verCol.choferInt)"
-								visible="@load(vm.verCol.chofer)" style="text-align: center"
-								sort="auto(chofer.strCampo1)" />
+						<listheader label="Chofer" id="idHchofer"
+							width="@load(vm.verCol.choferInt)"
+							visible="@load(vm.verCol.chofer)" style="text-align: center"
+							sort="auto(chofer.strCampo1)" />
 
-							<listheader label="Transportadora"
-								width="@load(vm.verCol.choferInt)" id="idHtransportadora"
-								visible="@load(vm.verCol.chofer)" style="text-align: center"
-								sort="auto(transportadora.strCampo1)" />
+						<listheader label="Transportadora"
+							width="@load(vm.verCol.choferInt)" id="idHtransportadora"
+							visible="@load(vm.verCol.chofer)" style="text-align: center"
+							sort="auto(transportadora.strCampo1)" />
 
-							<listheader label="Despacho"
-								id="idHdespacho" width="@load(vm.verCol.despachoInt)"
-								visible="@load(vm.verCol.despacho)" style="text-align: center"
-								sort="auto(despachio)" />
+						<listheader label="Despacho" id="idHdespacho"
+							width="@load(vm.verCol.despachoInt)"
+							visible="@load(vm.verCol.despacho)" style="text-align: center"
+							sort="auto(despachio)" />
 
-							<listheader label="Despachante"
-								width="@load(vm.verCol.despachanteInt)" id="idHdespachante"
-								visible="@load(vm.verCol.despachante)"
-								style="text-align: center" sort="auto(despachante.strCampo1)" />
+						<listheader label="Despachante"
+							width="@load(vm.verCol.despachanteInt)" id="idHdespachante"
+							visible="@load(vm.verCol.despachante)" style="text-align: center"
+							sort="auto(despachante.strCampo1)" />
 
-							<listheader label="" width="60px"
-								style="text-align: center" align="center">
-								<button id="btnCancel"
-									image="/core/img/save_close-16.png"
-									onClick="@command('grabarVerColumnas', header=self.parent.parent)" />
-							</listheader>
+						<listheader label="" width="60px"
+							style="text-align: center" align="center">
+							<button id="btnCancel"
+								image="/core/img/save_close-16.png"
+								onClick="@command('grabarVerColumnas', header=self.parent.parent)" />
+						</listheader>
 
 
 					</listhead>
