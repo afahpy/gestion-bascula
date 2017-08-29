@@ -55,7 +55,6 @@
 			<zipfileset src="lib/commons-lang-2.5.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/commons-logging.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/commons-logging-1.1.1.jar" excludes="META-INF/*" />
-			<zipfileset src="lib/core.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/cos.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/dom4j-1.6.1.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/DynamicJasper-4.0.3.jar" excludes="META-INF/*" />
@@ -93,7 +92,6 @@
 			<zipfileset src="lib/jersey-common.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/jersey-container-servlet.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/jersey-container-servlet-core.jar" excludes="META-INF/*" />
-			<zipfileset src="lib/jersey-guava-2.7.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/jersey-server.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/jfreechart.jar" excludes="META-INF/*" />
 			<zipfileset src="lib/jgoodies-binding-2.5.0.jar" excludes="META-INF/*" />
