@@ -34,34 +34,4 @@ public class BasculaPesoWS {
 
 	}
 
-	/*
-
-	@PUT
-//	@Path("/chau/{peso}")
-	@Path("/{peso}")
-	@Consumes(MediaType.TEXT_PLAIN)
-	public Response putPeso(@PathParam("peso") String peso) {
-		System.out.println("Llego:"+peso);
-		return Response.ok().entity("ok peso:"+peso).build();
-	}
-
-	 * 
-	 * @GET
-	 * 
-	 * @Path("/hola")
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN) public String sayHello() { return
-	 * "Hello Jersey"; }
-	 */
-	/*
-	 * @GET
-	 * 
-	 * @Path("/{param}")
-	 * 
-	 * @Produces(MediaType.TEXT_HTML) public String
-	 * getSaludoHTML(@PathParam("param") String nombre) { return "<html> " +
-	 * "<title>" + "Hola Mundo" + "</title>" + "<body><h1>" +
-	 * "Hola Mundo en HTML : " + nombre + "</body></h1>" + "</html> "; }
-	 */
-
 }

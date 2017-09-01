@@ -1,17 +1,10 @@
 package com.bascula.leerPeso;
 
-import gnu.io.*;
+import com.rm5248.serial.SerialLineState;
+import com.rm5248.serial.SerialPort;
 
-import com.bascula.domain.MovimientoDetalle;
-
-import com.bascula.domain.RegisterDomain;
-
-import gnu.io.SerialPortEvent;
-import gnu.io.SerialPortEventListener;
 import java.io.*;
 import java.util.*;
-
-
 
 /*
  * leer los datos de un archivo de configuración
@@ -25,11 +18,10 @@ public class BasculaParser implements Runnable {
 	// linux
 	// public static String NOMBRE_PUERTO = "/dev/term/a";
 
-	public static String NOMBRE_APP = "SimpleReadApp";
-	
+//	public static String NOMBRE_APP = "SimpleReadApp";
+
 	public static boolean LOG = true;
-	
-	
+
 	BasculaPesoWSCliente ws;
 
 	protected long NO = -1000;
@@ -49,58 +41,55 @@ public class BasculaParser implements Runnable {
 		}
 	}
 
-	protected void print(String s){
-		if (LOG == true){
+	protected void print(String s) {
+		if (LOG == true) {
 			System.out.println(s);
 		}
 	}
-	
-	
-	private void cargarConnfiguracion() throws Exception{
+
+	private void cargarConnfiguracion() throws Exception {
 		Properties p = new Properties();
 		InputStream is = new FileInputStream("./config.properties");
 		p.load(is);
-		
-		
+
 		NOMBRE_PUERTO = p.getProperty("NOMBRE_PUERTO");
-		LOG =  Boolean.parseBoolean(p.getProperty("LOG"));
+		LOG = Boolean.parseBoolean(p.getProperty("LOG"));
 		BasculaPesoWSCliente.REST_URI = p.getProperty("WS_BASCULA");
-		
-		print("==============================================================="); 
-		print("NOMBRE_PUERTO: "+NOMBRE_PUERTO);
-		print("LOG: "+LOG);
-		print("URL: "+BasculaPesoWSCliente.REST_URI);
-		print("==============================================================="); 
-		
-		
+
+		print("===============================================================");
+		print("NOMBRE_PUERTO: " + NOMBRE_PUERTO);
+		print("LOG: " + LOG);
+		print("URL: " + BasculaPesoWSCliente.REST_URI);
+		print("===============================================================");
+
 		is.close();
 
 	}
-	
+
 	protected long getValue(String line) {
 		long out = NO;
 		line = line.trim();
-		
+
 		String valor = "";
 		boolean leer = true;
-		
-		while(leer == true){
+
+		while (leer == true) {
 			try {
 				int l = line.length();
-				String s = line.substring(l-1);
+				String s = line.substring(l - 1);
 				int dig = Integer.valueOf(s);
 				valor = s + valor;
-				line = line.substring(0, l-1);
+				line = line.substring(0, l - 1);
 			} catch (Exception e) {
 				leer = false;
 			}
-		}// while
+		} // while
 		try {
 			out = Long.valueOf(valor);
 		} catch (Exception e) {
 			out = NO;
 		}
-		
+
 		return out;
 	}
 
@@ -117,8 +106,7 @@ public class BasculaParser implements Runnable {
 		}
 		return out;
 	}
-
-	
+/*
 	public void testDB() throws Exception {
 		RegisterDomain rr = RegisterDomain.getInstance();
 		MovimientoDetalle m = new MovimientoDetalle();
@@ -129,8 +117,7 @@ public class BasculaParser implements Runnable {
 		System.out.println("FIN-----------");
 
 	}
-
-
+*/
 	private static void runLectorBascula() throws Exception {
 		BasculaParser bp = new BasculaParser();
 		bp.print("--leyendo configuración..");
@@ -143,133 +130,80 @@ public class BasculaParser implements Runnable {
 		bp.print("--listo..");
 	}
 
-	
-	public static void pruebaGetValue(){
+	public static void pruebaGetValue() {
 		BasculaParser bp = new BasculaParser();
 		System.out.println(bp.getValue("2   3a   "));
 	}
-	
+
 	public static void main(String[] args) {
 		try {
 			runLectorBascula();
-			//pruebaGetValue();
-			
+			// pruebaGetValue();
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-
-	private CommPortIdentifier buscarPortId() {
-
-		CommPortIdentifier out = null;
-		Enumeration portList = CommPortIdentifier.getPortIdentifiers();
-
-		while (portList.hasMoreElements()) {
-			out = (CommPortIdentifier) portList.nextElement();
-			if (out.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-				if (out.getName().compareTo(NOMBRE_PUERTO) == 0) {
-					return out;
-				}
-			}
-		}
-		return out;
-
-	}
 
 	private void initcializar() throws Exception {
-		print("        buscar puerto");
-		CommPortIdentifier portId = this.buscarPortId();
-		print("        abrir puerto:"+portId);
-		SerialPort serialPort = (SerialPort) portId.open(NOMBRE_APP, 2000);
 
-		
-		print("        crea inputStream");
-		InputStream inp = serialPort.getInputStream();
-
-		print("        listener");
-		BasculaPortEventListener portListener = new BasculaPortEventListener(inp, this);
-				
-		serialPort.addEventListener(portListener);
-		serialPort.notifyOnDataAvailable(true);
-		print("        set puerto");
-		serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 		// conecta con el WS
 		print("        crea ws");
 		this.ws = new BasculaPesoWSCliente();
+
 	}
 
 	@Override
 	public void run() {
 		int t = 5;
 		while (true) {
+			SerialPort sp = null;
 			try {
-				Thread.sleep(t * 1000);
-				print("                                "+t+" seg");
 
-			} catch (InterruptedException e) {
+				System.out.println("---------- esperando-"+System.currentTimeMillis());
+				Thread.sleep(2000); 
+				
+				sp = new SerialPort(NOMBRE_PUERTO);
+				SerialLineState state = sp.getSerialLineState();
+				InputStream is = sp.getInputStream();
+
+				BufferedReader buffer = new BufferedReader(new InputStreamReader(is));
+				String line = "";
+
+				while ((line = buffer.readLine()) != null) {
+					//System.err.println("line: " + line);
+
+					this.print("                                line:[" + line + "]");
+
+					long dato = this.getValue(line);
+					if (dato != NO) {
+						System.out.println(dato);
+						this.print("   " + dato);
+						this.ws.enviarPeso(dato);
+					} else {
+						System.out.println("----------NO:" + line);
+					}
+
+					System.out.println("---------- esperando");
+					this.wait(1000);
+					
+					
+				}// while
+
+			} catch (Exception e) {
+				e.printStackTrace();
 				System.out.println(e);
-			}
-		}
-	}
-
-}
-
-
-class BasculaPortEventListener implements SerialPortEventListener{
-
-	public InputStream inputStream;
-	public BasculaParser parser;
-
-	
-	public BasculaPortEventListener(InputStream inputStream, BasculaParser parser){
-		this.inputStream = inputStream;
-		this.parser = parser;
-	}
-	
-	
-	@Override
-	public void serialEvent(SerialPortEvent event) {
-		parser.print("                                evento nuevo");
-
-		switch (event.getEventType()) {
-		case SerialPortEvent.BI:
-		case SerialPortEvent.OE:
-		case SerialPortEvent.FE:
-		case SerialPortEvent.PE:
-		case SerialPortEvent.CD:
-		case SerialPortEvent.CTS:
-		case SerialPortEvent.DSR:
-		case SerialPortEvent.RI:
-		case SerialPortEvent.OUTPUT_BUFFER_EMPTY:
-			break;
-		case SerialPortEvent.DATA_AVAILABLE:
-			byte[] readBuffer = new byte[20];
-
-			try {
-				while (this.inputStream.available() > 0) {
-					int numBytes = this.inputStream.read(readBuffer);
+			} finally {
+				if ((sp != null)&&(sp.isClosed()==false)){
+					System.out.println("---cerrar------------------------");
+					sp.close();
 				}
-				String line = new String(readBuffer);
-				parser.print("                                line:["+line+"]");
-
-				long dato = parser.getValue(line);
-				if (dato != parser.NO) {
-					System.out.println(dato);
-					parser.print("   "+dato);
-					parser.ws.enviarPeso(dato);
-				}else{
-					System.out.println("----------NO:"+line);
-				}
-			} catch (IOException e) {
-				System.out.println(e);
 			}
-			break;
-		}
-		parser.print("                                evento fin");
+			
+			
+			
+		} // while
 	}
 
-	
-	
 }

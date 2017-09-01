@@ -1,6 +1,6 @@
-<?forward uri="/core/inicio/home.zul?title=Gestion-Bascula&menu=/bascula/menu.zul&prefix=bascula&css=/core/css/yhaguy.css" if="${true}"?>
+<?forward uri="/core/inicio/home.zul?title=Gestión Bascula&menu=/bascula/menu.zul&prefix=bascula&css=/core/css/yhaguy.css" if="${true}"?>
 
-<window title="Gestion-Bascula" border="none" width="200px">
+<window title="Gestion Bascula" border="none" width="200px">
 Bienvenidos!
 </window>
 
