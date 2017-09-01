@@ -157,12 +157,13 @@ public class BasculaParser implements Runnable {
 	@Override
 	public void run() {
 		int t = 5;
+		long ultimoCC = 0;
 		while (true) {
 			SerialPort sp = null;
 			try {
 
-				System.out.println("---------- esperando-"+System.currentTimeMillis());
-				Thread.sleep(2000); 
+				System.out.println(System.currentTimeMillis()+"(conectando)");
+				Thread.sleep(1000); 
 				
 				sp = new SerialPort(NOMBRE_PUERTO);
 				SerialLineState state = sp.getSerialLineState();
@@ -174,19 +175,26 @@ public class BasculaParser implements Runnable {
 				while ((line = buffer.readLine()) != null) {
 					//System.err.println("line: " + line);
 
-					this.print("                                line:[" + line + "]");
+//					this.print("                                line:[" + line + "]");
 
 					long dato = this.getValue(line);
-					if (dato != NO) {
-						System.out.println(dato);
-						this.print("   " + dato);
-						this.ws.enviarPeso(dato);
-					} else {
-						System.out.println("----------NO:" + line);
-					}
+					
+					if (dato != ultimoCC){
+						// mandar cuando hay diferencias 
 
-					System.out.println("---------- esperando");
-					this.wait(1000);
+						if (dato != NO) {
+//							System.out.println(dato);
+							this.print("                                " + dato);
+							this.ws.enviarPeso(dato);
+						} else {
+							System.out.println("NO:" + line);
+						}
+					
+					}
+					ultimoCC = dato;
+
+					System.out.println(System.currentTimeMillis()+"(leyendo)");
+//					Thread.sleep(1000); 
 					
 					
 				}// while
