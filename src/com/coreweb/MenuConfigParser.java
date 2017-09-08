@@ -44,7 +44,7 @@ public class MenuConfigParser {
 		// borrar los usuarios y los PermisosEditar, 0j0, que pasa con las
 		// relaciones a la clase Usuario que puede haber desde el dominio de la
 		// app??
-//		this.deleteDatos();
+		this.deleteDatos();
 
 		// parser usuarios
 		this.parserUsuarios();
