@@ -20,6 +20,7 @@ import net.sf.dynamicreports.report.builder.column.ValueColumnBuilder;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilders;
 import net.sf.dynamicreports.report.builder.component.HorizontalListBuilder;
+import net.sf.dynamicreports.report.builder.component.MultiPageListBuilder;
 import net.sf.dynamicreports.report.builder.component.TextFieldBuilder;
 import net.sf.dynamicreports.report.builder.component.VerticalListBuilder;
 import net.sf.dynamicreports.report.builder.condition.ConditionBuilders;
@@ -693,6 +694,9 @@ public class ReporteDefinicion {
 		HorizontalListBuilder out = cmp.horizontalList();
 		VerticalListBuilder cuerpo = cmp.verticalList();
 		
+		
+		
+		
 		String ESP = " ";
 		String PADDING = "";
 		PADDING += paddingDer ?  PADDING_DER : "";
@@ -725,6 +729,7 @@ public class ReporteDefinicion {
 		}
 
 		VerticalListBuilder tabla = cmp.verticalList();
+//		MultiPageListBuilder tabla = cmp.multiPageList();
 		// error, cuanto tiene más de una página, esta sentencia hace que se tilde
 //		tabla.setStyle(stl.style().setBorder(stl.pen1Point()));
 

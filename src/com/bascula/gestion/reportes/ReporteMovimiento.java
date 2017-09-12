@@ -102,7 +102,7 @@ public class ReporteMovimiento extends BasculaReporte {
 
 		reporte.setFiltro("123");
 		reporte.setCols(cols);
-		reporte.setListaMovimiento(getMovimientosPrueba(100));
+		reporte.setListaMovimiento(getMovimientosPrueba(20));
 		reporte.ejecutar(true);
 	}
 }
