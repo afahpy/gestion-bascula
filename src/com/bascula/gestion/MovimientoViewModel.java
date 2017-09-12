@@ -239,7 +239,7 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	@Command
 	@NotifyChange("movimiento")
 	public void calcularDiferencia() {
-		this.movimiento.setDiferencia(this.movimiento.getOrigen() - this.movimiento.getNeto());
+		this.movimiento.setDiferencia(this.movimiento.getNeto() - this.movimiento.getOrigen());
 	}
 
 	// =====================================
