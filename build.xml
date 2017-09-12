@@ -45,7 +45,7 @@
 	<target name="copy-properties" description="Copy properties files">
 		<mkdir dir="${classes.dir}" />
 		<copy todir="${classes.dir}">
-			<fileset dir="${src.dir}" includes="**/*.properties" />
+			<fileset dir="${src.dir}" includes="**/*.*" />
 		</copy>
 	</target>
 
