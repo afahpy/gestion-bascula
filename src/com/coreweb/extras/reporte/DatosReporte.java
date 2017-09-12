@@ -277,12 +277,12 @@ public abstract class DatosReporte extends ReporteDefinicion implements ReporteI
 
 		this.setA4(); // por defecto
 		this.setDatosReportes();
-
 		String pathCompleto = this.getArchivoPathReal();
 
 		this.reporte = new MyReport(this.membretePropioReporte, this.getMembretePropioReporte(), cr, body, footer,
 				data, empresa, logoEmpresa, logoAncho, logoAlto, titulo, usuario, pathCompleto,
 				this.footerPropioReporte, this.getFooterPropioReporte());
+
 
 		this.reporte.setTipoPagina(this.getTipoPagina());
 		this.reporte.setPutFooter(this.isPutFoot());

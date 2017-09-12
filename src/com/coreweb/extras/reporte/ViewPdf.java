@@ -49,6 +49,7 @@ public class ViewPdf {
 		rep.setEmpresa(vm.getEmpresa());
 		rep.ejecutar(false);
 
+
 		// String urlPdf = Config.DIRECTORIO_WEB_REPORTES + "/" +
 		// rep.getArchivoSalida();
 		String urlPdf = rep.getUrlReporte();

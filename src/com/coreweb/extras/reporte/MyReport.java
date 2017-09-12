@@ -234,10 +234,12 @@ public class MyReport extends ReporteDefinicion {
 		try {
 
 			build();
+
 			if (tipoFormato.equals(ReporteDefinicion.EXPORT_CSV)) {
 				exporter = export.csvExporter(archivo);
 				rep.toCsv((JasperCsvExporterBuilder) exporter);
 			} else if (tipoFormato.equals(ReporteDefinicion.EXPORT_PDF)) {
+				
 				exporter = export.pdfExporter(archivo);
 				rep.toPdf((JasperPdfExporterBuilder) exporter);
 			} else if (tipoFormato.equals(ReporteDefinicion.EXPORT_XLSX)) {
@@ -249,7 +251,6 @@ public class MyReport extends ReporteDefinicion {
 				rep.toDocx((JasperDocxExporterBuilder) exporter);
 			}
 			
-			System.out.println("--->archivo:"+archivo);
 			/*
 			 * build(); JasperPdfExporterBuilder pdfExporter =
 			 * export.pdfExporter(archivo).setEncrypted(false);
@@ -258,8 +259,8 @@ public class MyReport extends ReporteDefinicion {
 
 			if (ver  == true) {
 				rep.show();
-
 			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

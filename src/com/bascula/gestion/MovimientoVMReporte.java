@@ -63,6 +63,7 @@ public class MovimientoVMReporte extends GenericViewModelApp {
 
 		ReporteMovimiento rep = new ReporteMovimiento();
 		rep.setCols(this.fm.getColTablas());
+
 		rep.setListaMovimiento(datos);
 		rep.setFiltro(" x x x x x x`");
 

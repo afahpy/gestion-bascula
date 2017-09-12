@@ -685,13 +685,14 @@ public class ReporteDefinicion {
 	}
 
 
+
 	
 	public ComponentBuilder getTabla(String[][] cols, List<Object[]> datos,
 			String prop, boolean siPie, boolean paddingDer, boolean paddingIzq) {
-
+		
 		HorizontalListBuilder out = cmp.horizontalList();
 		VerticalListBuilder cuerpo = cmp.verticalList();
-
+		
 		String ESP = " ";
 		String PADDING = "";
 		PADDING += paddingDer ?  PADDING_DER : "";
@@ -724,7 +725,8 @@ public class ReporteDefinicion {
 		}
 
 		VerticalListBuilder tabla = cmp.verticalList();
-		tabla.setStyle(stl.style().setBorder(stl.pen1Point()));
+		// error, cuanto tiene más de una página, esta sentencia hace que se tilde
+//		tabla.setStyle(stl.style().setBorder(stl.pen1Point()));
 
 		// cargar los titulos
 
@@ -767,6 +769,7 @@ public class ReporteDefinicion {
 		}
 
 		cuerpo.add(tabla);
+
 		cuerpo.add(cmp.line());
 
 		out.add(cuerpo);
@@ -778,5 +781,5 @@ public class ReporteDefinicion {
 
 		return out;
 	}
-
+	
 }

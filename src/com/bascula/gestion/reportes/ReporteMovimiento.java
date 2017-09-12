@@ -32,7 +32,6 @@ public class ReporteMovimiento extends BasculaReporte {
 			out.add(cabecera());
 			out.add(datosDetalle());
 		}
-
 		this.setBody(out);
 	}
 
@@ -52,13 +51,12 @@ public class ReporteMovimiento extends BasculaReporte {
 		out.add(this.espacioAlto(20));
 		String tablaMovim = LETRA_8 + TABLA_TITULO + "";
 
-		if (this.cols.length > 6){
+		if (this.cols.length > 6) {
 			this.setApaisada();
 		}
-		
-		
-		ComponentBuilder mov = this.getTabla(this.cols, this.listaMovimiento,
-				tablaMovim, true, false, false);
+
+		ComponentBuilder mov = this.getTabla(this.cols, this.listaMovimiento, tablaMovim, true, false, false);
+
 		out.add(mov);
 		out.add(this.espacioAlto(20));
 		return out;
@@ -80,7 +78,6 @@ public class ReporteMovimiento extends BasculaReporte {
 	// ================================================================
 	public static List<Object[]> getMovimientosPrueba(int nCol) {
 		List<Object[]> movimientos = new ArrayList<Object[]>();
-		;
 
 		for (int i = 0; i < nCol; i++) {
 
@@ -100,13 +97,12 @@ public class ReporteMovimiento extends BasculaReporte {
 	public static void main(String[] args) {
 		ReporteMovimiento reporte = new ReporteMovimiento();
 
-		String[][] cols = { { "Col1", WIDTH + "65" }, { "Col2", WIDTH + "65" },
-				{ "Col3", WIDTH + "65" }, { "Col4", WIDTH + "65" },
-				{ "Col7", WIDTH + "65" }, };
+		String[][] cols = { { "Col1", WIDTH + "65" }, { "Col2", WIDTH + "65" }, { "Col3", WIDTH + "65" },
+				{ "Col4", WIDTH + "65" }, { "Col7", WIDTH + "65" }, };
 
 		reporte.setFiltro("123");
 		reporte.setCols(cols);
-		reporte.setListaMovimiento(getMovimientosPrueba(cols.length));
+		reporte.setListaMovimiento(getMovimientosPrueba(100));
 		reporte.ejecutar(true);
 	}
 }
