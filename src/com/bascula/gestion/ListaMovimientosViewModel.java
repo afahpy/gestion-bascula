@@ -165,7 +165,7 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 	}
 
 	@Command
-	@NotifyChange("movimientos")
+	@NotifyChange({"movimientos", "movTempSumas"})
 	public void filtrar() throws Exception {
 
 		this.movimientos = rr.getMovimientos(this.filTipoMovimiento, this.filLugarOrigen, this.filLugarDestino,
