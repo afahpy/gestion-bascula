@@ -54,7 +54,7 @@ public class RegisterDomain extends Register {
 		List<Object> listaParametros = new ArrayList<Object>();
 		String query = "SELECT m FROM MovimientoEntradaSalida m ";
 		String where = " WHERE 1=1 ";
-		String order = " ORDER BY m.modificado DESC";
+		String order = " ORDER BY m.id DESC";
 
 		if (filTipoMovimiento != null && filTipoMovimiento.trim().length() > 0) {
 			where += " AND lower(m.tipoMovimiento.descripcion) like '%" + filTipoMovimiento.toLowerCase() + "%' ";
