@@ -43,6 +43,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%"
+							onSelect="@command('notificarCambioTM')"
 							model="@load(vm.utilDto.tiposMovimientos)"
 							value="@load(vm.movimiento.tipoMovimiento.descripcion)"
 							autocomplete="true" autodrop="true"
@@ -226,10 +227,13 @@
 					</h:div>
 				</h:div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
-						<label value=" Remito: " width="100%"></label>
+						<label value=" Remito: " width="100%"
+							visible="@load(vm.campoVisibleConsumo)">
+						</label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 
@@ -238,9 +242,10 @@
 							value="@bind(vm.movimiento.remito)">
 						</textbox>
 					</h:div>
-				</h:div>
+				</div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Remision: " width="100%"></label>
@@ -251,9 +256,10 @@
 							value="@bind(vm.movimiento.remision)">
 						</textbox>
 					</h:div>
-				</h:div>
+				</div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Chapa:" width="100%"></label>
@@ -273,9 +279,10 @@
 							</template>
 						</combobox>
 					</h:div>
-				</h:div>
+				</div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Chapa Carreta:" width="100%"></label>
@@ -296,9 +303,10 @@
 							</template>
 						</combobox>
 					</h:div>
-				</h:div>
+				</div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Chofer:" width="100%"></label>
@@ -319,9 +327,10 @@
 							</template>
 						</combobox>
 					</h:div>
-				</h:div>
+				</div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Transportadora:" width="100%"></label>
@@ -342,9 +351,10 @@
 							</template>
 						</combobox>
 					</h:div>
-				</h:div>
+				</div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Despacho: " width="100%"></label>
@@ -355,12 +365,14 @@
 							value="@bind(vm.movimiento.despacho)">
 						</textbox>
 					</h:div>
-				</h:div>
+				</div>
 
-				<h:div class="row">
+				<div zclass="row"
+					visible="@load(vm.campoVisibleConsumo)">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
-						<label value=" Despachante:" width="100%"></label>
+						<label value=" Despachante:" width="100%">
+						</label>
 					</h:div>
 					<h:div class="col-xs-7 col-md-4">
 
@@ -378,7 +390,7 @@
 							</template>
 						</combobox>
 					</h:div>
-				</h:div>
+				</div>
 			</h:div>
 
 

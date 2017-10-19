@@ -159,8 +159,6 @@ public class MovimientoViewModel extends GenericViewModelApp {
 		return out;
 	}
 
-	
-	
 	public boolean isFormularioModoEdicion() {
 
 		boolean out = false;
@@ -240,6 +238,23 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	@NotifyChange("movimiento")
 	public void calcularDiferencia() {
 		this.movimiento.setDiferencia(this.movimiento.getNeto() - this.movimiento.getOrigen());
+	}
+
+	@Command
+	@NotifyChange("*")
+	public void notificarCambioTM() {
+
+	}
+
+	public boolean isCampoVisibleConsumo() {
+		boolean out = true;
+
+		if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
+				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO) == 0) {
+			out = false;
+		}
+
+		return out;
 	}
 
 	// =====================================
