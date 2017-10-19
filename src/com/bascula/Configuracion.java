@@ -34,6 +34,8 @@ public class Configuracion extends Config {
 	public static final String SIGLA_TIPO_MOVIMIENTO_ENTRADA = "TM-EN";
 	public static final String TIPO_MOVIMIENTO_SALIDA = "Salida";
 	public static final String SIGLA_TIPO_MOVIMIENTO_SALIDA = "TM-SA";
+	public static final String TIPO_MOVIMIENTO_CONSUMO = "Consumo";
+	public static final String SIGLA_TIPO_MOVIMIENTO_CONSUMO = "TM-CON";
 	
 	//Tipos objeto
 	public static final String TIPO_OBJETO_ORIGEN_LUGAR = "Origen Lugar";

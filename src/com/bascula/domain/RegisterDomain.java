@@ -38,6 +38,15 @@ public class RegisterDomain extends Register {
 	public synchronized static RegisterDomain getInstance() {
 		return (RegisterDomain) Register.getInstanceCore(RegisterDomain.class.getName());
 	}
+	
+	/**
+	 * @return TipoTipo por descripción
+	 */
+	public TipoTipo getTipoTipoPorDescripcion(String descripcion) throws Exception {
+		String queryTipo = "select tt from TipoTipo tt where tt.descripcion='" + descripcion + "'";
+		TipoTipo out = (TipoTipo) this.hqlToObject(queryTipo);
+		return out;
+	}
 
 	/************************************************************
 	 * Metodos especificos de las clases del dominio
