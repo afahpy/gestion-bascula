@@ -258,8 +258,7 @@
 					</h:div>
 				</div>
 
-				<div zclass="row"
-					visible="@load(vm.campoVisibleConsumo)">
+				<div zclass="row">
 					<h:div
 						class="col-xs-5 col-md-2 form-group text-left">
 						<label value=" Chapa:" width="100%"></label>

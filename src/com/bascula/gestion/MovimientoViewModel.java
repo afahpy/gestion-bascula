@@ -256,6 +256,14 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 		return out;
 	}
+	
+	public double getTaraByChapa(){
+		double tara = 0.0;
+		
+				
+		
+		return tara;
+	}
 
 	// =====================================
 
