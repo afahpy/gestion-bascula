@@ -1,6 +1,7 @@
 package com.bascula.gestion;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -44,6 +45,8 @@ public class MovimientoViewModel extends GenericViewModelApp {
 			this.movimiento = movimiento;
 		} else {
 			this.movimiento = new MovimientoEntradaSalida();
+			this.movimiento.setFechaLlegada(new Date());
+			this.movimiento.setFechaSalida(new Date());
 		}
 
 		if (modoFormulario != null) {
