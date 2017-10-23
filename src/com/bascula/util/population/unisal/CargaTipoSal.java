@@ -1,5 +1,6 @@
 package com.bascula.util.population.unisal;
 
+import java.util.HashSet;
 import java.util.List;
 
 import com.bascula.Configuracion;
@@ -154,9 +155,31 @@ public class CargaTipoSal {
 		}
 	}
 	
+	
+	public static void duplicar() throws Exception{
+
+		for (int j = 0; j < 10; j++) {
+			long nn = -1;
+			String qq = "select m from MovimientoEntradaSalida m ";
+			List<Domain> ld = rr.hql(qq);
+			for (int i = 0; i < ld.size(); i++) {
+				MovimientoEntradaSalida m = (MovimientoEntradaSalida) ld.get(i);
+				System.out.println(j+"/"+i);
+				m.setId(nn);
+				m.setDetalles(new HashSet<>());
+				rr.saveObject(m, "dife");
+				nn--;
+			}
+		}
+		
+		
+		
+	}
+	
 	public static void main(String[] args) throws Exception {
 		//cargaProductos();
-		diferencia();
+		//diferencia();
+		duplicar();
 	}
 
 }

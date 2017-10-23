@@ -1509,7 +1509,17 @@ public class Misc {
 	public byte[] serializar(Serializable o) {
 		return SerializationUtils.serialize(o);
 	}
+	
+	public void serializar(Serializable o, OutputStream out) {
+		SerializationUtils.serialize(o, out);
+	}
 
+	public Object deSerializar(InputStream inp) {
+		return SerializationUtils.deserialize(inp);
+	}
+
+	
+	
 	public Object deSerializar(byte[] bs) {
 		return SerializationUtils.deserialize(bs);
 	}
@@ -1534,9 +1544,8 @@ public class Misc {
 	 */
 	public void grabarObjectToArchvo(Serializable obj, String file) {
 		try {
-			byte[] ff = this.serializar(obj);
 			ObjectOutputStream fil = new ObjectOutputStream(new FileOutputStream(file));
-			fil.write(ff);
+			this.serializar(obj, fil);
 			fil.close();
 		} catch (Exception e) {
 			System.out.println("NO pudo grabar en ["+file+"] "+e.getMessage());
@@ -1552,6 +1561,21 @@ public class Misc {
 	public Serializable leerObjetoFromDisco(String file) {
 		Serializable out = null;
 		try {
+			ObjectInputStream inp = new ObjectInputStream(new FileInputStream(file));
+			out = (Serializable) this.deSerializar(inp);
+			inp.close();
+		} catch (Exception e) {
+			System.out.println("NO pudo leer  ["+file+"] "+e.getMessage());
+			e.printStackTrace();
+			out = null;
+		}
+		return out;
+	}
+
+
+	public Serializable ORI_leerObjetoFromDisco(String file) {
+		Serializable out = null;
+		try {
 			ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(file));
 			byte[] ff = new byte[entrada.available()];
 			entrada.readFully(ff);
@@ -1559,11 +1583,12 @@ public class Misc {
 			entrada.close();
 		} catch (Exception e) {
 			System.out.println("NO pudo leer  ["+file+"] "+e.getMessage());
+			e.printStackTrace();
 			out = null;
 		}
 		return out;
 	}
-
+	
 	
 	
 	public void mensajePopupTemporal(String mensaje) {

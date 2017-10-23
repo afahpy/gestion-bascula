@@ -15,6 +15,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.bascula.Configuracion;
+import com.bascula.gestion.FiltroMovimiento;
 import com.coreweb.domain.IiD;
 import com.coreweb.domain.Register;
 import com.coreweb.domain.Tipo;
@@ -53,7 +54,26 @@ public class RegisterDomain extends Register {
 	 * 
 	 * @throws Exception
 	 ************************************************************/
+/*
+		public List<MovimientoEntradaSalida> getMovimientos(String filTipoMovimiento, String filLugarOrigen,
+			String filLugarDestino, String filRemito, String filRemision, String filChapa, String filChapaCarreta,
+			String filChofer, String filTransportadora, String filDespacho, String filDespachante,
+			Date filtroFechaLlegadaDesde, Date filtroFechaLlegadaHasta, Date filtroFechaSalidaDesde,
+			Date filtroFechaSalidaHasta) throws Exception {
 
+	
+*/	
+	
+	public List<MovimientoEntradaSalida> getMovimientos(FiltroMovimiento fil) throws Exception{
+
+		return this.getMovimientos(fil.getFilTipoMovimiento(), fil.getFilLugarOrigen(),
+				fil.getFilLugarDestino(), fil.getFilRemito(), fil.getFilRemision(), fil.getFilChapa(), fil.getFilChapaCarreta(),
+				fil.getFilChofer(), fil.getFilTransportadora(), fil.getFilDespacho(), fil.getFilDespachante(),
+				fil.getFiltroFechaLlegadaDesde(), fil.getFiltroFechaLlegadaHasta(), fil.getFiltroFechaSalidaDesde(),
+				fil.getFiltroFechaSalidaHasta());
+	}
+
+	
 	public List<MovimientoEntradaSalida> getMovimientos(String filTipoMovimiento, String filLugarOrigen,
 			String filLugarDestino, String filRemito, String filRemision, String filChapa, String filChapaCarreta,
 			String filChofer, String filTransportadora, String filDespacho, String filDespachante,

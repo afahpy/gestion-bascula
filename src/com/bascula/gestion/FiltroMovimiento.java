@@ -56,6 +56,25 @@ public class FiltroMovimiento implements Serializable {
 	String despachanteInt = "65px";
 	String detallesInt = "65px";
 
+	
+	private String filTipoMovimiento = "";//
+	private String filLugarOrigen = "";
+	private String filLugarDestino = "";
+	private String filRemito = "";
+	private String filRemision = "";
+	private String filChapa = "";
+	private String filChapaCarreta = "";
+	private String filChofer = "";
+	private String filDespacho = "";
+	private String filTransportadora = "";
+	private String filDespachante = "";
+	private Date filtroFechaLlegadaDesde = null;
+	private Date filtroFechaLlegadaHasta = null;
+	private Date filtroFechaSalidaDesde = null;
+	private Date filtroFechaSalidaHasta = null;
+	
+	
+	
 	static String DETALLES = "detalles";
 
 	static String[][] datosCols = { { "tipoMovimiento", "E/S", ReporteDefinicion.WIDTH + "65", OTRO },
@@ -171,10 +190,30 @@ public class FiltroMovimiento implements Serializable {
 
 	}
 
+	
+	public void limpiarFiltro(){
+		this.filTipoMovimiento = "";
+		this.filLugarOrigen = "";
+		this.filLugarDestino = "";
+		this.filRemito = "";
+		this.filRemision = "";
+		this.filChapa = "";
+		this.filChapaCarreta = "";
+		this.filChofer = "";
+		this.filTransportadora = "";
+		this.filDespacho = "";
+		this.filDespachante = "";
+		this.filtroFechaLlegadaDesde = null;
+		this.filtroFechaLlegadaHasta = null;
+		this.filtroFechaSalidaDesde = null;
+		this.filtroFechaSalidaHasta = null;
+	}
+	
+	
 	// =====================================
 	// =====================================
 	// =====================================
-	public static void main(String[] args) throws Exception {
+	public static void xmain(String[] args) throws Exception {
 		FiltroMovimiento fm = new FiltroMovimiento();
 		fm.setBruto(false);
 		fm.setChapa(false);
@@ -183,6 +222,25 @@ public class FiltroMovimiento implements Serializable {
 		String[][] ss = fm.getColTablas();
 		System.out.println(ss);
 	}
+	
+	public static void main(String[] args) {
+		Misc m = new Misc();
+		FiltroMovimiento fm = new FiltroMovimiento();
+		fm.setBruto(false);
+		fm.setChapa(false);
+		fm.setChofer(false);
+		fm.setFilChapa("es la chapa");
+		
+		String file = "/home/daniel/datos/afah/proyectos/bascula/gestion-bascula/WebContent/filtroReporte-xxxxx";
+		m.grabarObjectToArchvo(fm, file);
+		
+		
+		FiltroMovimiento out = (FiltroMovimiento) m.leerObjetoFromDisco(file);
+		System.out.println(out.getFilChapa());
+		
+		
+	}
+	
 	// =====================================
 	// =====================================
 	// =====================================
@@ -490,5 +548,128 @@ public class FiltroMovimiento implements Serializable {
 	public void setDetallesInt(String detallesInt) {
 		this.detallesInt = detallesInt;
 	}
+
+	public String getFilTipoMovimiento() {
+		return filTipoMovimiento;
+	}
+
+	public void setFilTipoMovimiento(String filTipoMovimiento) {
+		this.filTipoMovimiento = filTipoMovimiento;
+	}
+
+	public String getFilLugarOrigen() {
+		return filLugarOrigen;
+	}
+
+	public void setFilLugarOrigen(String filLugarOrigen) {
+		this.filLugarOrigen = filLugarOrigen;
+	}
+
+	public String getFilLugarDestino() {
+		return filLugarDestino;
+	}
+
+	public void setFilLugarDestino(String filLugarDestino) {
+		this.filLugarDestino = filLugarDestino;
+	}
+
+	public String getFilRemito() {
+		return filRemito;
+	}
+
+	public void setFilRemito(String filRemito) {
+		this.filRemito = filRemito;
+	}
+
+	public String getFilRemision() {
+		return filRemision;
+	}
+
+	public void setFilRemision(String filRemision) {
+		this.filRemision = filRemision;
+	}
+
+	public String getFilChapa() {
+		return filChapa;
+	}
+
+	public void setFilChapa(String filChapa) {
+		this.filChapa = filChapa;
+	}
+
+	public String getFilChapaCarreta() {
+		return filChapaCarreta;
+	}
+
+	public void setFilChapaCarreta(String filChapaCarreta) {
+		this.filChapaCarreta = filChapaCarreta;
+	}
+
+	public String getFilChofer() {
+		return filChofer;
+	}
+
+	public void setFilChofer(String filChofer) {
+		this.filChofer = filChofer;
+	}
+
+	public String getFilTransportadora() {
+		return filTransportadora;
+	}
+
+	public void setFilTransportadora(String filTransportadora) {
+		this.filTransportadora = filTransportadora;
+	}
+
+	public String getFilDespacho() {
+		return filDespacho;
+	}
+
+	public void setFilDespacho(String filDespacho) {
+		this.filDespacho = filDespacho;
+	}
+
+	public String getFilDespachante() {
+		return filDespachante;
+	}
+
+	public void setFilDespachante(String filDespachante) {
+		this.filDespachante = filDespachante;
+	}
+
+	public Date getFiltroFechaLlegadaDesde() {
+		return filtroFechaLlegadaDesde;
+	}
+
+	public void setFiltroFechaLlegadaDesde(Date filtroFechaLlegadaDesde) {
+		this.filtroFechaLlegadaDesde = filtroFechaLlegadaDesde;
+	}
+
+	public Date getFiltroFechaLlegadaHasta() {
+		return filtroFechaLlegadaHasta;
+	}
+
+	public void setFiltroFechaLlegadaHasta(Date filtroFechaLlegadaHasta) {
+		this.filtroFechaLlegadaHasta = filtroFechaLlegadaHasta;
+	}
+
+	public Date getFiltroFechaSalidaDesde() {
+		return filtroFechaSalidaDesde;
+	}
+
+	public void setFiltroFechaSalidaDesde(Date filtroFechaSalidaDesde) {
+		this.filtroFechaSalidaDesde = filtroFechaSalidaDesde;
+	}
+
+	public Date getFiltroFechaSalidaHasta() {
+		return filtroFechaSalidaHasta;
+	}
+
+	public void setFiltroFechaSalidaHasta(Date filtroFechaSalidaHasta) {
+		this.filtroFechaSalidaHasta = filtroFechaSalidaHasta;
+	}
+	
+	
+	
 
 }
