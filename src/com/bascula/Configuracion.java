@@ -87,6 +87,9 @@ public class Configuracion extends Config {
 	
 	/*********************** Sistema Propiedad ************************/
 	public static final String SIS_PRO_EMAIL_DESTINATARIOS_CONTACTO = "EMAIL_DESTINATARIOS_CONTACTO";
+	public static final String SIS_PRO_CHAPA_TARA = "CHAPA_TARA_";
+
+	
 	/*************************** Mensajes *****************************/
 
 	public static final String MENSAJE_GENERICO_GUARDAR_OK = "Guardado correctamente!";

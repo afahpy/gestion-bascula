@@ -246,8 +246,9 @@ public class MovimientoViewModel extends GenericViewModelApp {
 	@Command
 	@NotifyChange("*")
 	public void notificarCambioTM() {
-
+		
 	}
+	
 
 	public boolean isCampoVisibleConsumo() {
 		boolean out = true;
@@ -259,12 +260,44 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 		return out;
 	}
-	
-	public double getTaraByChapa(){
+
+	@Command
+	@NotifyChange("*")
+	public void notificarCambioChapa() {
+		System.out.println("Entra en notificar chapa");
+		this.actualizarTara();
+	}
+
+	public void actualizarTara() {
+
+		System.out.println("Entra en actualizar tara");
+
+		if (this.movimiento.getTara() == 0.0) {
+
+			System.out.println("tara igual a 0");
+
+			String chapa = "";
+
+			if (this.movimiento.getChapa() != null) {
+				chapa = this.movimiento.getChapa().getStrCampo1();
+				System.out.println("Chapa = " + chapa);
+
+			}
+
+			this.movimiento.setTara(this.getTaraByChapa(chapa));
+		}
+	}
+
+	public double getTaraByChapa(String chapa) {
 		double tara = 0.0;
-		
-				
-		
+
+		String prop = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_CHAPA_TARA + chapa.trim().replace(" ", "_"));
+		System.out.println("tara get tara by chapa = " + prop);
+
+		if (prop != null && prop.trim().length() != 0) {
+			tara = Double.parseDouble(prop);
+		}
+
 		return tara;
 	}
 

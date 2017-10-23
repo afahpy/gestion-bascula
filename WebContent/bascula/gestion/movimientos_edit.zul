@@ -266,6 +266,7 @@
 					<h:div class="col-xs-7 col-md-4">
 
 						<combobox width="100%" model="@load(vm.chapas)"
+							onSelect="@command('notificarCambioChapa')"
 							value="@load(vm.movimiento.chapa.strCampo1)" autocomplete="true"
 							autodrop="true"
 							readonly="@load(!vm.isCampoEditable('editar_campo_movimiento_chapa'))"
