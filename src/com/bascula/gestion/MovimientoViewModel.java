@@ -245,10 +245,44 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 	@Command
 	@NotifyChange("*")
-	public void notificarCambioTM() {
-		
+	public void notificarCambioTM() throws Exception {
+		this.setOrigenDestinoDefaultByTM();
 	}
-	
+
+	public void setOrigenDestinoDefaultByTM() throws Exception {
+
+		MyObject origen = null;
+		MyObject destino = null;
+
+		if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
+				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_ENTRADA) == 0) {
+
+			String prop = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_ENTRADA_DESTINO);
+			Long id_destino = Long.parseLong(prop);
+			destino = (MyObject) this.rr.getObject(MyObject.class.getName(), id_destino);
+
+		} if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
+				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_SALIDA) == 0) {
+
+			String prop = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_SALIDA_ORIGEN);
+			Long id_origen = Long.parseLong(prop);
+			origen = (MyObject) this.rr.getObject(MyObject.class.getName(), id_origen);
+
+		} else if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
+				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO) == 0) {
+
+			String prop = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_CONSUMO_ORIGEN);
+			Long id_origen = Long.parseLong(prop);
+			origen = (MyObject) this.rr.getObject(MyObject.class.getName(), id_origen);
+
+			String prop2 = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_CONSUMO_DESTINO);
+			Long id_destino = Long.parseLong(prop2);
+			destino = (MyObject) this.rr.getObject(MyObject.class.getName(), id_destino);
+		}
+
+		this.movimiento.setOrigenLugar(origen);
+		this.movimiento.setDestinoLugar(destino);
+	}
 
 	public boolean isCampoVisibleConsumo() {
 		boolean out = true;
