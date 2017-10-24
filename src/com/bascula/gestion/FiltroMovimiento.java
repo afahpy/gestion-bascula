@@ -210,6 +210,60 @@ public class FiltroMovimiento implements Serializable {
 	}
 	
 	
+	public String getFiltroStr(){
+		String out = "";
+		out += this.getFiltroCampo(" Tipo", this.filTipoMovimiento);
+		out += this.getFiltroCampo(" Origen", this.filLugarOrigen);
+		out += this.getFiltroCampo(" Destino", this.filLugarDestino);
+
+		out += this.getFiltroCampo(" Remito", this.filRemito);
+		out += this.getFiltroCampo(" Remisión", this.filRemision);
+		out += this.getFiltroCampo(" Chapa", this.filChapa);
+		out += this.getFiltroCampo(" Chapa Carreta", this.filChapaCarreta);
+		out += this.getFiltroCampo(" Destino", this.filChofer);
+		out += this.getFiltroCampo(" Destino", this.filTransportadora);
+		out += this.getFiltroCampo(" Destino", this.filDespacho );
+		out += this.getFiltroCampo(" Destino", this.filDespachante);
+		out += this.getFiltroFecha(" Llegada",this.filtroFechaLlegadaDesde, this.filtroFechaLlegadaHasta);
+		out += this.getFiltroFecha(" Salida",this.filtroFechaSalidaDesde, this.filtroFechaSalidaHasta);
+
+		return out.trim();
+	}
+
+	private String getFiltroFecha(String campo, Date desde, Date hasta){
+		boolean siFecha = false;
+		String out = campo + " [";
+		if (desde!= null){
+			out += this.getM().dateToString(desde, "dd-MM-yyyy");
+			siFecha = true;
+		}else{
+			out += "-";
+		}
+		out += " / ";
+		if (hasta!= null){
+			out += this.getM().dateToString(hasta, "dd-MM-yyyy");
+			siFecha = true;
+		}else{
+			out += "-";
+		}
+		out += "]";
+		
+		if (siFecha == false){
+			out = "";
+		}
+		
+		return out;
+	}
+
+	
+	private String getFiltroCampo(String campo, String filtro){
+		String out = "";
+		if (filtro.trim().length() > 0){
+			out = campo + ": '"+filtro.trim()+"'";
+		}
+		return out;
+	}
+	
 	// =====================================
 	// =====================================
 	// =====================================
@@ -229,7 +283,8 @@ public class FiltroMovimiento implements Serializable {
 		fm.setBruto(false);
 		fm.setChapa(false);
 		fm.setChofer(false);
-		fm.setFilChapa("es la chapa");
+		fm.setFilChapa("chapaaa");
+		fm.setFilDespachante("pep");
 		
 		String file = "/home/daniel/datos/afah/proyectos/bascula/gestion-bascula/WebContent/filtroReporte-xxxxx";
 		m.grabarObjectToArchvo(fm, file);
@@ -237,6 +292,11 @@ public class FiltroMovimiento implements Serializable {
 		
 		FiltroMovimiento out = (FiltroMovimiento) m.leerObjetoFromDisco(file);
 		System.out.println(out.getFilChapa());
+		
+		System.out.println("===================");
+		System.out.println(out.getFiltroStr());
+		System.out.println("===================");
+		
 		
 		
 	}
