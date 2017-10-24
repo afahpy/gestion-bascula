@@ -89,6 +89,11 @@ public class Configuracion extends Config {
 	public static final String SIS_PRO_EMAIL_DESTINATARIOS_CONTACTO = "EMAIL_DESTINATARIOS_CONTACTO";
 	public static final String SIS_PRO_CHAPA_TARA = "CHAPA_TARA_";
 
+	public static final String SIS_PRO_TM_CONSUMO_ORIGEN = "TM_CONSUMO_ORIGEN";
+	public static final String SIS_PRO_TM_CONSUMO_DESTINO = "TM_CONSUMO_DESTINO";
+	public static final String SIS_PRO_TM_ENTRADA_DESTINO = "TM_ENTRADA_DESTINO";
+	public static final String SIS_PRO_TM_SALIDA_ORIGEN = "TM_SALIDA_ORIGEN";
+
 	
 	/*************************** Mensajes *****************************/
 
