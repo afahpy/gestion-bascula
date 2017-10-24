@@ -204,6 +204,19 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 		w.doModal();
 	}
 
+
+	@Command
+	@NotifyChange("*")
+	public void reporteStock() throws Exception {
+
+		Map args = new HashMap();
+		args.put("vmMov", this);
+		Window w = (Window) Executions.createComponents(ID.ZUL_FILTRO_MOVIMIENTOS, null, args);
+		w.setPosition("center");
+		w.doModal();
+	}
+	
+	
 	
 	public MovimientoEntradaSalida getMovTempSumas() {
 		return movTempSumas;

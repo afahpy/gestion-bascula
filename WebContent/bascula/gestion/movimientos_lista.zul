@@ -18,7 +18,7 @@
 		<div zclass="row" height="10px"></div>
 
 		<div zclass="row">
-			<h:div class="col-xs-12 col-md-9">
+			<h:div class="col-xs-12 col-md-6">
 				<hlayout>
 					<hlayout width="100%">
 						<button label="Nuevo" zclass="btn btn-primary"
@@ -38,9 +38,11 @@
 						onClick="@command('limpiarFiltros')" />
 				</hlayout>
 			</h:div>
-			<h:div class="col-xs-12 col-md-3"></h:div>
-			<h:div class="col-xs-12 col-md-3">
+			<h:div class="col-xs-12 col-md-5"></h:div>
+			<h:div class="col-xs-12 col-md-4">
 				<hlayout>
+					<button width="100%" label="Stock Patio"
+						zclass="btn btn-success" onClick="@command('reporteStock')" />
 					<button width="100%" label="Reporte"
 						zclass="btn btn-success" onClick="@command('reporteMovimiento')" />
 					<include src="/bascula/leerPeso/leerPesoSimple.zul" />
@@ -54,14 +56,13 @@
 			<h:div class="col-sm-12 col-md-12">
 				<listbox id="movimientos" sclass="small-list"
 					mold="paging" selectedItems="@bind(vm.selectedMovimientos)"
-					checkmark="true" multiple="true" pageSize="10"
+					checkmark="false" multiple="false" pageSize="10"
 					model="@load(vm.movimientos)" vflex="true"
 					emptyMessage="Sin movimientos.">
 					<custom-attributes
 						org.zkoss.zul.listbox.autoSort="true" />
 					<listhead menupopup="auto" sizable="true">
 
-						<listheader width="40px" align="center" />
 
 						<listheader label="" width="60px"
 							style="text-align: center" align="center">
@@ -170,7 +171,6 @@
 					</listhead>
 					<auxhead>
 
-						<auxheader></auxheader>
 
 						<auxheader></auxheader>
 
@@ -313,7 +313,6 @@
 					</auxhead>
 					<template name="model">
 						<listitem>
-							<listcell />
 
 							<listcell>
 								<hlayout width="100%">
