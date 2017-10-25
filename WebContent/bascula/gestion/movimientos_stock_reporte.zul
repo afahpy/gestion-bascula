@@ -2,10 +2,25 @@
 	apply="org.zkoss.bind.BindComposer" sizable="true" closable="true"
 	maximizable="true"
 	viewModel="@id('vm') @init('com.bascula.gestion.MovimientoStockReporteVM')"
-	title="Filtro de Reporte Stock" onClose="" width="400px"
-	height="500px">
+	title="Reporte Stock en Patio" onClose="" width="400px"
+	height="200px">
 	<zk xmlns:h="http://www.w3.org/1999/xhtml">
 
+		<vlayout>
+				<hlayout>
+					<label value=" Fecha desde" width="100%"></label>
+					<datebox value="@bind(vm.fechaDesde)" />
+				</hlayout>
+				<hlayout>
+					<label value=" Fecha hasta" width="100%"></label>
+					<datebox value="@bind(vm.fechaHasta)" />
+				</hlayout>
+
+			<div zclass="row" height="5px"></div>
+
+			<button label="Reporte" zclass="btn btn-success" onClick="@command('reporteStock')" />
+
+		</vlayout>
 
 	</zk>
 </window>

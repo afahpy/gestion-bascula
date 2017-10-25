@@ -263,6 +263,7 @@ public class Misc {
 	}
 
 	public java.util.Date stringToDate(String dd) {
+		// yyyy-MM-dd
 		dd = dd + "0000000000000000000"; // son 19 caracteres, formato completo
 		int anio = 0;
 		int mes = 0;
@@ -647,12 +648,22 @@ public class Misc {
 	 * @return
 	 */
 	public String formato(Object dato, int longitud, boolean izquierda, boolean blanco) {
-		if ((dato instanceof Double) && (blanco == true)) {
+
+		if ((blanco == true) && (dato instanceof Double)) {
 			double d = (double) dato;
 			if ((d * d) < 0.0001) {
 				dato = " ";
 			}
 		}
+		
+		if ((blanco == true) && (dato instanceof Long) ) {
+			long d = (long) dato;
+			if (d == 0) {
+				dato = " ";
+			}
+		}
+		
+		
 
 		return formato(dato, longitud, izquierda);
 	}

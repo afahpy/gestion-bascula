@@ -1,6 +1,7 @@
 package com.bascula.util.population.unisal;
 
 import com.bascula.Configuracion;
+import com.bascula.domain.MyObject;
 import com.bascula.domain.RegisterDomain;
 import com.coreweb.domain.Domain;
 import com.coreweb.domain.Tipo;
@@ -33,7 +34,7 @@ public class CorregirBD {
 		}
 
 	}
-	
+
 	public void cargaTiposConTipoTipoExistente(String descripcionTipoTipo, String[][] tipos) throws Exception {
 
 		TipoTipo tipoTipo = new TipoTipo();
@@ -52,17 +53,47 @@ public class CorregirBD {
 		}
 
 	}
-	
-	
+
+	public void cargaLugares() throws Exception {
+		RegisterDomain rr = RegisterDomain.getInstance();
+
+		String patio = "";
+		String depo = "";
+
+		MyObject uMraPatio = (MyObject) rr.getObject(MyObject.class.getName(), 9);
+		uMraPatio.setStrCampo1("Patio - Unisal MRA");
+		rr.saveObject(uMraPatio, "pp");
+		patio += "   Destino Patio " + uMraPatio.getId();
+
+		MyObject uMraDep = (MyObject) rr.getObject(MyObject.class.getName(), 52);
+		uMraDep.setStrCampo1("Deposito - Unisal MRA");
+		rr.saveObject(uMraDep, "pp");
+		depo += " Deposito Origen " + uMraDep.getId();
+
+		uMraPatio.setId((long) -1);
+		uMraPatio.setStrCampo1("Deposito - Unisal MRA");
+		rr.saveObject(uMraPatio, "pp");
+		depo += " Deposito destino " + uMraPatio.getId();
+
+		uMraDep.setId((long) -1);
+		uMraDep.setStrCampo1("Patio - Unisal MRA");
+		rr.saveObject(uMraDep, "pp");
+		patio += "   Origen Patio " + uMraDep.getId();
+
+		System.out.println(patio);
+		System.out.println(depo);
+
+	}
 
 	public static void main(String[] args) throws Exception {
-		
+
 		CorregirBD corregirDB = new CorregirBD();
 		String descTipoMovimiento = Configuracion.TIPO_TIPO_MOVIMIENTOS;
-		String[][] tipoMovimientos = {{ Configuracion.TIPO_MOVIMIENTO_CONSUMO, Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO }};
+		String[][] tipoMovimientos = {
+				{ Configuracion.TIPO_MOVIMIENTO_CONSUMO, Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO } };
 
-		corregirDB.cargaTiposConTipoTipoExistente(descTipoMovimiento, tipoMovimientos);
-		
+		corregirDB.cargaTiposConTipoTipoExistente(descTipoMovimiento,tipoMovimientos);
+		corregirDB.cargaLugares();
 	}
 
 }

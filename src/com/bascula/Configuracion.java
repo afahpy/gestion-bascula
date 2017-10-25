@@ -94,6 +94,12 @@ public class Configuracion extends Config {
 	public static final String SIS_PRO_TM_ENTRADA_DESTINO = "TM_ENTRADA_DESTINO";
 	public static final String SIS_PRO_TM_SALIDA_ORIGEN = "TM_SALIDA_ORIGEN";
 
+	// para el stock de sales del patio
+	public static final String SIS_PRO_UNISAL_PATIO_ORIGEN = "UNISAL_PATIO_ORIGEN";
+	public static final String SIS_PRO_UNISAL_PATIO_DESTINO = "UNISAL_PATIO_DESTINO";
+	
+	public static final String SIS_PRO_IDS_STOCK_SALES = "IDS_STOCK_SALES";
+	
 	
 	/*************************** Mensajes *****************************/
 

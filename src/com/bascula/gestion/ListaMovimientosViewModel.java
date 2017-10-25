@@ -211,7 +211,7 @@ public class ListaMovimientosViewModel extends GenericViewModelApp {
 
 		Map args = new HashMap();
 		args.put("vmMov", this);
-		Window w = (Window) Executions.createComponents(ID.ZUL_FILTRO_MOVIMIENTOS, null, args);
+		Window w = (Window) Executions.createComponents(ID.ZUL_FILTRO_STOCK, null, args);
 		w.setPosition("center");
 		w.doModal();
 	}

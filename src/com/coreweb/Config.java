@@ -95,9 +95,9 @@ public class Config {
 			DIRECTORIO_BASE_REAL = Executions.getCurrent().getDesktop()
 					.getWebApp().getRealPath("/");
 		} catch (Exception e) {
-			System.out.println("...............................................");
-			e.printStackTrace();
-			System.out.println("...............................................");
+			//System.out.println("...............................................");
+			//e.printStackTrace();
+			System.out.println("modo escritorio...............................................");
 			DIRECTORIO_BASE_WEB = "./WebContent";
 			DIRECTORIO_BASE_REAL = "./WebContent";
 		}
