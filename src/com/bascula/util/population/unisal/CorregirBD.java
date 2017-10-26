@@ -80,6 +80,14 @@ public class CorregirBD {
 		rr.saveObject(uMraDep, "pp");
 		patio += "   Origen Patio " + uMraDep.getId();
 
+
+		uMraPatio.setId((long) -1);
+		uMraPatio.setStrCampo1("Producción - Unisal MRA");
+		rr.saveObject(uMraPatio, "pp");
+		depo += " Produccion destino " + uMraPatio.getId();
+		
+		
+		
 		System.out.println(patio);
 		System.out.println(depo);
 
@@ -96,12 +104,12 @@ public class CorregirBD {
 //		corregirDB.cargaTiposConTipoTipoExistente(descTipoMovimiento,tipoMovimientos);
 		
 		// para la producción
-		String[][] tipoMovimientos = {
-				{ Configuracion.TIPO_MOVIMIENTO_PRODUCCION, Configuracion.SIGLA_TIPO_MOVIMIENTO_PRODUCCION} };
-		corregirDB.cargaTiposConTipoTipoExistente(descTipoMovimiento,tipoMovimientos);
+//		String[][] tipoMovimientos = {
+//				{ Configuracion.TIPO_MOVIMIENTO_PRODUCCION, Configuracion.SIGLA_TIPO_MOVIMIENTO_PRODUCCION} };
+//		corregirDB.cargaTiposConTipoTipoExistente(descTipoMovimiento,tipoMovimientos);
 		
 		
-		corregirDB.cargaLugares();
+//		corregirDB.cargaLugares();
 	}
 
 }
