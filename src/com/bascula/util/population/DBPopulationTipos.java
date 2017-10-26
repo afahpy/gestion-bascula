@@ -41,7 +41,10 @@ public class DBPopulationTipos {
 		String descTipoMovimiento = Configuracion.TIPO_TIPO_MOVIMIENTOS;
 		String[][] tipoMovimientos = {
 				{ Configuracion.TIPO_MOVIMIENTO_ENTRADA, Configuracion.SIGLA_TIPO_MOVIMIENTO_ENTRADA },
-				{ Configuracion.TIPO_MOVIMIENTO_SALIDA, Configuracion.SIGLA_TIPO_MOVIMIENTO_SALIDA } };
+				{ Configuracion.TIPO_MOVIMIENTO_SALIDA, Configuracion.SIGLA_TIPO_MOVIMIENTO_SALIDA } ,
+				{ Configuracion.TIPO_MOVIMIENTO_CONSUMO, Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO },
+				{ Configuracion.TIPO_MOVIMIENTO_PRODUCCION, Configuracion.SIGLA_TIPO_MOVIMIENTO_PRODUCCION},
+		};
 
 		this.cargaTiposConTipoTipo(descTipoMovimiento, tipoMovimientos);
 

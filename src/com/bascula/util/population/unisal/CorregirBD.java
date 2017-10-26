@@ -89,10 +89,18 @@ public class CorregirBD {
 
 		CorregirBD corregirDB = new CorregirBD();
 		String descTipoMovimiento = Configuracion.TIPO_TIPO_MOVIMIENTOS;
+		
+		// para el consumo
+//		String[][] tipoMovimientos = {
+//				{ Configuracion.TIPO_MOVIMIENTO_CONSUMO, Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO } };
+//		corregirDB.cargaTiposConTipoTipoExistente(descTipoMovimiento,tipoMovimientos);
+		
+		// para la producción
 		String[][] tipoMovimientos = {
-				{ Configuracion.TIPO_MOVIMIENTO_CONSUMO, Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO } };
-
+				{ Configuracion.TIPO_MOVIMIENTO_PRODUCCION, Configuracion.SIGLA_TIPO_MOVIMIENTO_PRODUCCION} };
 		corregirDB.cargaTiposConTipoTipoExistente(descTipoMovimiento,tipoMovimientos);
+		
+		
 		corregirDB.cargaLugares();
 	}
 
