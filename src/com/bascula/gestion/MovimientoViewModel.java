@@ -261,7 +261,7 @@ public class MovimientoViewModel extends GenericViewModelApp {
 			Long id_destino = Long.parseLong(prop);
 			destino = (MyObject) this.rr.getObject(MyObject.class.getName(), id_destino);
 
-		} if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
+		} else if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
 				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_SALIDA) == 0) {
 
 			String prop = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_SALIDA_ORIGEN);
@@ -278,6 +278,17 @@ public class MovimientoViewModel extends GenericViewModelApp {
 			String prop2 = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_CONSUMO_DESTINO);
 			Long id_destino = Long.parseLong(prop2);
 			destino = (MyObject) this.rr.getObject(MyObject.class.getName(), id_destino);
+			
+		} else if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
+				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_PRODUCCION) == 0) {
+
+			String prop = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_PRODUCCION_ORIGEN);
+			Long id_origen = Long.parseLong(prop);
+			origen = (MyObject) this.rr.getObject(MyObject.class.getName(), id_origen);
+
+			String prop2 = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_TM_PRODUCCION_DESTINO);
+			Long id_destino = Long.parseLong(prop2);
+			destino = (MyObject) this.rr.getObject(MyObject.class.getName(), id_destino);
 		}
 
 		this.movimiento.setOrigenLugar(origen);
@@ -289,6 +300,17 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 		if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
 				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_CONSUMO) == 0) {
+			out = false;
+		}
+
+		return out;
+	}
+
+	public boolean isCampoVisibleProduccion() {
+		boolean out = true;
+
+		if (this.movimiento.getTipoMovimiento() != null && this.movimiento.getTipoMovimiento().getSigla()
+				.compareTo(Configuracion.SIGLA_TIPO_MOVIMIENTO_PRODUCCION) == 0) {
 			out = false;
 		}
 
