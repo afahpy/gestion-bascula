@@ -19,11 +19,13 @@ public class ReporteStock extends BasculaReporte {
 
 	RegisterDomain rr = RegisterDomain.getInstance();
 
-	long idOri = 0;
-	long idDes = 0;
 	Date fd = new Date();
 	Date fh = new Date();
 	List<Long> lIdProds = null;
+	List<Long> lIdLugares = null;
+	// se ponen los ids separados por coma, para optimizar la búsqueda.
+//	List<Long> lIdLugaresOrigen = null;
+//	List<Long> lIdLugaresDestino = null;
 
 	Hashtable<Long, List<Object[]>> hashDatos = null;
 	Hashtable<Long, Long> hashSaldosIniciales = null;
@@ -110,26 +112,36 @@ public class ReporteStock extends BasculaReporte {
 		// siempre todos
 		Date desdeInicio = m.stringToDate("2017-01-01");
 
-		String qpro = " 1 != 1 ";
 
 		// los id de los productos
+		String qpro = " 1 != 1 ";
 		for (int i = 0; i < lIdProds.size(); i++) {
 			long idPro = lIdProds.get(i);
 			qpro += " or det.mercaderia.id = " + idPro;
 		}
+
+		// los ids de logares
+		String qlugOrigen = " 1 != 1 ";
+		String qlugDestino = " 1 != 1 ";
+		for (int i = 0; i < lIdLugares.size(); i++) {
+			long idLugar = lIdLugares.get(i);
+			qlugOrigen += " or mov.origenLugar.id = "+idLugar + " ";
+			qlugDestino += " or mov.destinoLugar.id = "+idLugar + " ";
+		}
+		qlugOrigen = "mov.fechaSalida between :fdesde and :fhasta and (" + qlugOrigen+")";
+		qlugDestino = "mov.fechaLlegada between :fdesde and :fhasta and (" + qlugDestino+")";
+
+		String qWhereMov = "("+qlugOrigen+") or ("+qlugDestino+")";
+		
 		String query = "";
 
 		query += " select " + qq + "  " //
 				+ " from  MovimientoEntradaSalida mov join mov.detalles det " //
-				+ " where " + " ( (mov.fechaLlegada between  :fdesde and :fhasta and mov.destinoLugar.id = :idDes) or " //
-				+ " (mov.fechaSalida between  :fdesde and :fhasta and mov.origenLugar.id = :idOri))  " + " and  ("
-				+ qpro + ") "; //
+				+ " where (" + qWhereMov + ") and  ("+ qpro + ") "; //
 
 		System.out.println(query);
 		
 		Hashtable<String, Object> params = new Hashtable<>();
-		params.put(":idOri", idOri);
-		params.put(":idDes", idDes);
 		params.put(":fdesde", desdeInicio);
 		params.put(":fhasta", fh);
 
@@ -143,7 +155,7 @@ public class ReporteStock extends BasculaReporte {
 			Object[] dato = list.get(i);
 			long idProd = this.getIdProducto(dato);
 
-			long cantidad = this.getCantidad(dato, this.fd, idOri, idDes);
+			long cantidad = this.getCantidad(dato, this.fd);
 			if (cantidad == 0) {
 				// guardar para mostrar
 				List<Object[]> datos = hashDatos.get(idProd);
@@ -183,30 +195,34 @@ public class ReporteStock extends BasculaReporte {
 	/**
 	 * 0 = mostrar, -1 = es de salida, 1 = es de llegada
 	 */
-	private long getCantidad(Object[] dato, Date fecha, long idOri, long idDes) {
+	private long getCantidad(Object[] dato, Date fecha) {
 
+		
 		Date fde = (Date) dato[3];
 		Date fha = (Date) dato[2];
 		long dOri = (long) dato[4];
 		long dDes = (long) dato[5];
 		long cantidad = (long) ((int) dato[9] + 0);
 		
-		if ((dOri == idOri) && (fde.after(fecha) == true)) {
+		boolean idOriOk = lIdLugares.contains(dOri);
+		boolean idDesOk = lIdLugares.contains(dDes);
+		
+		if ((idOriOk == true) && (fde.after(fecha) == true)) {
 			// dentro del rango
 			return 0;
 		}
 
-		if ((dDes == idDes) && (fha.after(fecha) == true)) {
+		if ((idDesOk==true) && (fha.after(fecha) == true)) {
 			// dentro del rango
 			return 0;
 		}
 
-		if ((dOri == idOri) && (fde.before(fecha) == true)) {
+		if ((idOriOk == true) && (fde.before(fecha) == true)) {
 			// es un salida
 			return (-1 * cantidad);
 		}
 
-		if ((dDes == idDes) && (fha.before(fecha) == true)) {
+		if ((idDesOk == true) && (fha.before(fecha) == true)) {
 			// dentro del rango
 			return (cantidad);
 		}
@@ -216,19 +232,22 @@ public class ReporteStock extends BasculaReporte {
 	}
 
 
-	private long getCantidad(Object[] dato, long idOri, long idDes) {
+	private long getCantidad(Object[] dato) {
 
 		long dOri = (long) dato[4];
 		long dDes = (long) dato[5];
 		long cantidad = (long) ((int) dato[9] + 0);
 		
+		boolean idOriOk = lIdLugares.contains(dOri);
+		boolean idDesOk = lIdLugares.contains(dDes);
 
-		if (dOri == idOri) {
+		
+		if (idOriOk  == true) {
 			// es un salida
 			return (-1 * cantidad);
 		}
 
-		if (dDes == idDes) {
+		if (idDesOk  == true) {
 			// dentro del rango
 			return (cantidad);
 		}
@@ -279,7 +298,7 @@ public class ReporteStock extends BasculaReporte {
 			long dSalida = 0;
 			long dSaldo = 0;
 
-			long cantidad = this.getCantidad(ff, this.idOri, idDes);
+			long cantidad = this.getCantidad(ff);
 			if (cantidad > 0) {
 				// ingreso
 				dFecha = (Date) ff[2];
@@ -330,22 +349,6 @@ public class ReporteStock extends BasculaReporte {
 
 	// ==================================
 
-	public long getIdOri() {
-		return idOri;
-	}
-
-	public void setIdOri(long idOri) {
-		this.idOri = idOri;
-	}
-
-	public long getIdDes() {
-		return idDes;
-	}
-
-	public void setIdDes(long idDes) {
-		this.idDes = idDes;
-	}
-
 	public Date getFd() {
 		return fd;
 	}
@@ -379,23 +382,37 @@ public class ReporteStock extends BasculaReporte {
 
 		List<Long> idsP = new ArrayList<>();
 		idsP.add((long) 219);
-		idsP.add((long) 170);
-		idsP.add((long) 233);
-		idsP.add((long) 343);
-		idsP.add((long) 301);
-		idsP.add((long) 211);
-		idsP.add((long) 171);
+//		idsP.add((long) 170);
+//		idsP.add((long) 233);
+//		idsP.add((long) 343);
+//		idsP.add((long) 301);
+//		idsP.add((long) 211);
+//		idsP.add((long) 171);
 
+		List<Long> idsLug = new ArrayList<>();
+		idsLug.add((long)514);
+		idsLug.add((long)9);
+		idsLug.add((long)52);
+		idsLug.add((long)513);
+
+		
 		ReporteStock rep = new ReporteStock();
 		rep.setFd(m.stringToDate("2017-09-20"));
-		rep.setFh(m.stringToDate("2017-09-20"));
-		rep.setIdOri(514);
-		rep.setIdDes(9);
+		rep.setFh(m.stringToDate("2018-09-20"));
+		rep.setlIdLugares(idsLug);
 		rep.setlIdProds(idsP);
 
 		rep.ejecutar(true);
 		// rep.saldoSales();
 
+	}
+
+	public List<Long> getlIdLugares() {
+		return lIdLugares;
+	}
+
+	public void setlIdLugares(List<Long> lIdLugares) {
+		this.lIdLugares = lIdLugares;
 	}
 
 	// ==================================================================
