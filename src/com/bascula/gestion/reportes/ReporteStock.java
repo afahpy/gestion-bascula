@@ -17,6 +17,13 @@ import net.sf.dynamicreports.report.builder.component.VerticalListBuilder;
 
 public class ReporteStock extends BasculaReporte {
 
+	static int TIPO_INGRESO = 1;
+	static int TIPO_EGRESO = -1;
+	static int TIPO_AMBOS = 0;
+
+	static int TIPO_SI_MOSTRAR = 20;
+	static int TIPO_NO_MOSTRAR = 21;
+
 	RegisterDomain rr = RegisterDomain.getInstance();
 
 	Date fd = new Date();
@@ -24,8 +31,8 @@ public class ReporteStock extends BasculaReporte {
 	List<Long> lIdProds = null;
 	List<Long> lIdLugares = null;
 	// se ponen los ids separados por coma, para optimizar la búsqueda.
-//	List<Long> lIdLugaresOrigen = null;
-//	List<Long> lIdLugaresDestino = null;
+	// List<Long> lIdLugaresOrigen = null;
+	// List<Long> lIdLugaresDestino = null;
 
 	Hashtable<Long, List<Object[]>> hashDatos = null;
 	Hashtable<Long, Long> hashSaldosIniciales = null;
@@ -42,10 +49,22 @@ public class ReporteStock extends BasculaReporte {
 			+ "det.mercaderia.id, " // 8
 			+ "det.numeroBolsa,  " // 9
 			+ "mov.origenLugar.strCampo1,  " // 10
-			+ "mov.destinoLugar.strCampo1  "; // 11
+			+ "mov.destinoLugar.strCampo1,  " // 11
+			+ "mov.tipoMovimiento.descripcion,  " // 12
+			+ "0  " // 13 usado para definir si se muestra o no
+			+ " " // xx
+			+ " "; // xx
 
-	String[][] cols = { { "Fecha", WIDTH + "40" }, { "Dato", WIDTH + "30" }, { "Ingreso", DERECHA+WIDTH + "40" },
-			{ "Egreso", DERECHA+WIDTH + "40" }, { "saldo", DERECHA+WIDTH + "40" }, };
+	int anchoTabla = 550;
+	String[][] cols = { //
+			{ "Fecha", WIDTH + "60" }, // 0
+			{ "Dato", WIDTH + "30" }, // 1
+			{ "Ingreso", DERECHA + WIDTH + "40" }, // 2
+			{ "Egreso", DERECHA + WIDTH + "40" }, // 3
+			{ "saldo", DERECHA + WIDTH + "40" }, // 4
+			{ "Desdde", WIDTH + "60" }, // 5
+			{ "Hasta", WIDTH + "60" }, // 6
+	};
 
 	@Override
 	public void informacionReporte() {
@@ -68,17 +87,15 @@ public class ReporteStock extends BasculaReporte {
 
 		// datos de cabecera
 
-		
-		
 		HorizontalListBuilder cab = cmp.horizontalFlowList();
-		
+
 		cab.add(this.textoParValor("Fecha desde", this.m.dateToString(this.fd, "dd-MM-yyyy")));
 		cab.add(this.textoParValor("Fecha hasta", this.m.dateToString(this.fh, "dd-MM-yyyy")));
 
 		out.add(cab);
 		out.add(this.espacioAlto(10));
-		
-		String tablaProp =  LETRA_10 +  TABLA_TITULO + "";
+
+		String tablaProp = LETRA_10 + TABLA_TITULO + "";
 
 		for (int i = 0; i < lIdProds.size(); i++) {
 			long idPro = lIdProds.get(i);
@@ -89,14 +106,14 @@ public class ReporteStock extends BasculaReporte {
 			List<Object[]> datos = this.getDatosTabla(idPro);
 
 			long saldoIni = this.hashSaldosIniciales.get(idPro);
-			
-			String titulo = tablaProp + nombreProducto+ "  (saldo inicial: "+saldoIni+")";
-			
-			HorizontalListBuilder tabla = (HorizontalListBuilder)this.getTabla(this.cols, datos, titulo, false, true, false);
 
-			tabla.setFixedWidth(400);
+			String titulo = tablaProp + nombreProducto + "  (saldo inicial: " + saldoIni + ")";
 
-			
+			HorizontalListBuilder tabla = (HorizontalListBuilder) this.getTabla(this.cols, datos, titulo, false, true,
+					false);
+
+			tabla.setFixedWidth(anchoTabla);
+
 			out.add(tabla);
 			out.add(this.espacioAlto(10));
 
@@ -112,7 +129,6 @@ public class ReporteStock extends BasculaReporte {
 		// siempre todos
 		Date desdeInicio = m.stringToDate("2017-01-01");
 
-
 		// los id de los productos
 		String qpro = " 1 != 1 ";
 		for (int i = 0; i < lIdProds.size(); i++) {
@@ -125,22 +141,22 @@ public class ReporteStock extends BasculaReporte {
 		String qlugDestino = " 1 != 1 ";
 		for (int i = 0; i < lIdLugares.size(); i++) {
 			long idLugar = lIdLugares.get(i);
-			qlugOrigen += " or mov.origenLugar.id = "+idLugar + " ";
-			qlugDestino += " or mov.destinoLugar.id = "+idLugar + " ";
+			qlugOrigen += " or mov.origenLugar.id = " + idLugar + " ";
+			qlugDestino += " or mov.destinoLugar.id = " + idLugar + " ";
 		}
-		qlugOrigen = "mov.fechaSalida between :fdesde and :fhasta and (" + qlugOrigen+")";
-		qlugDestino = "mov.fechaLlegada between :fdesde and :fhasta and (" + qlugDestino+")";
+		qlugOrigen = "mov.fechaSalida between :fdesde and :fhasta and (" + qlugOrigen + ")";
+		qlugDestino = "mov.fechaLlegada between :fdesde and :fhasta and (" + qlugDestino + ")";
 
-		String qWhereMov = "("+qlugOrigen+") or ("+qlugDestino+")";
-		
+		String qWhereMov = "(" + qlugOrigen + ") or (" + qlugDestino + ")";
+
 		String query = "";
 
 		query += " select " + qq + "  " //
 				+ " from  MovimientoEntradaSalida mov join mov.detalles det " //
-				+ " where (" + qWhereMov + ") and  ("+ qpro + ") "; //
+				+ " where (" + qWhereMov + ") and  (" + qpro + ") "; //
 
 		System.out.println(query);
-		
+
 		Hashtable<String, Object> params = new Hashtable<>();
 		params.put(":fdesde", desdeInicio);
 		params.put(":fhasta", fh);
@@ -155,8 +171,8 @@ public class ReporteStock extends BasculaReporte {
 			Object[] dato = list.get(i);
 			long idProd = this.getIdProducto(dato);
 
-			long cantidad = this.getCantidad(dato, this.fd);
-			if (cantidad == 0) {
+			long tipoMov = this.getSiMostrar(dato);
+			if(tipoMov == TIPO_SI_MOSTRAR){
 				// guardar para mostrar
 				List<Object[]> datos = hashDatos.get(idProd);
 				if (datos == null) {
@@ -164,97 +180,108 @@ public class ReporteStock extends BasculaReporte {
 					hashDatos.put(idProd, datos);
 				}
 				datos.add(dato);
-
+			
 			} else {
 				// acumular saldo
 				Long saldo = this.hashSaldosIniciales.get(idProd);
 				if (saldo == null) {
 					saldo = new Long(0);
 				}
-				saldo += cantidad;
+				
+				long tipMov = this.getTipoMov(dato);
+				saldo += (this.getCantidad(dato) * tipMov);
 				this.hashSaldosIniciales.put(idProd, saldo);
 
 			}
 
 		}
-/*
-		System.out.println("==========================");
-		for (int i = 0; i < list.size(); i++) {
-			Object[] ff = list.get(i);
-			String linea = "";
-			for (int j = 0; j < ff.length; j++) {
-				linea += " - " + ff[j];
-			}
-			System.out.println(i + ") " + linea);
-		}
-		System.out.println("==========================");
-*/
+		/*
+		 * System.out.println("=========================="); for (int i = 0; i <
+		 * list.size(); i++) { Object[] ff = list.get(i); String linea = ""; for
+		 * (int j = 0; j < ff.length; j++) { linea += " - " + ff[j]; }
+		 * System.out.println(i + ") " + linea); }
+		 * System.out.println("==========================");
+		 */
 		return;
 	}
 
 	/**
 	 * 0 = mostrar, -1 = es de salida, 1 = es de llegada
 	 */
-	private long getCantidad(Object[] dato, Date fecha) {
+	private long getSiMostrar(Object[] dato) {
 
+		long out = -1;
 		
 		Date fde = (Date) dato[3];
 		Date fha = (Date) dato[2];
 		long dOri = (long) dato[4];
 		long dDes = (long) dato[5];
 		long cantidad = (long) ((int) dato[9] + 0);
-		
+
 		boolean idOriOk = lIdLugares.contains(dOri);
 		boolean idDesOk = lIdLugares.contains(dDes);
-		
-		if ((idOriOk == true) && (fde.after(fecha) == true)) {
-			// dentro del rango
-			return 0;
+
+		out = TIPO_NO_MOSTRAR;
+
+		if ((idOriOk == true) &&  this.siEntreFecha(fde)){ 
+			out = TIPO_SI_MOSTRAR;
 		}
 
-		if ((idDesOk==true) && (fha.after(fecha) == true)) {
+
+		if ((idDesOk == true) &&  this.siEntreFecha(fha)){ 
 			// dentro del rango
-			return 0;
+			out = TIPO_SI_MOSTRAR;
 		}
 
-		if ((idOriOk == true) && (fde.before(fecha) == true)) {
-			// es un salida
-			return (-1 * cantidad);
-		}
-
-		if ((idDesOk == true) && (fha.before(fecha) == true)) {
-			// dentro del rango
-			return (cantidad);
-		}
 
 		// no debería llegar acá, así que muestre
-		return 0;
+		System.out.println("dOri:"+dOri+"   dDes:"+dDes+"  fde:"+fde+"  fha:"+fha+"    out:"+out);
+
+		return out;
 	}
 
-
 	private long getCantidad(Object[] dato) {
+		long cantidad = (long) ((int) dato[9] + 0);
+		return cantidad;
+	}
 
+	
+	boolean siEntreFecha(Date fecha){
+		return fecha.before(this.fh) && fecha.after(this.fd);
+		
+	}
+	
+	private long getTipoMov(Object[] dato) {
+
+		Date fde = (Date) dato[3];
+		Date fha = (Date) dato[2];
 		long dOri = (long) dato[4];
 		long dDes = (long) dato[5];
 		long cantidad = (long) ((int) dato[9] + 0);
-		
+
 		boolean idOriOk = lIdLugares.contains(dOri);
 		boolean idDesOk = lIdLugares.contains(dDes);
 
-		
-		if (idOriOk  == true) {
-			// es un salida
-			return (-1 * cantidad);
+		if ((idOriOk == true) && (idDesOk == true)){// && (fde.after(this.fd)==true) && (fha.before(this.fh)==true)){ 
+			return TIPO_AMBOS;
 		}
 
-		if (idDesOk  == true) {
+		if ((idOriOk == true)){// && (fde.after(this.fd) == true)) {
 			// dentro del rango
-			return (cantidad);
+			return TIPO_EGRESO;
+		}
+
+		if ((idDesOk == true) ){//&& (fha.before(this.fh) == true)) {
+			// dentro del rango
+			return TIPO_INGRESO;
 		}
 
 		// no debería llegar acá, así que muestre
-		return 0;
+		return -1000;
 	}
+	
+	
+	
 	
 	
 	
@@ -297,34 +324,43 @@ public class ReporteStock extends BasculaReporte {
 			long dIngreso = 0;
 			long dSalida = 0;
 			long dSaldo = 0;
+			String tipoMov = "";
+
+			String desdeStr = ((ff[10] + "            ")).substring(0, 15).trim();
+			String hastaStr = ((ff[11] + "            ")).substring(0, 15).trim();
+
+			
+			tipoMov = desdeStr + " -> " + hastaStr;
 
 			long cantidad = this.getCantidad(ff);
-			if (cantidad > 0) {
-				// ingreso
-				dFecha = (Date) ff[2];
+			long tMov = this.getTipoMov(ff);
+			if ((tMov == TIPO_AMBOS)||(tMov == TIPO_INGRESO)){
 				dIngreso = cantidad;
-				dSalida = 0;
-			} else {
-				// salida
-				dFecha = (Date) ff[3];
-				dIngreso = 0;
-				dSalida = cantidad;
+				dFecha = (Date)ff[2]; 
 			}
-
+			
+			if ((tMov == TIPO_AMBOS)||(tMov == TIPO_EGRESO)){
+				dSalida = (cantidad * -1);
+				dFecha = (Date)ff[3]; 
+			}
+			
 			dDesc = (ff[6].toString().trim() + ff[7].toString().trim());
-//			dDesc = (ff[10].toString().trim() + " - "+ff[11].toString().trim());
+			// dDesc = (ff[10].toString().trim() + " -
+			// "+ff[11].toString().trim());
 
 			if (dFecha == null) {
 				dDesc += " err FECHA";
 				dFecha = new Date();
 			}
 
-			Object[] datoTabla = new Object[5];
+			Object[] datoTabla = new Object[7];
 			datoTabla[0] = dFecha;
 			datoTabla[1] = dDesc;
 			datoTabla[2] = dIngreso;
 			datoTabla[3] = dSalida;
 			datoTabla[4] = dSaldo;
+			datoTabla[5] = desdeStr;
+			datoTabla[6] = hastaStr;
 
 			out.add(datoTabla);
 		}
@@ -382,20 +418,19 @@ public class ReporteStock extends BasculaReporte {
 
 		List<Long> idsP = new ArrayList<>();
 		idsP.add((long) 219);
-//		idsP.add((long) 170);
-//		idsP.add((long) 233);
-//		idsP.add((long) 343);
-//		idsP.add((long) 301);
-//		idsP.add((long) 211);
-//		idsP.add((long) 171);
+		 idsP.add((long) 170);
+		 idsP.add((long) 233);
+		 idsP.add((long) 343);
+		 idsP.add((long) 301);
+		 idsP.add((long) 211);
+		 idsP.add((long) 171);
 
 		List<Long> idsLug = new ArrayList<>();
-		idsLug.add((long)514);
-		idsLug.add((long)9);
-		idsLug.add((long)52);
-		idsLug.add((long)513);
+		idsLug.add((long) 514);
+		idsLug.add((long) 9);
+		idsLug.add((long) 52);
+		idsLug.add((long) 513);
 
-		
 		ReporteStock rep = new ReporteStock();
 		rep.setFd(m.stringToDate("2017-09-20"));
 		rep.setFh(m.stringToDate("2018-09-20"));

@@ -105,6 +105,8 @@ public class Configuracion extends Config {
 	public static final String SIS_PRO_UNISAL_DEPOSITO_ORIGEN = "UNISAL_DEPOSITO_ORIGEN";
 	public static final String SIS_PRO_UNISAL_DEPOSITO_DESTINO = "UNISAL_DEPOSITO_DESTINO";
 
+	public static final String SIS_PRO_UNISAL_STOCK_BIG_BAG = "UNISAL_STOCK_BIG_BAG";
+	
 	
 	public static final String SIS_PRO_IDS_STOCK_SALES = "IDS_STOCK_SALES";
 	

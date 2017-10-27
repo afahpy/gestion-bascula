@@ -39,6 +39,17 @@ public class MovimientoStockReporteVM  extends GenericViewModelApp {
 		// leer los id de depósito
 		long idOri = Long.parseLong( this.getSisProp().getPropiedad(Configuracion.SIS_PRO_UNISAL_PATIO_ORIGEN));
 		long idDes = Long.parseLong( this.getSisProp().getPropiedad(Configuracion.SIS_PRO_UNISAL_PATIO_DESTINO));
+
+		// los id de lugares
+		String idsLugarStockBB = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_UNISAL_STOCK_BIG_BAG);
+		String[] idsLu = idsLugarStockBB.split(",");
+		List<Long> lIdsLug= new ArrayList<>();
+		for (int i = 0; i < idsLu.length; i++) {
+			long idLug = Long.parseLong(idsLu[i].trim());
+			lIdsLug.add(idLug);
+		}
+		
+		
 	
 		// leer los id de productos
 		String idsStr = this.getSisProp().getPropiedad(Configuracion.SIS_PRO_IDS_STOCK_SALES);
@@ -52,8 +63,7 @@ public class MovimientoStockReporteVM  extends GenericViewModelApp {
 		ReporteStock rep = new ReporteStock();
 		rep.setFd(this.fechaDesde);
 		rep.setFh(this.fechaHasta);
-		rep.setIdOri(idOri);
-		rep.setIdDes(idDes);
+		rep.setlIdLugares(lIdsLug);
 		rep.setlIdProds(lIds);
 
 		ViewPdf vp = new ViewPdf();
