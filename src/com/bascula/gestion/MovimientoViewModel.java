@@ -316,6 +316,17 @@ public class MovimientoViewModel extends GenericViewModelApp {
 
 		return out;
 	}
+	
+	
+	public boolean isCampoVisibleProduccionOrConsumo() {
+		boolean out = true;
+
+		if(this.isCampoVisibleConsumo() == false || this.isCampoVisibleProduccion() == false){
+			out = false;
+		}
+
+		return out;
+	}
 
 	@Command
 	@NotifyChange("*")
