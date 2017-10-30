@@ -30,6 +30,8 @@ public class ReporteStock extends BasculaReporte {
 	Date fh = new Date();
 	List<Long> lIdProds = null;
 	List<Long> lIdLugares = null;
+	long salesTotales = 0;
+	
 	// se ponen los ids separados por coma, para optimizar la búsqueda.
 	// List<Long> lIdLugaresOrigen = null;
 	// List<Long> lIdLugaresDestino = null;
@@ -89,9 +91,25 @@ public class ReporteStock extends BasculaReporte {
 
 		HorizontalListBuilder cab = cmp.horizontalFlowList();
 
-		cab.add(this.textoParValor("Fecha desde", this.m.dateToString(this.fd, "dd-MM-yyyy")));
-		cab.add(this.textoParValor("Fecha hasta", this.m.dateToString(this.fh, "dd-MM-yyyy")));
+		HorizontalListBuilder iz = cmp.horizontalFlowList();
+		HorizontalListBuilder de = cmp.horizontalFlowList();
+	
+		
+		iz.add(this.textoParValor("F. Desde", this.m.dateToString(this.fd, "dd-MM-yyyy")));
+		iz.add(this.textoParValor("F. Hasta", this.m.dateToString(this.fh, "dd-MM-yyyy")));
 
+//		String sk = "P:999 / D:333";
+		
+//		de.add(this.textoParValor("Skock Pa/De", sk));
+		de.add(this.textoParValor("Stock Total", this.m.formatoNumero(this.salesTotales)));
+		
+//		cab.add(this.textoParValor("Sk. Depósito", 333));
+//		cab.add(this.textoParValor("Sk. Total", 1332));
+		
+		cab.add(iz);
+		cab.add(de);
+		
+		
 		out.add(cab);
 		out.add(this.espacioAlto(10));
 
@@ -171,6 +189,11 @@ public class ReporteStock extends BasculaReporte {
 			Object[] dato = list.get(i);
 			long idProd = this.getIdProducto(dato);
 
+			// para el calculo total de sales
+			long tipMov = this.getTipoMov(dato);
+			long cantidad = (this.getCantidad(dato) * tipMov);
+			this.salesTotales += cantidad;
+
 			long tipoMov = this.getSiMostrar(dato);
 			if(tipoMov == TIPO_SI_MOSTRAR){
 				// guardar para mostrar
@@ -188,20 +211,12 @@ public class ReporteStock extends BasculaReporte {
 					saldo = new Long(0);
 				}
 				
-				long tipMov = this.getTipoMov(dato);
-				saldo += (this.getCantidad(dato) * tipMov);
+				saldo += cantidad;
 				this.hashSaldosIniciales.put(idProd, saldo);
 
 			}
 
 		}
-		/*
-		 * System.out.println("=========================="); for (int i = 0; i <
-		 * list.size(); i++) { Object[] ff = list.get(i); String linea = ""; for
-		 * (int j = 0; j < ff.length; j++) { linea += " - " + ff[j]; }
-		 * System.out.println(i + ") " + linea); }
-		 * System.out.println("==========================");
-		 */
 		return;
 	}
 
@@ -276,8 +291,8 @@ public class ReporteStock extends BasculaReporte {
 			return TIPO_INGRESO;
 		}
 
-		// no debería llegar acá, así que muestre
-		return -1000;
+		// no debería llegar acá, por eso el número ridículo
+		return -10000;
 	}
 	
 	
@@ -426,14 +441,14 @@ public class ReporteStock extends BasculaReporte {
 		 idsP.add((long) 171);
 
 		List<Long> idsLug = new ArrayList<>();
-		idsLug.add((long) 514);
+		idsLug.add((long) 527);
 		idsLug.add((long) 9);
 		idsLug.add((long) 52);
-		idsLug.add((long) 513);
+		idsLug.add((long) 526);
 
 		ReporteStock rep = new ReporteStock();
-		rep.setFd(m.stringToDate("2017-09-20"));
-		rep.setFh(m.stringToDate("2018-09-20"));
+		rep.setFd(m.stringToDate("2017-10-30"));
+		rep.setFh(m.stringToDate("2017-10-30"));
 		rep.setlIdLugares(idsLug);
 		rep.setlIdProds(idsP);
 
@@ -455,3 +470,14 @@ public class ReporteStock extends BasculaReporte {
 	// ==================================================================
 
 }
+
+
+class SaldosDepositos{
+	
+	
+	
+}
+
+
+
+

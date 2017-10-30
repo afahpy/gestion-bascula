@@ -1,8 +1,8 @@
+<?link rel="shortcut icon" type="image/x-icon" href="/icono-tab.ico"?>
+<?link rel="icon" type="image/x-icon" href="/icono-tab.ico"?>
+
 <?page title="${param.title}"?>
 <?import com.coreweb.Config?>
-
-<?link rel="shortcut icon" type="image/x-icon" href="/xxicono-tab.ico"?>
-<?link rel="icon" type="image/x-icon" href="/xxicono-tab.ico"?>
 
 <window id="homeWindow" xmlns:h="http://www.w3.org/1999/xhtml"
 	border="none" width="100%" apply="org.zkoss.bind.BindComposer"
